@@ -1,0 +1,113 @@
+---
+const navItems = [
+  { label: '会社案内', href: '/about' },
+  { label: '加工サービス', href: '/service' },
+  { label: '設備紹介', href: '/facility' },
+  { label: 'ご注文の流れ', href: '/flow' },
+  { label: '刺繍ガイド', href: '/guide' },
+  { label: 'FAQ', href: '/faq' },
+  { label: '採用情報', href: '/recruit' },
+]
+---
+
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-warm-200">
+  <div class="mx-auto max-w-[1200px] px-4 md:px-8">
+    <div class="flex items-center justify-between h-16 md:h-20">
+      <!-- Logo -->
+      <a href="/" class="flex items-center gap-2 shrink-0">
+        <span class="heading-accent text-lg md:text-xl text-navy-800 leading-tight">
+          タグチ刺繍ネーム
+        </span>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden lg:flex items-center gap-1">
+        {navItems.map((item) => (
+          <a
+            href={item.href}
+            class="px-3 py-2 text-sm text-warm-700 hover:text-navy-800 transition-colors duration-200 tracking-wide"
+          >
+            {item.label}
+          </a>
+        ))}
+      </nav>
+
+      <!-- Right: Phone + CTA + Hamburger -->
+      <div class="flex items-center gap-3">
+        <a
+          href="tel:0296-57-2644"
+          class="hidden md:flex items-center gap-1.5 text-navy-800"
+        >
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+          </svg>
+          <span class="text-sm font-medium tracking-wide">0296-57-2644</span>
+        </a>
+
+        <a
+          href="/contact"
+          class="hidden md:inline-flex items-center px-5 py-2 bg-navy-800 text-white text-sm font-medium rounded tracking-wider hover:bg-navy-700 transition-all duration-200 hover:-translate-y-px hover:shadow-sm"
+        >
+          お問い合わせ
+        </a>
+
+        <!-- Mobile: Phone icon -->
+        <a href="tel:0296-57-2644" class="lg:hidden p-2 text-navy-800" aria-label="電話する">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+          </svg>
+        </a>
+
+        <!-- Hamburger -->
+        <button
+          id="menu-toggle"
+          class="lg:hidden p-2 text-warm-700 hover:text-navy-800 transition-colors"
+          aria-label="メニューを開く"
+          aria-expanded="false"
+        >
+          <svg id="icon-open" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+          </svg>
+          <svg id="icon-close" class="w-6 h-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="lg:hidden hidden border-t border-warm-200 bg-white">
+    <nav class="mx-auto max-w-[1200px] px-4 py-4 flex flex-col gap-1">
+      {navItems.map((item) => (
+        <a
+          href={item.href}
+          class="px-4 py-3 text-warm-700 hover:text-navy-800 hover:bg-navy-50 rounded transition-colors duration-200"
+        >
+          {item.label}
+        </a>
+      ))}
+      <a
+        href="/contact"
+        class="mt-2 px-4 py-3 bg-navy-800 text-white text-center font-medium rounded tracking-wider hover:bg-navy-700 transition-colors duration-200"
+      >
+        お問い合わせ
+      </a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('menu-toggle')!
+  const menu = document.getElementById('mobile-menu')!
+  const iconOpen = document.getElementById('icon-open')!
+  const iconClose = document.getElementById('icon-close')!
+
+  toggle.addEventListener('click', () => {
+    const isOpen = !menu.classList.contains('hidden')
+    menu.classList.toggle('hidden')
+    iconOpen.classList.toggle('hidden')
+    iconClose.classList.toggle('hidden')
+    toggle.setAttribute('aria-expanded', String(!isOpen))
+  })
+</script>

@@ -1,0 +1,73 @@
+---
+const navGroups = [
+  {
+    title: 'サービス',
+    links: [
+      { label: '加工サービス', href: '/service' },
+      { label: '設備紹介', href: '/facility' },
+      { label: 'ご注文の流れ', href: '/flow' },
+      { label: '刺繍ガイド', href: '/guide' },
+    ],
+  },
+  {
+    title: '企業情報',
+    links: [
+      { label: '会社案内', href: '/about' },
+      { label: 'よくある質問', href: '/faq' },
+      { label: '採用情報', href: '/recruit' },
+      { label: 'お問い合わせ', href: '/contact' },
+    ],
+  },
+]
+---
+
+<footer class="bg-navy-950 text-navy-200">
+  <div class="mx-auto max-w-[1200px] px-4 md:px-8 py-16 md:py-20">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
+      <!-- Company Info -->
+      <div class="lg:col-span-2">
+        <p class="heading-accent text-xl text-white mb-4">タグチ刺繍ネーム</p>
+        <address class="not-italic text-sm leading-relaxed space-y-1 text-navy-300">
+          <p>〒309-1106 茨城県筑西市新治2001-4</p>
+          <p>
+            TEL：<a href="tel:0296-57-2644" class="hover:text-white transition-colors">0296-57-2644</a>
+            ／ FAX：0296-57-5224
+          </p>
+          <p>JR水戸線 新治駅 徒歩2分</p>
+        </address>
+        <div class="mt-4 text-sm text-navy-400">
+          <p>営業時間：AM9:00〜17:45</p>
+          <p>休日：日曜・祭日・土曜（不定期）</p>
+        </div>
+      </div>
+
+      <!-- Nav Groups -->
+      {navGroups.map((group) => (
+        <div>
+          <p class="text-sm font-medium text-gold-400 tracking-wider mb-4">{group.title}</p>
+          <ul class="space-y-2.5">
+            {group.links.map((link) => (
+              <li>
+                <a
+                  href={link.href}
+                  class="text-sm text-navy-300 hover:text-white transition-colors duration-200"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Bottom Bar -->
+  <div class="border-t border-navy-800">
+    <div class="mx-auto max-w-[1200px] px-4 md:px-8 py-5 flex flex-col md:flex-row justify-between items-center gap-2">
+      <p class="text-xs text-navy-500">
+        &copy; {new Date().getFullYear()} タグチ刺繍ネーム有限会社 All Rights Reserved.
+      </p>
+    </div>
+  </div>
+</footer>

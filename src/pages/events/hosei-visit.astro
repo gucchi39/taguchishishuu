@@ -1,0 +1,104 @@
+---
+import Layout from '../../layouts/Layout.astro'
+
+const photos = [
+  { src: '/images/events/hosei-visit/hosei-01.jpg', caption: 'ご来訪' },
+  { src: '/images/events/hosei-visit/hosei-05.jpg', caption: '会社説明' },
+  { src: '/images/events/hosei-visit/hosei-08.jpg', caption: '事務所にて' },
+  { src: '/images/events/hosei-visit/hosei-10.jpg', caption: '工場見学' },
+  { src: '/images/events/hosei-visit/hosei-15.jpg', caption: '刺繍機の見学' },
+  { src: '/images/events/hosei-visit/hosei-18.jpg', caption: 'プリント工程の説明' },
+  { src: '/images/events/hosei-visit/hosei-20.jpg', caption: 'シルクスクリーン見学' },
+  { src: '/images/events/hosei-visit/hosei-22.jpg', caption: '質疑応答' },
+]
+---
+
+<Layout title="法政大学 岩瀬ゼミ 工場見学レポート｜タグチ刺繍ネーム">
+
+  <!-- Hero -->
+  <section class="relative h-64 md:h-80 flex items-center">
+    <div class="absolute inset-0">
+      <img src="/images/events/hosei-visit/hosei-10.jpg" alt="" class="w-full h-full object-cover" />
+      <div class="absolute inset-0 bg-navy-800/70"></div>
+    </div>
+    <div class="relative z-10 mx-auto max-w-[1200px] px-4 md:px-8 w-full">
+      <p class="text-sm text-gold-300 tracking-[0.2em] uppercase mb-2">Event Report</p>
+      <h1 class="heading-accent text-2xl md:text-4xl text-white leading-snug">
+        法政大学 岩瀬ゼミ<br class="md:hidden" /> 工場見学レポート
+      </h1>
+    </div>
+  </section>
+
+  <!-- Article -->
+  <section class="py-section-sm md:py-section">
+    <div class="mx-auto max-w-[800px] px-4 md:px-8">
+      <div class="js-fade-in mb-12">
+        <p class="text-warm-600 text-sm mb-4">イベントレポート</p>
+        <h2 class="heading-accent text-xl md:text-2xl text-navy-800 mb-6">
+          大学生が見た、刺繍工場のリアル
+        </h2>
+        <div class="text-warm-800 leading-relaxed space-y-4">
+          <p>
+            法政大学 経営学部 岩瀬ゼミの皆さまに、当社の工場見学にお越しいただきました。
+            創業65年の自社工場で、刺繍加工からプリント、ワッペン製作まで一貫して行う現場を
+            間近にご覧いただきました。
+          </p>
+          <p>
+            学生の皆さまからは加工技術や工場運営について多くのご質問をいただき、
+            私たちにとっても大変有意義な一日となりました。
+          </p>
+        </div>
+      </div>
+
+      <!-- Photo Gallery -->
+      <div class="grid grid-cols-2 gap-3 md:gap-4">
+        {photos.map((photo, i) => (
+          <figure
+            class="js-fade-in overflow-hidden rounded-lg"
+            style={`transition-delay: ${i * 60}ms`}
+          >
+            <img
+              src={photo.src}
+              alt={photo.caption}
+              class="w-full aspect-[4/3] object-cover"
+              loading="lazy"
+            />
+            <figcaption class="text-xs text-warm-500 mt-1.5 px-0.5">{photo.caption}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-section-sm md:py-section bg-navy-800">
+    <div class="mx-auto max-w-[800px] px-4 md:px-8 text-center">
+      <div class="js-fade-in">
+        <h2 class="heading-accent text-xl md:text-2xl text-white mb-3">
+          工場見学・お問い合わせ
+        </h2>
+        <p class="text-navy-200 text-sm mb-6">
+          工場見学のご希望や加工のご相談など、お気軽にお問い合わせください。
+        </p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a
+            href="/contact"
+            class="inline-flex items-center px-8 py-3.5 bg-gold-500 text-navy-950 font-medium rounded tracking-wider hover:bg-gold-400 transition-all duration-200 hover:-translate-y-px hover:shadow-md"
+          >
+            お問い合わせ
+            <svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+          </a>
+          <a href="tel:0296-57-2644" class="inline-flex items-center gap-2 text-white hover:text-gold-300 transition-colors">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+            </svg>
+            <span class="font-medium">0296-57-2644</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>

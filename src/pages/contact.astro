@@ -1,0 +1,133 @@
+---
+import Layout from '../layouts/Layout.astro'
+import SectionHeading from '../components/SectionHeading.astro'
+---
+
+<Layout title="お問い合わせ｜タグチ刺繍ネーム有限会社">
+
+  <section class="relative h-48 md:h-64 flex items-center">
+    <div class="absolute inset-0 bg-navy-800"></div>
+    <div class="relative z-10 mx-auto max-w-[1200px] px-4 md:px-8 w-full">
+      <p class="text-sm text-gold-300 tracking-[0.2em] uppercase mb-2">Contact</p>
+      <h1 class="heading-accent text-2xl md:text-4xl text-white">お問い合わせ</h1>
+    </div>
+  </section>
+
+  <section class="py-section-sm md:py-section">
+    <div class="mx-auto max-w-[1200px] px-4 md:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-12">
+
+        <!-- Form -->
+        <div>
+          <p class="text-warm-700 mb-8 leading-relaxed">
+            お見積り・サンプル請求・加工のご相談など、お気軽にお問い合わせください。<br />
+            内容を確認のうえ、2営業日以内にご返信いたします。
+          </p>
+
+          <div id="form-success" class="hidden bg-gold-50 border border-gold-300 rounded-lg p-6 text-center">
+            <svg class="w-12 h-12 text-gold-500 mx-auto mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            <h3 class="text-lg font-bold text-navy-800 mb-2">送信準備ができました</h3>
+            <p class="text-sm text-warm-700">メールアプリが開きます。内容をご確認のうえ送信してください。</p>
+          </div>
+
+          <form id="contact-form" class="space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label for="company" class="block text-sm font-medium text-navy-800 mb-1.5">会社名 <span class="text-warm-400 text-xs">（任意）</span></label>
+                <input type="text" id="company" name="company" class="w-full px-4 py-3 border border-warm-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-gold-500 transition-colors" placeholder="株式会社○○" />
+              </div>
+              <div>
+                <label for="name" class="block text-sm font-medium text-navy-800 mb-1.5">お名前 <span class="text-gold-600 text-xs">*必須</span></label>
+                <input type="text" id="name" name="name" required class="w-full px-4 py-3 border border-warm-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-gold-500 transition-colors" placeholder="田口 太郎" />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label for="email" class="block text-sm font-medium text-navy-800 mb-1.5">メールアドレス <span class="text-gold-600 text-xs">*必須</span></label>
+                <input type="email" id="email" name="email" required class="w-full px-4 py-3 border border-warm-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-gold-500 transition-colors" placeholder="info@example.com" />
+              </div>
+              <div>
+                <label for="tel" class="block text-sm font-medium text-navy-800 mb-1.5">電話番号 <span class="text-warm-400 text-xs">（任意）</span></label>
+                <input type="tel" id="tel" name="tel" class="w-full px-4 py-3 border border-warm-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-gold-500 transition-colors" placeholder="0296-57-2644" />
+              </div>
+            </div>
+
+            <div>
+              <label for="category" class="block text-sm font-medium text-navy-800 mb-1.5">お問い合わせ種別</label>
+              <select id="category" name="category" class="w-full px-4 py-3 border border-warm-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-gold-500 transition-colors bg-white">
+                <option value="">選択してください</option>
+                <option value="estimate">お見積り依頼</option>
+                <option value="sample">サンプル請求</option>
+                <option value="consultation">加工のご相談</option>
+                <option value="factory">工場見学</option>
+                <option value="recruit">採用について</option>
+                <option value="other">その他</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="message" class="block text-sm font-medium text-navy-800 mb-1.5">お問い合わせ内容 <span class="text-gold-600 text-xs">*必須</span></label>
+              <textarea id="message" name="message" rows="6" required class="w-full px-4 py-3 border border-warm-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-gold-500 transition-colors resize-y" placeholder="ご希望の加工内容、数量、納期などをお知らせください。"></textarea>
+            </div>
+
+            <div>
+              <button type="submit" class="inline-flex items-center px-10 py-3.5 bg-navy-800 text-white font-medium rounded tracking-wider hover:bg-navy-700 transition-all duration-200 hover:-translate-y-px hover:shadow-md">
+                送信する
+                <svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" /></svg>
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="space-y-6">
+          <!-- Phone -->
+          <div class="bg-navy-50 rounded-lg p-6 border border-warm-200">
+            <h3 class="font-bold text-navy-800 mb-3">お電話でのお問い合わせ</h3>
+            <a href="tel:0296-57-2644" class="flex items-center gap-2 text-navy-800 text-xl font-bold mb-2">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" /></svg>
+              0296-57-2644
+            </a>
+            <p class="text-xs text-warm-600">FAX：0296-57-5224</p>
+            <p class="text-xs text-warm-500 mt-2">営業時間：AM9:00〜17:45</p>
+            <p class="text-xs text-warm-500">休日：日曜・祭日・土曜（不定期）</p>
+          </div>
+
+          <!-- Access -->
+          <div class="bg-warm-50 rounded-lg p-6 border border-warm-200">
+            <h3 class="font-bold text-navy-800 mb-3">所在地</h3>
+            <p class="text-sm text-warm-700 mb-1">〒309-1106</p>
+            <p class="text-sm text-warm-700 mb-3">茨城県筑西市新治2001-4</p>
+            <p class="text-xs text-warm-500">JR水戸線 新治駅 徒歩2分</p>
+            <p class="text-xs text-warm-500">駐車場あり</p>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const form = document.getElementById('contact-form') as HTMLFormElement
+    form.addEventListener('submit', (e) => {
+      e.preventDefault()
+      const data = new FormData(form)
+      const subject = `【Webお問い合わせ】${data.get('category') || 'その他'}`
+      const body = [
+        `会社名: ${data.get('company') || '（未記入）'}`,
+        `お名前: ${data.get('name')}`,
+        `メール: ${data.get('email')}`,
+        `電話: ${data.get('tel') || '（未記入）'}`,
+        `種別: ${data.get('category') || '（未選択）'}`,
+        '',
+        `お問い合わせ内容:`,
+        data.get('message'),
+      ].join('\n')
+      window.location.href = `mailto:info@taguchi-shishu.co.jp?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+      document.getElementById('form-success')!.classList.remove('hidden')
+      form.classList.add('hidden')
+    })
+  </script>
+
+</Layout>

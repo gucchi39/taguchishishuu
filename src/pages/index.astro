@@ -1,0 +1,353 @@
+---
+import Layout from '../layouts/Layout.astro'
+import SectionHeading from '../components/SectionHeading.astro'
+import Philosophy from '../components/Philosophy.astro'
+
+const strengths = [
+  {
+    number: '26',
+    unit: '台',
+    label: '刺繍機・プリント機',
+    description: '多頭機3台・単頭機11台の刺繍機に加え、DTF・シルク・UVプリンターを完備。',
+    icon: 'M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z M15 12a3 3 0 11-6 0 3 3 0 016 0z',
+  },
+  {
+    number: '5',
+    unit: '種対応',
+    label: '加工方法',
+    description: '刺繍・プリント・ワッペン・ネーム・転写。ご要望に最適な加工をご提案。',
+    icon: 'M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42',
+  },
+  {
+    number: '65',
+    unit: '年',
+    label: '創業からの歴史',
+    description: '1960年の創業以来、品質と信頼を積み重ねてきた確かな実績。',
+    icon: 'M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z',
+  },
+]
+
+const services = [
+  {
+    title: '刺繍加工',
+    description: 'ユニフォーム・作業着へのロゴ刺繍、チーム名入れなど。立体感と高級感のある仕上がりが特長です。',
+    image: '/images/facility/embroidery-line.jpg',
+  },
+  {
+    title: 'ネーム加工',
+    description: '織りネーム・プリントネーム・下げ札の製作。ブランドの顔となるネームタグを丁寧にお作りします。',
+    image: '/images/facility/wappen-sample.jpg',
+  },
+  {
+    title: 'プリント加工',
+    description: 'シルクスクリーン・転写プリント・昇華プリントに対応。小ロットから大量生産まで柔軟に対応します。',
+    image: '/images/facility/dryer.jpg',
+  },
+]
+
+const stats = [
+  { number: '14', unit: '台', label: '刺繍機' },
+  { number: '3', unit: '台', label: 'プリンター' },
+  { number: '7', unit: '台', label: '熱プレス機' },
+  { number: '2', unit: '台', label: 'レーザー加工機' },
+]
+---
+
+<Layout title="タグチ刺繍ネーム有限会社｜茨城県筑西市の刺繍・プリント加工">
+
+  <!-- ============================================
+       HERO
+       ============================================ -->
+  <section class="relative min-h-[520px] md:min-h-[620px] flex items-center">
+    <!-- Background Image -->
+    <div class="absolute inset-0">
+      <img
+        src="/images/facility/factory-work-02.jpg"
+        alt=""
+        class="w-full h-full object-cover"
+      />
+      <div class="absolute inset-0 bg-navy-800/70"></div>
+    </div>
+
+    <!-- Content -->
+    <div class="relative z-10 mx-auto max-w-[1200px] px-4 md:px-8 py-20 md:py-28">
+      <div class="max-w-2xl">
+        <h1 class="heading-accent text-3xl md:text-5xl text-white leading-snug md:leading-tight mb-5">
+          糸の一本一本に、<br />65年の技術と誇り。
+        </h1>
+        <p class="text-base md:text-lg text-navy-200 leading-relaxed mb-8 max-w-lg">
+          刺繍・ネーム・プリント加工のことなら、<br class="hidden md:block" />タグチ刺繍ネームにお任せください
+        </p>
+        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+          <a
+            href="/contact"
+            class="inline-flex items-center px-8 py-3.5 bg-gold-500 text-navy-950 font-medium rounded tracking-wider hover:bg-gold-400 transition-all duration-200 hover:-translate-y-px hover:shadow-md"
+          >
+            お問い合わせ
+            <svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+          </a>
+          <a
+            href="tel:0296-57-2644"
+            class="inline-flex items-center gap-2 text-white hover:text-gold-300 transition-colors"
+          >
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+            </svg>
+            <span class="text-lg font-medium tracking-wide">0296-57-2644</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       PHILOSOPHY (経営理念)
+       ============================================ -->
+  <section class="py-section-sm md:py-section">
+    <div class="mx-auto max-w-[800px] px-4 md:px-8">
+      <div class="js-fade-in text-center">
+        <span class="block text-sm text-warm-500 font-light tracking-[0.2em] uppercase mb-1">Philosophy</span>
+        <h2 class="heading-accent text-2xl md:text-[2rem] text-navy-800 leading-snug mb-10">
+          <span class="gold-underline">経営理念</span>
+        </h2>
+        <Philosophy />
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       STRENGTHS (3つの強み)
+       ============================================ -->
+  <section class="py-section-sm md:py-section bg-warm-50">
+    <div class="mx-auto max-w-[1200px] px-4 md:px-8">
+      <SectionHeading en="Strength" ja="タグチの強み" />
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+        {strengths.map((item, i) => (
+          <div
+            class="js-fade-in bg-white rounded-lg border border-warm-200 p-8 text-center hover:shadow-md hover:-translate-y-0.5 hover:border-gold-300 transition-all duration-200"
+            style={`transition-delay: ${i * 100}ms`}
+          >
+            <div class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-navy-50 text-navy-600 mb-5">
+              <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d={item.icon} />
+              </svg>
+            </div>
+            <div class="mb-3">
+              <span class="heading-accent text-4xl text-navy-800">{item.number}</span>
+              <span class="text-gold-500 text-xl ml-1 font-medium">{item.unit}</span>
+            </div>
+            <p class="text-sm font-medium text-navy-800 mb-2">{item.label}</p>
+            <p class="text-sm text-warm-600 leading-relaxed">{item.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       SERVICES (サービス概要)
+       ============================================ -->
+  <section class="py-section-sm md:py-section">
+    <div class="mx-auto max-w-[1200px] px-4 md:px-8">
+      <SectionHeading en="Service" ja="加工サービス" />
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {services.map((item, i) => (
+          <a
+            href="/service"
+            class="js-fade-in group block bg-white rounded-lg border border-warm-200 overflow-hidden hover:shadow-md hover:-translate-y-0.5 hover:border-gold-300 transition-all duration-200"
+            style={`transition-delay: ${i * 100}ms`}
+          >
+            <div class="aspect-video overflow-hidden">
+              <img
+                src={item.image}
+                alt={item.title}
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+              />
+            </div>
+            <div class="p-6">
+              <h3 class="text-lg font-bold text-navy-800 mb-2 group-hover:text-navy-600 transition-colors">
+                {item.title}
+              </h3>
+              <p class="text-sm text-warm-600 leading-relaxed">{item.description}</p>
+              <span class="inline-flex items-center text-sm text-gold-600 font-medium mt-4 group-hover:text-gold-500 transition-colors">
+                詳しく見る
+                <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                </svg>
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       STATS (実績数字)
+       ============================================ -->
+  <section class="py-section-sm md:py-section bg-navy-50">
+    <div class="mx-auto max-w-[1200px] px-4 md:px-8">
+      <SectionHeading en="Equipment" ja="設備一覧" />
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-10 md:mb-14">
+        {stats.map((item, i) => (
+          <div
+            class="js-fade-in bg-white rounded-lg border border-warm-200 p-6 md:p-8 text-center"
+            style={`transition-delay: ${i * 80}ms`}
+          >
+            <span class="heading-accent text-3xl md:text-5xl text-navy-800">{item.number}</span>
+            <span class="text-gold-500 text-lg md:text-2xl ml-0.5 font-medium">{item.unit}</span>
+            <p class="text-warm-600 text-xs md:text-sm mt-2">{item.label}</p>
+          </div>
+        ))}
+      </div>
+
+      <!-- Equipment Detail Table -->
+      <div class="js-fade-in bg-white rounded-lg border border-warm-200 overflow-hidden">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="bg-navy-800 text-white">
+              <th class="px-4 md:px-6 py-3 text-left font-medium tracking-wide">分類</th>
+              <th class="px-4 md:px-6 py-3 text-left font-medium tracking-wide">設備名</th>
+              <th class="px-4 md:px-6 py-3 text-center font-medium tracking-wide">台数</th>
+              <th class="px-4 md:px-6 py-3 text-left font-medium tracking-wide hidden md:table-cell">用途</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-warm-100">
+            <tr class="hover:bg-warm-50 transition-colors">
+              <td class="px-4 md:px-6 py-3 text-warm-700">刺繍機</td>
+              <td class="px-4 md:px-6 py-3 font-medium text-navy-800">多頭機（10頭・6頭・4頭）</td>
+              <td class="px-4 md:px-6 py-3 text-center font-bold text-navy-800">3台</td>
+              <td class="px-4 md:px-6 py-3 text-warm-600 hidden md:table-cell">量産対応</td>
+            </tr>
+            <tr class="hover:bg-warm-50 transition-colors">
+              <td class="px-4 md:px-6 py-3 text-warm-700">刺繍機</td>
+              <td class="px-4 md:px-6 py-3 font-medium text-navy-800">単頭機</td>
+              <td class="px-4 md:px-6 py-3 text-center font-bold text-navy-800">11台</td>
+              <td class="px-4 md:px-6 py-3 text-warm-600 hidden md:table-cell">多品種小ロット対応</td>
+            </tr>
+            <tr class="hover:bg-warm-50 transition-colors">
+              <td class="px-4 md:px-6 py-3 text-warm-700">プリント</td>
+              <td class="px-4 md:px-6 py-3 font-medium text-navy-800">DTFプリンター</td>
+              <td class="px-4 md:px-6 py-3 text-center font-bold text-navy-800">1台</td>
+              <td class="px-4 md:px-6 py-3 text-warm-600 hidden md:table-cell">小ロット対応</td>
+            </tr>
+            <tr class="hover:bg-warm-50 transition-colors">
+              <td class="px-4 md:px-6 py-3 text-warm-700">プリント</td>
+              <td class="px-4 md:px-6 py-3 font-medium text-navy-800">シルクプリンター</td>
+              <td class="px-4 md:px-6 py-3 text-center font-bold text-navy-800">1台</td>
+              <td class="px-4 md:px-6 py-3 text-warm-600 hidden md:table-cell">量産対応</td>
+            </tr>
+            <tr class="hover:bg-warm-50 transition-colors">
+              <td class="px-4 md:px-6 py-3 text-warm-700">プリント</td>
+              <td class="px-4 md:px-6 py-3 font-medium text-navy-800">UVプリンター</td>
+              <td class="px-4 md:px-6 py-3 text-center font-bold text-navy-800">1台</td>
+              <td class="px-4 md:px-6 py-3 text-warm-600 hidden md:table-cell">グッズ製造</td>
+            </tr>
+            <tr class="hover:bg-warm-50 transition-colors">
+              <td class="px-4 md:px-6 py-3 text-warm-700">仕上げ</td>
+              <td class="px-4 md:px-6 py-3 font-medium text-navy-800">熱プレス機</td>
+              <td class="px-4 md:px-6 py-3 text-center font-bold text-navy-800">7台</td>
+              <td class="px-4 md:px-6 py-3 text-warm-600 hidden md:table-cell">後工程</td>
+            </tr>
+            <tr class="hover:bg-warm-50 transition-colors">
+              <td class="px-4 md:px-6 py-3 text-warm-700">仕上げ</td>
+              <td class="px-4 md:px-6 py-3 font-medium text-navy-800">レーザー加工機</td>
+              <td class="px-4 md:px-6 py-3 text-center font-bold text-navy-800">2台</td>
+              <td class="px-4 md:px-6 py-3 text-warm-600 hidden md:table-cell">後工程</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       EVENT (お知らせ・イベント)
+       ============================================ -->
+  <section class="py-section-sm md:py-section">
+    <div class="mx-auto max-w-[1200px] px-4 md:px-8">
+      <SectionHeading en="News" ja="お知らせ" />
+
+      <a
+        href="/events/hosei-visit"
+        class="js-fade-in group grid grid-cols-1 md:grid-cols-[400px_1fr] gap-6 bg-white rounded-lg border border-warm-200 overflow-hidden hover:shadow-md hover:border-gold-300 transition-all duration-200"
+      >
+        <div class="overflow-hidden">
+          <img
+            src="/images/events/hosei-visit/hosei-08.jpg"
+            alt="法政大学 岩瀬ゼミ 工場見学"
+            class="w-full h-full object-cover aspect-video md:aspect-auto group-hover:scale-105 transition-transform duration-500"
+            loading="lazy"
+          />
+        </div>
+        <div class="p-6 md:py-8 flex flex-col justify-center">
+          <span class="inline-block text-xs text-gold-600 font-medium bg-gold-50 px-3 py-1 rounded-full w-fit mb-3">
+            イベントレポート
+          </span>
+          <h3 class="text-lg md:text-xl font-bold text-navy-800 mb-2 group-hover:text-navy-600 transition-colors">
+            法政大学 岩瀬ゼミの皆さまが工場見学にお越しくださいました
+          </h3>
+          <p class="text-sm text-warm-600 leading-relaxed mb-4">
+            法政大学 経営学部 岩瀬ゼミの学生の皆さまに、刺繍加工やプリント工程など自社工場の現場をご見学いただきました。
+          </p>
+          <span class="inline-flex items-center text-sm text-gold-600 font-medium group-hover:text-gold-500 transition-colors">
+            レポートを見る
+            <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+          </span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============================================
+       CTA BAND (お問い合わせ導線)
+       ============================================ -->
+  <section class="py-section-sm md:py-section bg-navy-800">
+    <div class="mx-auto max-w-[1200px] px-4 md:px-8 text-center">
+      <div class="js-fade-in">
+        <p class="text-sm text-gold-300 tracking-[0.2em] uppercase mb-3">Contact</p>
+        <h2 class="heading-accent text-2xl md:text-3xl text-white mb-4">
+          まずはお気軽にご相談ください
+        </h2>
+        <p class="text-navy-200 text-sm md:text-base mb-8 max-w-lg mx-auto leading-relaxed">
+          刺繍・プリント加工のお見積り、サンプルのご依頼、<br class="hidden md:block" />
+          加工方法のご相談など、どんなことでもお問い合わせください。
+        </p>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
+          <a
+            href="/contact"
+            class="inline-flex items-center px-8 py-3.5 bg-gold-500 text-navy-950 font-medium rounded tracking-wider hover:bg-gold-400 transition-all duration-200 hover:-translate-y-px hover:shadow-md"
+          >
+            お問い合わせフォーム
+            <svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+          </a>
+          <a
+            href="tel:0296-57-2644"
+            class="inline-flex items-center gap-2 px-8 py-3.5 border border-navy-400 text-white rounded tracking-wider hover:bg-navy-700 transition-all duration-200"
+          >
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+            </svg>
+            0296-57-2644
+          </a>
+        </div>
+
+        <p class="text-navy-400 text-xs">
+          営業時間：AM9:00〜17:45（日曜・祭日・土曜不定期休）
+        </p>
+      </div>
+    </div>
+  </section>
+
+</Layout>

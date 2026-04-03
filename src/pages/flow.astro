@@ -1,0 +1,186 @@
+---
+import Layout from '../layouts/Layout.astro'
+import SectionHeading from '../components/SectionHeading.astro'
+
+const steps = [
+  {
+    num: '01',
+    title: 'お問い合わせ',
+    description: 'お電話・メールフォームからお気軽にご連絡ください。ご希望の加工内容・数量・納期をお知らせいただけるとスムーズです。',
+    icon: 'M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75',
+  },
+  {
+    num: '02',
+    title: 'お打ち合わせ・お見積り',
+    description: '加工内容の詳細をヒアリングし、最適な加工方法をご提案。お見積りを作成いたします。',
+    icon: 'M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 01-.825-.242m9.345-8.334a2.126 2.126 0 00-.476-.095 48.64 48.64 0 00-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0011.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155',
+  },
+  {
+    num: '03',
+    title: 'デザイン確認',
+    description: 'お預かりしたデータをもとに刺繍・プリント用のデザインデータを作成。仕上がりイメージをご確認いただきます。',
+    icon: 'M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42',
+  },
+  {
+    num: '04',
+    title: '加工・製作',
+    description: '自社工場にて加工を行います。経験豊富な職人が一つひとつ丁寧に仕上げます。',
+    icon: 'M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z M15 12a3 3 0 11-6 0 3 3 0 016 0z',
+  },
+  {
+    num: '05',
+    title: '検品・納品',
+    description: '厳しい品質チェックを経て、ご指定の場所へ納品いたします。',
+    icon: 'M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z',
+  },
+]
+
+const pricing = [
+  { type: '刺繍加工', lot: '1枚〜', note: 'サイズ・色数により変動' },
+  { type: 'DTFプリント', lot: '1枚〜', note: '小ロット向き' },
+  { type: 'シルクスクリーン', lot: '30枚〜', note: '量産向き・版代別途' },
+  { type: 'ワッペン製作', lot: '10枚〜', note: 'サイズ・仕様により変動' },
+]
+
+const delivery = [
+  { type: '刺繍加工', standard: '5〜7営業日', express: '3営業日〜' },
+  { type: 'プリント加工', standard: '5〜10営業日', express: '3営業日〜' },
+  { type: 'ワッペン製作', standard: '7〜14営業日', express: '5営業日〜' },
+]
+---
+
+<Layout title="ご注文の流れ｜タグチ刺繍ネーム有限会社">
+
+  <section class="relative h-48 md:h-64 flex items-center">
+    <div class="absolute inset-0 bg-navy-800"></div>
+    <div class="relative z-10 mx-auto max-w-[1200px] px-4 md:px-8 w-full">
+      <p class="text-sm text-gold-300 tracking-[0.2em] uppercase mb-2">Flow</p>
+      <h1 class="heading-accent text-2xl md:text-4xl text-white">ご注文の流れ</h1>
+    </div>
+  </section>
+
+  <!-- Steps -->
+  <section class="py-section-sm md:py-section">
+    <div class="mx-auto max-w-[800px] px-4 md:px-8">
+      <SectionHeading en="Order Flow" ja="ご注文の流れ" />
+
+      <div class="space-y-0">
+        {steps.map((step, i) => (
+          <div class="js-fade-in relative flex gap-5 md:gap-8 pb-10" style={`transition-delay: ${i * 80}ms`}>
+            {/* Connector line */}
+            {i < steps.length - 1 && (
+              <div class="absolute left-[27px] md:left-[31px] top-[56px] bottom-0 w-px bg-warm-200"></div>
+            )}
+            {/* Number circle */}
+            <div class="shrink-0 w-14 h-14 md:w-16 md:h-16 rounded-full bg-navy-800 flex items-center justify-center">
+              <span class="text-gold-400 font-bold text-sm md:text-base">{step.num}</span>
+            </div>
+            {/* Content */}
+            <div class="pt-1">
+              <div class="flex items-center gap-3 mb-2">
+                <h3 class="text-lg font-bold text-navy-800">{step.title}</h3>
+                <svg class="w-5 h-5 text-gold-500 hidden md:block" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d={step.icon} />
+                </svg>
+              </div>
+              <p class="text-sm text-warm-700 leading-relaxed">{step.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Delivery -->
+  <section class="py-section-sm md:py-section bg-warm-50">
+    <div class="mx-auto max-w-[800px] px-4 md:px-8">
+      <SectionHeading en="Delivery" ja="納期の目安" />
+      <div class="js-fade-in bg-white rounded-lg border border-warm-200 overflow-hidden">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="bg-navy-800 text-white">
+              <th class="px-4 md:px-6 py-3 text-left font-medium">加工種類</th>
+              <th class="px-4 md:px-6 py-3 text-center font-medium">通常納期</th>
+              <th class="px-4 md:px-6 py-3 text-center font-medium">特急対応</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-warm-100">
+            {delivery.map((row) => (
+              <tr class="hover:bg-warm-50 transition-colors">
+                <td class="px-4 md:px-6 py-3 font-medium text-navy-800">{row.type}</td>
+                <td class="px-4 md:px-6 py-3 text-center text-warm-700">{row.standard}</td>
+                <td class="px-4 md:px-6 py-3 text-center text-gold-600 font-medium">{row.express}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="mt-3 text-xs text-warm-500">※数量・内容により変動します。お急ぎの場合はご相談ください。</p>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section class="py-section-sm md:py-section">
+    <div class="mx-auto max-w-[800px] px-4 md:px-8">
+      <SectionHeading en="Pricing" ja="料金の目安" />
+      <div class="js-fade-in bg-white rounded-lg border border-warm-200 overflow-hidden">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="bg-navy-800 text-white">
+              <th class="px-4 md:px-6 py-3 text-left font-medium">加工種類</th>
+              <th class="px-4 md:px-6 py-3 text-center font-medium">最小ロット</th>
+              <th class="px-4 md:px-6 py-3 text-left font-medium">備考</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-warm-100">
+            {pricing.map((row) => (
+              <tr class="hover:bg-warm-50 transition-colors">
+                <td class="px-4 md:px-6 py-3 font-medium text-navy-800">{row.type}</td>
+                <td class="px-4 md:px-6 py-3 text-center text-warm-700">{row.lot}</td>
+                <td class="px-4 md:px-6 py-3 text-warm-600">{row.note}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="mt-3 text-xs text-warm-500">※正式な料金はお見積りにてご案内いたします。お気軽にお問い合わせください。</p>
+    </div>
+  </section>
+
+  <!-- For individuals -->
+  <section class="py-section-sm md:py-section bg-gold-50">
+    <div class="mx-auto max-w-[800px] px-4 md:px-8 text-center">
+      <div class="js-fade-in">
+        <h2 class="heading-accent text-xl md:text-2xl text-navy-800 mb-4">個人のお客様もお気軽にどうぞ</h2>
+        <p class="text-warm-700 text-sm leading-relaxed max-w-lg mx-auto mb-6">
+          「1枚だけでも頼めるの？」「初めてでもわかりやすく教えてほしい」──
+          個人のお客様からのご注文も承っております。チームのユニフォーム、記念品、お名前入れなど、お気軽にご相談ください。
+        </p>
+        <a href="/guide" class="inline-flex items-center text-sm text-gold-700 font-medium hover:text-gold-600 transition-colors">
+          刺繍ガイドを見る
+          <svg class="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-section-sm md:py-section bg-navy-800">
+    <div class="mx-auto max-w-[800px] px-4 md:px-8 text-center">
+      <div class="js-fade-in">
+        <h2 class="heading-accent text-xl md:text-2xl text-white mb-3">まずはお気軽にご相談ください</h2>
+        <p class="text-navy-200 text-sm mb-6">お見積りは無料です。</p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a href="/contact" class="inline-flex items-center px-8 py-3.5 bg-gold-500 text-navy-950 font-medium rounded tracking-wider hover:bg-gold-400 transition-all duration-200 hover:-translate-y-px hover:shadow-md">
+            お問い合わせ
+            <svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+          </a>
+          <a href="tel:0296-57-2644" class="inline-flex items-center gap-2 text-white hover:text-gold-300 transition-colors">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" /></svg>
+            <span class="font-medium">0296-57-2644</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>
