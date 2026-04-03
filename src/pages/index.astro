@@ -51,6 +51,7 @@ const stats = [
   { number: '7', unit: '台', label: '熱プレス機' },
   { number: '2', unit: '台', label: 'レーザー加工機' },
 ]
+import { url } from '../utils/paths'
 ---
 
 <Layout title="タグチ刺繍ネーム有限会社｜茨城県筑西市の刺繍・プリント加工">
@@ -62,7 +63,7 @@ const stats = [
     <!-- Background Image -->
     <div class="absolute inset-0">
       <img
-        src="/images/facility/factory-work-02.jpg"
+        src={url("/images/facility/factory-work-02.jpg")}
         alt=""
         class="w-full h-full object-cover"
       />
@@ -80,7 +81,7 @@ const stats = [
         </p>
         <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
           <a
-            href="/contact"
+            href={url("/contact")}
             class="inline-flex items-center px-8 py-3.5 bg-gold-500 text-navy-950 font-medium rounded tracking-wider hover:bg-gold-400 transition-all duration-200 hover:-translate-y-px hover:shadow-md"
           >
             お問い合わせ
@@ -157,13 +158,13 @@ const stats = [
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         {services.map((item, i) => (
           <a
-            href="/service"
+            href={url("/service")}
             class="js-fade-in group block bg-white rounded-lg border border-warm-200 overflow-hidden hover:shadow-md hover:-translate-y-0.5 hover:border-gold-300 transition-all duration-200"
             style={`transition-delay: ${i * 100}ms`}
           >
             <div class="aspect-video overflow-hidden">
               <img
-                src={item.image}
+                src={url(item.image)}
                 alt={item.title}
                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 loading="lazy"
@@ -275,12 +276,12 @@ const stats = [
       <SectionHeading en="News" ja="お知らせ" />
 
       <a
-        href="/events/hosei-visit"
+        href={url("/events/hosei-visit")}
         class="js-fade-in group grid grid-cols-1 md:grid-cols-[400px_1fr] gap-6 bg-white rounded-lg border border-warm-200 overflow-hidden hover:shadow-md hover:border-gold-300 transition-all duration-200"
       >
         <div class="overflow-hidden">
           <img
-            src="/images/events/hosei-visit/hosei-08.jpg"
+            src={url("/images/events/hosei-visit/hosei-08.jpg")}
             alt="法政大学 岩瀬ゼミ 工場見学"
             class="w-full h-full object-cover aspect-video md:aspect-auto group-hover:scale-105 transition-transform duration-500"
             loading="lazy"
@@ -324,7 +325,7 @@ const stats = [
 
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
           <a
-            href="/contact"
+            href={url("/contact")}
             class="inline-flex items-center px-8 py-3.5 bg-gold-500 text-navy-950 font-medium rounded tracking-wider hover:bg-gold-400 transition-all duration-200 hover:-translate-y-px hover:shadow-md"
           >
             お問い合わせフォーム

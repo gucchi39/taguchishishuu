@@ -11,6 +11,7 @@ const photos = [
   { src: '/images/events/hosei-visit/hosei-20.jpg', caption: 'シルクスクリーン見学' },
   { src: '/images/events/hosei-visit/hosei-22.jpg', caption: '質疑応答' },
 ]
+import { url } from '../../utils/paths'
 ---
 
 <Layout title="法政大学 岩瀬ゼミ 工場見学レポート｜タグチ刺繍ネーム">
@@ -18,7 +19,7 @@ const photos = [
   <!-- Hero -->
   <section class="relative h-64 md:h-80 flex items-center">
     <div class="absolute inset-0">
-      <img src="/images/events/hosei-visit/hosei-10.jpg" alt="" class="w-full h-full object-cover" />
+      <img src={url("/images/events/hosei-visit/hosei-10.jpg")} alt="" class="w-full h-full object-cover" />
       <div class="absolute inset-0 bg-navy-800/70"></div>
     </div>
     <div class="relative z-10 mx-auto max-w-[1200px] px-4 md:px-8 w-full">
@@ -58,7 +59,7 @@ const photos = [
             style={`transition-delay: ${i * 60}ms`}
           >
             <img
-              src={photo.src}
+              src={url(photo.src)}
               alt={photo.caption}
               class="w-full aspect-[4/3] object-cover"
               loading="lazy"
@@ -82,7 +83,7 @@ const photos = [
         </p>
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
           <a
-            href="/contact"
+            href={url("/contact")}
             class="inline-flex items-center px-8 py-3.5 bg-gold-500 text-navy-950 font-medium rounded tracking-wider hover:bg-gold-400 transition-all duration-200 hover:-translate-y-px hover:shadow-md"
           >
             お問い合わせ

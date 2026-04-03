@@ -8,13 +8,14 @@ const navItems = [
   { label: 'FAQ', href: '/faq' },
   { label: '採用情報', href: '/recruit' },
 ]
+import { url } from '../utils/paths'
 ---
 
 <header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-warm-200">
   <div class="mx-auto max-w-[1200px] px-4 md:px-8">
     <div class="flex items-center justify-between h-16 md:h-20">
       <!-- Logo -->
-      <a href="/" class="flex items-center gap-2 shrink-0">
+      <a href={url("/")} class="flex items-center gap-2 shrink-0">
         <span class="heading-accent text-lg md:text-xl text-navy-800 leading-tight">
           タグチ刺繍ネーム
         </span>
@@ -24,7 +25,7 @@ const navItems = [
       <nav class="hidden lg:flex items-center gap-1">
         {navItems.map((item) => (
           <a
-            href={item.href}
+            href={url(item.href)}
             class="px-3 py-2 text-sm text-warm-700 hover:text-navy-800 transition-colors duration-200 tracking-wide"
           >
             {item.label}
@@ -45,7 +46,7 @@ const navItems = [
         </a>
 
         <a
-          href="/contact"
+          href={url("/contact")}
           class="hidden md:inline-flex items-center px-5 py-2 bg-navy-800 text-white text-sm font-medium rounded tracking-wider hover:bg-navy-700 transition-all duration-200 hover:-translate-y-px hover:shadow-sm"
         >
           お問い合わせ
@@ -81,14 +82,14 @@ const navItems = [
     <nav class="mx-auto max-w-[1200px] px-4 py-4 flex flex-col gap-1">
       {navItems.map((item) => (
         <a
-          href={item.href}
+          href={url(item.href)}
           class="px-4 py-3 text-warm-700 hover:text-navy-800 hover:bg-navy-50 rounded transition-colors duration-200"
         >
           {item.label}
         </a>
       ))}
       <a
-        href="/contact"
+        href={url("/contact")}
         class="mt-2 px-4 py-3 bg-navy-800 text-white text-center font-medium rounded tracking-wider hover:bg-navy-700 transition-colors duration-200"
       >
         お問い合わせ

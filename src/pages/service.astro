@@ -36,13 +36,14 @@ const services = [
     features: ['織りネーム', 'プリントネーム', '下げ札・タグ', 'サイズ表示・品質表示'],
   },
 ]
+import { url } from '../utils/paths'
 ---
 
 <Layout title="加工サービス｜タグチ刺繍ネーム有限会社">
 
   <section class="relative h-48 md:h-64 flex items-center">
     <div class="absolute inset-0">
-      <img src="/images/facility/factory-work-02.jpg" alt="" class="w-full h-full object-cover" />
+      <img src={url("/images/facility/factory-work-02.jpg")} alt="" class="w-full h-full object-cover" />
       <div class="absolute inset-0 bg-navy-800/70"></div>
     </div>
     <div class="relative z-10 mx-auto max-w-[1200px] px-4 md:px-8 w-full">
@@ -56,7 +57,7 @@ const services = [
       <div class="mx-auto max-w-[1200px] px-4 md:px-8">
         <div class="js-fade-in grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           <div class={i % 2 === 1 ? 'lg:order-2' : ''}>
-            <img src={svc.image} alt={svc.title} class="w-full aspect-video object-cover rounded-lg" loading="lazy" />
+            <img src={url(svc.image)} alt={svc.title} class="w-full aspect-video object-cover rounded-lg" loading="lazy" />
           </div>
           <div class={i % 2 === 1 ? 'lg:order-1' : ''}>
             <span class="text-sm text-warm-500 font-light tracking-[0.2em] uppercase">{svc.en}</span>
@@ -87,11 +88,11 @@ const services = [
         <h2 class="heading-accent text-xl md:text-2xl text-white mb-3">加工のご相談・お見積り</h2>
         <p class="text-navy-200 text-sm mb-6">最適な加工方法をご提案いたします。お気軽にお問い合わせください。</p>
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <a href="/contact" class="inline-flex items-center px-8 py-3.5 bg-gold-500 text-navy-950 font-medium rounded tracking-wider hover:bg-gold-400 transition-all duration-200 hover:-translate-y-px hover:shadow-md">
+          <a href={url("/contact")} class="inline-flex items-center px-8 py-3.5 bg-gold-500 text-navy-950 font-medium rounded tracking-wider hover:bg-gold-400 transition-all duration-200 hover:-translate-y-px hover:shadow-md">
             お問い合わせ
             <svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
           </a>
-          <a href="/flow" class="inline-flex items-center px-8 py-3.5 border border-navy-400 text-white rounded tracking-wider hover:bg-navy-700 transition-all duration-200">
+          <a href={url("/flow")} class="inline-flex items-center px-8 py-3.5 border border-navy-400 text-white rounded tracking-wider hover:bg-navy-700 transition-all duration-200">
             ご注文の流れ
             <svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
           </a>

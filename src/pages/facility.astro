@@ -31,13 +31,14 @@ const stats = [
   { number: '7', unit: '台', label: '熱プレス機' },
   { number: '2', unit: '台', label: 'レーザー加工機' },
 ]
+import { url } from '../utils/paths'
 ---
 
 <Layout title="設備紹介｜タグチ刺繍ネーム有限会社">
 
   <section class="relative h-48 md:h-64 flex items-center">
     <div class="absolute inset-0">
-      <img src="/images/facility/embroidery-line.jpg" alt="" class="w-full h-full object-cover" />
+      <img src={url("/images/facility/embroidery-line.jpg")} alt="" class="w-full h-full object-cover" />
       <div class="absolute inset-0 bg-navy-800/70"></div>
     </div>
     <div class="relative z-10 mx-auto max-w-[1200px] px-4 md:px-8 w-full">
@@ -93,7 +94,7 @@ const stats = [
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
         {photos.map((photo, i) => (
           <figure class="js-fade-in bg-white rounded-lg border border-warm-200 overflow-hidden" style={`transition-delay: ${i * 60}ms`}>
-            <img src={photo.src} alt={photo.caption} class="w-full aspect-[4/3] object-cover" loading="lazy" />
+            <img src={url(photo.src)} alt={photo.caption} class="w-full aspect-[4/3] object-cover" loading="lazy" />
             <figcaption class="px-3 py-2 text-xs text-warm-600">{photo.caption}</figcaption>
           </figure>
         ))}
@@ -106,7 +107,7 @@ const stats = [
       <div class="js-fade-in">
         <h2 class="heading-accent text-xl md:text-2xl text-white mb-3">設備・加工に関するご相談</h2>
         <p class="text-navy-200 text-sm mb-6">設備の詳細や加工対応範囲など、お気軽にお問い合わせください。</p>
-        <a href="/contact" class="inline-flex items-center px-8 py-3.5 bg-gold-500 text-navy-950 font-medium rounded tracking-wider hover:bg-gold-400 transition-all duration-200 hover:-translate-y-px hover:shadow-md">
+        <a href={url("/contact")} class="inline-flex items-center px-8 py-3.5 bg-gold-500 text-navy-950 font-medium rounded tracking-wider hover:bg-gold-400 transition-all duration-200 hover:-translate-y-px hover:shadow-md">
           お問い合わせ
           <svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
         </a>
