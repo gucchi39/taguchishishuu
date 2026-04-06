@@ -135,7 +135,16 @@ import { url } from '../utils/paths'
   <section id="pricing" class="py-section-sm md:py-section bg-gold-50">
     <div class="mx-auto max-w-[1200px] px-4 md:px-8">
       <SectionHeading en="Pricing" ja="料金の目安" />
-      <p class="text-center text-warm-600 text-sm -mt-8 mb-3">
+      <!-- Estimator CTA -->
+      <div class="js-fade-in bg-white border-2 border-gold-400 rounded-lg p-6 text-center -mt-6 mb-10 max-w-lg mx-auto">
+        <p class="text-navy-800 font-bold mb-2">条件を選ぶだけで概算がわかります</p>
+        <a href={url("/estimate")} class="inline-flex items-center px-6 py-3 bg-gold-500 text-navy-950 font-medium rounded tracking-wider hover:bg-gold-400 transition-all duration-200 hover:-translate-y-px hover:shadow-md">
+          かんたん見積もりシミュレーター
+          <svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+        </a>
+      </div>
+
+      <p class="text-center text-warm-600 text-sm mb-3">
         下記は法人・卸売のお客様向けの参考価格（税別）です。<br class="hidden md:block" />正式な料金はお見積りにてご案内いたします。
       </p>
       <p class="text-center text-xs text-gold-700 bg-gold-100 rounded-lg py-2 px-4 max-w-md mx-auto mb-10">

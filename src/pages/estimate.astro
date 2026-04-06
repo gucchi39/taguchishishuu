@@ -1,0 +1,437 @@
+---
+import Layout from '../layouts/Layout.astro'
+import { url } from '../utils/paths'
+---
+
+<Layout title="かんたん見積もり｜タグチ刺繍ネーム有限会社">
+
+  <section class="relative h-48 md:h-64 flex items-center">
+    <div class="absolute inset-0 bg-navy-800"></div>
+    <div class="relative z-10 mx-auto max-w-[1200px] px-4 md:px-8 w-full">
+      <p class="text-sm text-gold-300 tracking-[0.2em] uppercase mb-2">Estimate</p>
+      <h1 class="heading-accent text-2xl md:text-4xl text-white">かんたん見積もり</h1>
+      <p class="text-navy-200 text-sm mt-2">条件を選ぶだけで概算料金がわかります</p>
+    </div>
+  </section>
+
+  <section class="py-section-sm md:py-section">
+    <div class="mx-auto max-w-[1000px] px-4 md:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-8">
+
+        <!-- Left: Form Steps -->
+        <div>
+          <!-- Step 1: Processing Type -->
+          <div class="mb-8">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="w-8 h-8 rounded-full bg-navy-800 text-gold-400 text-sm font-bold flex items-center justify-center shrink-0">1</span>
+              <h2 class="text-lg font-bold text-navy-800">加工の種類を選ぶ</h2>
+            </div>
+            <div id="step1" class="grid grid-cols-2 md:grid-cols-3 gap-3">
+              <button data-type="embroidery-name" class="type-btn px-4 py-4 text-sm text-left border border-warm-300 rounded-lg hover:border-navy-400 transition-all bg-white">
+                <span class="block font-bold text-navy-800 mb-1">刺繍（名入れ）</span>
+                <span class="text-xs text-warm-500">会社名・個人名</span>
+              </button>
+              <button data-type="embroidery-logo" class="type-btn px-4 py-4 text-sm text-left border border-warm-300 rounded-lg hover:border-navy-400 transition-all bg-white">
+                <span class="block font-bold text-navy-800 mb-1">刺繍（ロゴ）</span>
+                <span class="text-xs text-warm-500">ロゴマーク等</span>
+              </button>
+              <button data-type="dtf" class="type-btn px-4 py-4 text-sm text-left border border-warm-300 rounded-lg hover:border-navy-400 transition-all bg-white">
+                <span class="block font-bold text-navy-800 mb-1">DTFプリント</span>
+                <span class="text-xs text-warm-500">フルカラー・小ロット</span>
+              </button>
+              <button data-type="silk" class="type-btn px-4 py-4 text-sm text-left border border-warm-300 rounded-lg hover:border-navy-400 transition-all bg-white">
+                <span class="block font-bold text-navy-800 mb-1">シルクスクリーン</span>
+                <span class="text-xs text-warm-500">量産向き</span>
+              </button>
+              <button data-type="wappen" class="type-btn px-4 py-4 text-sm text-left border border-warm-300 rounded-lg hover:border-navy-400 transition-all bg-white">
+                <span class="block font-bold text-navy-800 mb-1">ワッペン</span>
+                <span class="text-xs text-warm-500">刺繍/プリント</span>
+              </button>
+              <button data-type="nafuda" class="type-btn px-4 py-4 text-sm text-left border border-warm-300 rounded-lg hover:border-navy-400 transition-all bg-white">
+                <span class="block font-bold text-navy-800 mb-1">刺繍名札</span>
+                <span class="text-xs text-warm-500">名前ワッペン</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 2: Detail (dynamic) -->
+          <div id="step2-container" class="mb-8 hidden">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="w-8 h-8 rounded-full bg-navy-800 text-gold-400 text-sm font-bold flex items-center justify-center shrink-0">2</span>
+              <h2 class="text-lg font-bold text-navy-800">仕様を選ぶ</h2>
+            </div>
+            <div id="step2" class="space-y-4">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+
+          <!-- Step 3: Quantity -->
+          <div id="step3-container" class="mb-8 hidden">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="w-8 h-8 rounded-full bg-navy-800 text-gold-400 text-sm font-bold flex items-center justify-center shrink-0">3</span>
+              <h2 class="text-lg font-bold text-navy-800">数量を入力</h2>
+            </div>
+            <div class="flex items-center gap-3">
+              <input type="number" id="quantity" min="1" value="10" class="w-32 px-4 py-3 border border-warm-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-gold-500" />
+              <span class="text-sm text-warm-600">枚</span>
+            </div>
+            <p id="lot-warning" class="text-xs text-gold-700 mt-2 hidden"></p>
+          </div>
+
+          <!-- Step 4: Options -->
+          <div id="step4-container" class="mb-8 hidden">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="w-8 h-8 rounded-full bg-navy-800 text-gold-400 text-sm font-bold flex items-center justify-center shrink-0">4</span>
+              <h2 class="text-lg font-bold text-navy-800">オプション</h2>
+            </div>
+            <div id="step4" class="space-y-3">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Price Panel (sticky) -->
+        <div>
+          <div class="lg:sticky lg:top-24 bg-warm-50 border border-warm-200 rounded-lg overflow-hidden">
+            <div class="bg-navy-800 px-5 py-4">
+              <p class="text-gold-300 text-xs tracking-wider uppercase">概算見積り</p>
+              <div class="flex items-end gap-1 mt-1">
+                <span id="total-price" class="heading-accent text-3xl text-white">---</span>
+                <span class="text-navy-200 text-sm mb-1">円（税別）</span>
+              </div>
+            </div>
+            <div class="px-5 py-4 space-y-2">
+              <div id="price-breakdown" class="space-y-1.5 text-sm">
+                <p class="text-warm-500">加工の種類を選んでください</p>
+              </div>
+              <div class="border-t border-warm-200 pt-3 mt-3">
+                <div class="flex justify-between text-xs text-warm-500">
+                  <span>単価</span>
+                  <span id="unit-price">---円</span>
+                </div>
+                <div class="flex justify-between text-xs text-warm-500 mt-1">
+                  <span>数量</span>
+                  <span id="qty-display">---枚</span>
+                </div>
+              </div>
+            </div>
+            <div class="px-5 pb-5">
+              <a href={url("/contact")} class="block w-full py-3 bg-gold-500 text-navy-950 text-center text-sm font-medium rounded tracking-wider hover:bg-gold-400 transition-all duration-200">
+                正式なお見積りを依頼する
+              </a>
+              <p class="text-[11px] text-warm-500 text-center mt-2">
+                ※ 概算です。正式な料金は<br />お見積りにてご案内します
+              </p>
+            </div>
+          </div>
+
+          <div class="mt-4 bg-gold-50 border border-gold-200 rounded-lg px-4 py-3">
+            <p class="text-xs text-gold-800 font-medium mb-1">個人のお客様へ</p>
+            <p class="text-xs text-gold-700">こちらは法人・卸売のお客様向けの参考価格です。個人のお客様向け価格は別途ご案内いたします。</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // ===== PRICE DATA (from catalog) =====
+    const PRICES = {
+      'embroidery-name': {
+        label: '刺繍（名入れ）',
+        options: [
+          { id: 'company-12', label: '会社名（5文字まで）1.2cm角', price: 150 },
+          { id: 'name-12', label: '個人名 漢字（5文字まで）1.2cm角', price: 250 },
+          { id: 'name-15', label: '個人名 漢字フルネーム 1.5cm角', price: 350 },
+          { id: 'name-20', label: '個人名 漢字フルネーム 2cm角', price: 500 },
+          { id: 'name-30', label: '個人名 漢字フルネーム 3cm角', price: 750 },
+          { id: 'initial', label: '英字イニシャル 1.2cm角', price: 150 },
+          { id: 'cursive', label: '英字筆記体 1.2cm角', price: 250 },
+        ],
+        minLot: 1,
+        extras: [
+          { id: 'gold-thread', label: '金糸・銀糸使用', price: 30 },
+          { id: 'winter', label: '防寒服への加工', price: 50 },
+        ],
+      },
+      'embroidery-logo': {
+        label: '刺繍（ロゴ）',
+        options: [
+          { id: 'logo-15x10', label: '文字1段 縦1.5cm×横10cm', price: 400 },
+          { id: 'logo-2x10', label: '文字1段 縦2cm×横10cm', price: 500 },
+          { id: 'logo-5x10', label: '文字2段 縦5cm×横10cm', price: 600 },
+          { id: 'logo-5x30', label: 'ロゴ大 縦5cm×横30cm', price: 1800 },
+          { id: 'cross', label: '緑十字マーク 3cm角', price: 200 },
+          { id: 'number', label: '番号（2桁まで）3cm角', price: 300 },
+          { id: 'kamon', label: '家紋 4cm', price: 400 },
+        ],
+        minLot: 1,
+        extras: [
+          { id: 'gold-thread', label: '金糸・銀糸使用', price: 30 },
+          { id: 'winter', label: '防寒服への加工', price: 50 },
+        ],
+        setupNote: 'オリジナルロゴは別途型代・校正代が発生します',
+      },
+      'dtf': {
+        label: 'DTFプリント',
+        options: [
+          { id: 'dtf-5050', label: '50×50mm', price: 300 },
+          { id: 'dtf-15100', label: '15×100mm', price: 360 },
+          { id: 'dtf-30100', label: '30×100mm', price: 420 },
+          { id: 'dtf-60100', label: '60×100mm', price: 600 },
+          { id: 'dtf-100100', label: '100×100mm / 50×150mm', price: 900 },
+          { id: 'dtf-100150', label: '100×150mm / 50×300mm', price: 1000 },
+          { id: 'dtf-100300', label: '100×300mm', price: 1200 },
+          { id: 'dtf-150300', label: '150×300mm', price: 1500 },
+          { id: 'dtf-200300', label: '200×300mm', price: 1800 },
+          { id: 'dtf-300300', label: '250×300mm / 300×300mm', price: 2100 },
+        ],
+        minLot: 1,
+        extras: [
+          { id: 'dtf-color2', label: '2色目以降（+100円/色）', price: 100 },
+          { id: 'dtf-metallic', label: '金・銀・蛍光インク', price: 100 },
+          { id: 'dtf-nylon', label: 'ナイロン素材（1色限定）', price: 100 },
+        ],
+        setupNote: '9枚以下はセットアップ料1,800〜2,700円が別途かかります',
+        setupFee: function(qty) {
+          if (qty <= 9) return 1800
+          if (qty <= 29) return 600
+          if (qty <= 49) return 550
+          return 500
+        },
+      },
+      'silk': {
+        label: 'シルクスクリーン（単色）',
+        options: [
+          { id: 'silk-30100', label: '30×100mm', prices: { 10: 300, 30: 200, 50: 180 } },
+          { id: 'silk-60100', label: '60×100mm', prices: { 10: 400, 30: 300, 50: 250 } },
+          { id: 'silk-100300', label: '100×300mm', prices: { 10: 900, 30: 700, 50: 600 } },
+          { id: 'silk-300300', label: '300×300mm', prices: { 10: 1500, 30: 1200, 50: 1000 } },
+        ],
+        minLot: 10,
+        plateFee: 7000,
+        extras: [
+          { id: 'silk-color2', label: '2色目以降（+100円/色 + 版代追加）', price: 100, platePlus: 7000 },
+        ],
+      },
+      'wappen': {
+        label: 'ワッペン',
+        options: [
+          { id: 'emb-w8', label: '刺繍ワッペン 天地8cm', prices: { 5: 600, 50: 550, 100: 500 } },
+          { id: 'emb-w10', label: '刺繍ワッペン 天地10cm', prices: { 5: 750, 50: 700, 100: 650 } },
+          { id: 'prt-w8', label: 'プリントワッペン 天地8cm', prices: { 5: 400, 50: 350, 100: 300 } },
+          { id: 'prt-w10', label: 'プリントワッペン 天地10cm', prices: { 5: 500, 50: 450, 100: 400 } },
+        ],
+        minLot: 5,
+        extras: [
+          { id: 'sew', label: '縫付け代', price: 100 },
+          { id: 'press', label: '圧着代', price: 80 },
+        ],
+      },
+      'nafuda': {
+        label: '刺繍名札',
+        options: [
+          { id: 'nf-2x5', label: '2cm×5cm 苗字のみ', price: 300 },
+          { id: 'nf-25x7', label: '2.5cm×7cm フルネーム', price: 400 },
+          { id: 'nf-3x7', label: '3cm×7cm 施設名+フルネーム', price: 550 },
+          { id: 'nf-35x7', label: '3.5cm×7cm 苗字のみ', price: 400 },
+          { id: 'nf-45x7', label: '4.5cm×7cm 施設名+フルネーム', price: 400 },
+        ],
+        minLot: 1,
+        extras: [],
+      },
+    }
+
+    // ===== STATE =====
+    let state = { type: null, option: null, quantity: 10, extras: [] }
+
+    // ===== DOM =====
+    const step2Container = document.getElementById('step2-container')!
+    const step2 = document.getElementById('step2')!
+    const step3Container = document.getElementById('step3-container')!
+    const step4Container = document.getElementById('step4-container')!
+    const step4 = document.getElementById('step4')!
+    const qtyInput = document.getElementById('quantity') as HTMLInputElement
+    const lotWarning = document.getElementById('lot-warning')!
+    const totalEl = document.getElementById('total-price')!
+    const breakdownEl = document.getElementById('price-breakdown')!
+    const unitPriceEl = document.getElementById('unit-price')!
+    const qtyDisplay = document.getElementById('qty-display')!
+
+    // ===== Step 1: Type selection =====
+    document.querySelectorAll('.type-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const type = (btn as HTMLElement).dataset.type!
+        state.type = type
+        state.option = null
+        state.extras = []
+
+        // Highlight
+        document.querySelectorAll('.type-btn').forEach(b => {
+          b.classList.remove('border-navy-800', 'bg-navy-50', 'ring-1', 'ring-navy-800')
+          b.classList.add('border-warm-300')
+        })
+        btn.classList.remove('border-warm-300')
+        btn.classList.add('border-navy-800', 'bg-navy-50', 'ring-1', 'ring-navy-800')
+
+        renderStep2()
+        step2Container.classList.remove('hidden')
+        step3Container.classList.remove('hidden')
+        step4Container.classList.remove('hidden')
+
+        // Update min lot
+        const config = PRICES[type]
+        qtyInput.min = String(config.minLot)
+        if (parseInt(qtyInput.value) < config.minLot) {
+          qtyInput.value = String(config.minLot)
+          state.quantity = config.minLot
+        }
+        renderStep4()
+        calculate()
+      })
+    })
+
+    // ===== Step 2: Option selection =====
+    function renderStep2() {
+      const config = PRICES[state.type!]
+      step2.innerHTML = config.options.map((opt: any, i: number) => {
+        const priceLabel = opt.price
+          ? `${opt.price.toLocaleString()}円`
+          : `${Object.values(opt.prices)[0].toLocaleString()}円〜`
+        return `<button data-idx="${i}" class="opt-btn w-full text-left px-4 py-3 border border-warm-300 rounded-lg hover:border-navy-400 transition-all bg-white flex justify-between items-center">
+          <span class="text-sm text-navy-800">${opt.label}</span>
+          <span class="text-sm font-bold text-gold-600">${priceLabel}</span>
+        </button>`
+      }).join('')
+
+      step2.querySelectorAll('.opt-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          state.option = parseInt((btn as HTMLElement).dataset.idx!)
+          step2.querySelectorAll('.opt-btn').forEach(b => {
+            b.classList.remove('border-navy-800', 'bg-navy-50', 'ring-1', 'ring-navy-800')
+            b.classList.add('border-warm-300')
+          })
+          btn.classList.remove('border-warm-300')
+          btn.classList.add('border-navy-800', 'bg-navy-50', 'ring-1', 'ring-navy-800')
+          calculate()
+        })
+      })
+
+      if (config.setupNote) {
+        step2.innerHTML += `<p class="text-xs text-gold-700 bg-gold-50 px-3 py-2 rounded">${config.setupNote}</p>`
+      }
+    }
+
+    // ===== Step 4: Extras =====
+    function renderStep4() {
+      const config = PRICES[state.type!]
+      if (!config.extras || config.extras.length === 0) {
+        step4Container.classList.add('hidden')
+        return
+      }
+      step4Container.classList.remove('hidden')
+      step4.innerHTML = config.extras.map((ext: any, i: number) =>
+        `<label class="flex items-center gap-3 px-4 py-3 border border-warm-200 rounded-lg bg-white cursor-pointer hover:border-navy-400 transition-all">
+          <input type="checkbox" data-ext="${i}" class="ext-check w-4 h-4 accent-gold-500" />
+          <span class="text-sm text-navy-800 flex-1">${ext.label}</span>
+          <span class="text-sm text-warm-500">+${ext.price.toLocaleString()}円/枚</span>
+        </label>`
+      ).join('')
+
+      step4.querySelectorAll('.ext-check').forEach(cb => {
+        cb.addEventListener('change', () => {
+          state.extras = Array.from(step4.querySelectorAll('.ext-check:checked')).map(
+            el => parseInt((el as HTMLElement).dataset.ext!)
+          )
+          calculate()
+        })
+      })
+    }
+
+    // ===== Quantity =====
+    qtyInput.addEventListener('input', () => {
+      state.quantity = Math.max(1, parseInt(qtyInput.value) || 1)
+      const config = PRICES[state.type!]
+      if (config && state.quantity < config.minLot) {
+        lotWarning.textContent = `※ 最小ロットは${config.minLot}枚です`
+        lotWarning.classList.remove('hidden')
+      } else {
+        lotWarning.classList.add('hidden')
+      }
+      calculate()
+    })
+
+    // ===== Calculate =====
+    function calculate() {
+      if (!state.type || state.option === null) {
+        totalEl.textContent = '---'
+        breakdownEl.innerHTML = '<p class="text-warm-500">仕様を選んでください</p>'
+        unitPriceEl.textContent = '---円'
+        qtyDisplay.textContent = '---枚'
+        return
+      }
+
+      const config = PRICES[state.type]
+      const opt = config.options[state.option]
+      const qty = Math.max(state.quantity, config.minLot || 1)
+      let lines: string[] = []
+
+      // Base unit price
+      let unitPrice = 0
+      if (opt.price) {
+        unitPrice = opt.price
+      } else if (opt.prices) {
+        // Find correct tier
+        const tiers = Object.keys(opt.prices).map(Number).sort((a, b) => a - b)
+        let tier = tiers[0]
+        for (const t of tiers) {
+          if (qty >= t) tier = t
+        }
+        unitPrice = opt.prices[tier]
+      }
+
+      // Extras per unit
+      let extrasPerUnit = 0
+      state.extras.forEach(i => {
+        extrasPerUnit += config.extras[i].price
+      })
+
+      const totalPerUnit = unitPrice + extrasPerUnit
+      let subtotal = totalPerUnit * qty
+      lines.push(`加工単価：${unitPrice.toLocaleString()}円 × ${qty}枚`)
+
+      if (extrasPerUnit > 0) {
+        lines.push(`オプション：+${extrasPerUnit.toLocaleString()}円/枚`)
+      }
+
+      // Setup / plate fees
+      let setupFee = 0
+      if (config.setupFee) {
+        setupFee = config.setupFee(qty)
+        lines.push(`セットアップ料：${setupFee.toLocaleString()}円`)
+        subtotal += setupFee
+      }
+      if (config.plateFee) {
+        let plateCost = config.plateFee
+        // Check if extra colors add plates
+        state.extras.forEach(i => {
+          if (config.extras[i].platePlus) {
+            plateCost += config.extras[i].platePlus
+          }
+        })
+        lines.push(`製版代：${plateCost.toLocaleString()}円`)
+        subtotal += plateCost
+      }
+
+      // Update UI
+      totalEl.textContent = subtotal.toLocaleString()
+      breakdownEl.innerHTML = lines.map(l =>
+        `<div class="flex justify-between text-sm"><span class="text-warm-600">${l.split('：')[0]}</span><span class="text-navy-800 font-medium">${l.split('：')[1]}</span></div>`
+      ).join('')
+      unitPriceEl.textContent = `${totalPerUnit.toLocaleString()}円`
+      qtyDisplay.textContent = `${qty}枚`
+    }
+  </script>
+
+</Layout>
