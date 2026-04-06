@@ -1,0 +1,213 @@
+---
+import Layout from '../layouts/Layout.astro'
+import SectionHeading from '../components/SectionHeading.astro'
+import { url } from '../utils/paths'
+
+const categories = [
+  { id: 'all', label: 'すべて' },
+  { id: 'embroidery', label: '刺繍' },
+  { id: 'print', label: 'プリント' },
+  { id: 'wappen', label: 'ワッペン' },
+  { id: 'name', label: 'ネーム' },
+]
+
+const works = [
+  {
+    title: 'ユニフォーム ロゴ刺繍',
+    category: 'embroidery',
+    image: 'https://picsum.photos/600/600?random=30',
+    description: '作業着への会社ロゴ刺繍。左胸ワンポイント。',
+  },
+  {
+    title: 'キャップ刺繍',
+    category: 'embroidery',
+    image: 'https://picsum.photos/600/600?random=31',
+    description: 'イベント用キャップへのチーム名刺繍。',
+  },
+  {
+    title: 'ポロシャツ 名入れ',
+    category: 'embroidery',
+    image: 'https://picsum.photos/600/600?random=32',
+    description: '社名・個人名のネーム刺繍。',
+  },
+  {
+    title: 'Tシャツ プリント',
+    category: 'print',
+    image: 'https://picsum.photos/600/600?random=33',
+    description: 'DTFプリントによるフルカラーデザイン。',
+  },
+  {
+    title: 'トートバッグ プリント',
+    category: 'print',
+    image: 'https://picsum.photos/600/600?random=34',
+    description: 'イベント用ノベルティバッグへのシルク印刷。',
+  },
+  {
+    title: 'オリジナルワッペン',
+    category: 'wappen',
+    image: 'https://picsum.photos/600/600?random=35',
+    description: 'ヒートカット仕上げのオリジナルワッペン。',
+  },
+  {
+    title: 'チームエンブレム ワッペン',
+    category: 'wappen',
+    image: 'https://picsum.photos/600/600?random=36',
+    description: 'スポーツチーム向けエンブレムワッペン。',
+  },
+  {
+    title: '織りネーム',
+    category: 'name',
+    image: 'https://picsum.photos/600/600?random=37',
+    description: 'アパレルブランド向けオリジナル織りネーム。',
+  },
+  {
+    title: 'タオル 刺繍',
+    category: 'embroidery',
+    image: 'https://picsum.photos/600/600?random=38',
+    description: '記念品タオルへの名入れ刺繍。',
+  },
+  {
+    title: 'スタッフジャンパー 背中プリント',
+    category: 'print',
+    image: 'https://picsum.photos/600/600?random=39',
+    description: 'イベントスタッフ用ジャンパーへの大判プリント。',
+  },
+  {
+    title: 'ブランドタグ',
+    category: 'name',
+    image: 'https://picsum.photos/600/600?random=40',
+    description: 'プリントネーム＋下げ札のセット製作。',
+  },
+  {
+    title: 'ジャケット 背中刺繍',
+    category: 'embroidery',
+    image: 'https://picsum.photos/600/600?random=41',
+    description: '作業用ジャケットへの大型ロゴ刺繍。',
+  },
+]
+---
+
+<Layout title="作品集｜タグチ刺繍ネーム有限会社">
+
+  <!-- Hero -->
+  <section class="relative h-48 md:h-64 flex items-center">
+    <div class="absolute inset-0 bg-navy-800"></div>
+    <div class="relative z-10 mx-auto max-w-[1200px] px-4 md:px-8 w-full">
+      <p class="text-sm text-gold-300 tracking-[0.2em] uppercase mb-2">Works</p>
+      <h1 class="heading-accent text-2xl md:text-4xl text-white">作品集</h1>
+      <p class="text-navy-200 text-sm mt-2">タグチ刺繍ネームの加工実績をご紹介します</p>
+    </div>
+  </section>
+
+  <!-- Filter + Gallery -->
+  <section class="py-section-sm md:py-section">
+    <div class="mx-auto max-w-[1200px] px-4 md:px-8">
+
+      <!-- Category Filter -->
+      <div class="flex flex-wrap gap-2 mb-10 justify-center">
+        {categories.map((cat) => (
+          <button
+            data-filter={cat.id}
+            class:list={[
+              'filter-btn px-5 py-2 text-sm rounded-full border transition-all duration-200',
+              cat.id === 'all'
+                ? 'bg-navy-800 text-white border-navy-800'
+                : 'bg-white text-warm-700 border-warm-300 hover:border-navy-400 hover:text-navy-800',
+            ]}
+          >
+            {cat.label}
+          </button>
+        ))}
+      </div>
+
+      <!-- Gallery Grid -->
+      <div id="works-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        {works.map((work, i) => (
+          <div
+            class="js-fade-in work-item group cursor-pointer"
+            data-category={work.category}
+            style={`transition-delay: ${(i % 8) * 50}ms`}
+          >
+            <div class="overflow-hidden rounded-lg border border-warm-200 hover:border-gold-300 hover:shadow-md transition-all duration-200">
+              <div class="overflow-hidden">
+                <img
+                  src={work.image}
+                  alt={work.title}
+                  class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                />
+              </div>
+              <div class="p-3 md:p-4">
+                <span class="inline-block text-[11px] text-gold-600 font-medium bg-gold-50 px-2 py-0.5 rounded-full mb-1.5">
+                  {categories.find(c => c.id === work.category)?.label}
+                </span>
+                <h3 class="text-sm font-bold text-navy-800 leading-snug">{work.title}</h3>
+                <p class="text-xs text-warm-500 mt-1 leading-relaxed">{work.description}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Empty state -->
+      <p id="works-empty" class="hidden text-center text-warm-500 py-12">
+        該当する作品がありません
+      </p>
+
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-section-sm md:py-section bg-navy-800">
+    <div class="mx-auto max-w-[800px] px-4 md:px-8 text-center">
+      <div class="js-fade-in">
+        <h2 class="heading-accent text-xl md:text-2xl text-white mb-3">
+          あなたのアイデアも、カタチにします
+        </h2>
+        <p class="text-navy-200 text-sm mb-6">
+          「こんなものを作りたい」というご相談から承ります。
+        </p>
+        <a
+          href={url("/contact")}
+          class="inline-flex items-center px-8 py-3.5 bg-gold-500 text-navy-950 font-medium rounded tracking-wider hover:bg-gold-400 transition-all duration-200 hover:-translate-y-px hover:shadow-md"
+        >
+          お問い合わせ
+          <svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const buttons = document.querySelectorAll('.filter-btn')
+    const items = document.querySelectorAll('.work-item')
+    const empty = document.getElementById('works-empty')!
+
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const filter = (btn as HTMLElement).dataset.filter!
+
+        // Update button styles
+        buttons.forEach((b) => {
+          b.classList.remove('bg-navy-800', 'text-white', 'border-navy-800')
+          b.classList.add('bg-white', 'text-warm-700', 'border-warm-300')
+        })
+        btn.classList.remove('bg-white', 'text-warm-700', 'border-warm-300')
+        btn.classList.add('bg-navy-800', 'text-white', 'border-navy-800')
+
+        // Filter items
+        let visibleCount = 0
+        items.forEach((item) => {
+          const cat = (item as HTMLElement).dataset.category
+          const show = filter === 'all' || cat === filter
+          ;(item as HTMLElement).style.display = show ? '' : 'none'
+          if (show) visibleCount++
+        })
+        empty.classList.toggle('hidden', visibleCount > 0)
+      })
+    })
+  </script>
+
+</Layout>

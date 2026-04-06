@@ -2,6 +2,25 @@
 import Layout from '../layouts/Layout.astro'
 import SectionHeading from '../components/SectionHeading.astro'
 
+const comparison = [
+  { item: '質感', embroidery: '立体的・高級感', print: 'フラット・鮮やか' },
+  { item: '耐久性', embroidery: '非常に高い（洗濯に強い）', print: '高い（加工方法による）' },
+  { item: '色数', embroidery: '最大15色程度', print: 'フルカラー対応可' },
+  { item: 'コスト（少量）', embroidery: 'やや高め', print: 'DTFなら低コスト' },
+  { item: 'コスト（大量）', embroidery: '数量が多いほど割安', print: 'シルクスクリーンが割安' },
+  { item: '最小ロット', embroidery: '1枚〜', print: '1枚〜（DTF）/ 30枚〜（シルク）' },
+  { item: '向いている用途', embroidery: 'ユニフォーム・作業着・キャップ', print: 'Tシャツ・タオル・グッズ' },
+]
+
+const useCases = [
+  { title: 'ユニフォーム・作業着', description: '会社名・ロゴの刺繍入れ。チームの一体感と信頼感を高めます。' },
+  { title: 'スポーツチーム', description: 'チーム名・背番号・ワッペンなど。各種スポーツユニフォームに対応。' },
+  { title: '記念品・ノベルティ', description: '卒業記念、イベント記念品など。名前入れで特別な一品に。' },
+  { title: 'アパレルブランド', description: 'ブランドネーム・タグ・ワッペンの製作。小ロットから対応可能。' },
+  { title: '学校・幼稚園', description: '体操着・スモック・帽子へのお名前刺繍。個人のお客様も歓迎。' },
+  { title: '飲食店・サービス業', description: 'エプロン・コックコート・キャップへの店名・ロゴ入れ。' },
+]
+
 const services = [
   {
     id: 'embroidery',
@@ -80,6 +99,75 @@ import { url } from '../utils/paths'
       </div>
     </section>
   ))}
+
+  <!-- Comparison: Embroidery vs Print -->
+  <section class="py-section-sm md:py-section bg-warm-50">
+    <div class="mx-auto max-w-[900px] px-4 md:px-8">
+      <SectionHeading en="Comparison" ja="刺繍 vs プリント 比較表" />
+      <div class="js-fade-in bg-white rounded-lg border border-warm-200 overflow-x-auto">
+        <table class="w-full text-sm min-w-[500px]">
+          <thead>
+            <tr class="bg-navy-800 text-white">
+              <th class="px-4 py-3 text-left font-medium w-28"></th>
+              <th class="px-4 py-3 text-left font-medium">刺繍</th>
+              <th class="px-4 py-3 text-left font-medium">プリント</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-warm-100">
+            {comparison.map((row) => (
+              <tr class="hover:bg-warm-50 transition-colors">
+                <td class="px-4 py-3 font-medium text-navy-800">{row.item}</td>
+                <td class="px-4 py-3 text-warm-700">{row.embroidery}</td>
+                <td class="px-4 py-3 text-warm-700">{row.print}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Use Cases -->
+  <section class="py-section-sm md:py-section">
+    <div class="mx-auto max-w-[1200px] px-4 md:px-8">
+      <SectionHeading en="Use Cases" ja="こんな用途に使えます" />
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+        {useCases.map((item, i) => (
+          <div class="js-fade-in bg-white rounded-lg border border-warm-200 p-6 hover:shadow-md hover:border-gold-300 transition-all duration-200" style={`transition-delay: ${i * 60}ms`}>
+            <h3 class="text-base font-bold text-navy-800 mb-2">{item.title}</h3>
+            <p class="text-sm text-warm-600 leading-relaxed">{item.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Tips -->
+  <section class="py-section-sm md:py-section bg-navy-50">
+    <div class="mx-auto max-w-[800px] px-4 md:px-8">
+      <SectionHeading en="Tips" ja="ご注文前に知っておきたいこと" />
+      <div class="js-fade-in space-y-6">
+        <div class="bg-white rounded-lg border border-warm-200 p-6">
+          <h3 class="font-bold text-navy-800 mb-2">素材による仕上がりの違い</h3>
+          <p class="text-sm text-warm-700 leading-relaxed">
+            薄手の生地（Tシャツ素材など）に大きな刺繍を入れると、生地が引っ張られることがあります。厚手の生地（ポロシャツ・作業着・キャップなど）は刺繍に最適です。素材に不安がある場合はお気軽にご相談ください。
+          </p>
+        </div>
+        <div class="bg-white rounded-lg border border-warm-200 p-6">
+          <h3 class="font-bold text-navy-800 mb-2">データの準備について</h3>
+          <p class="text-sm text-warm-700 leading-relaxed">
+            ロゴデータ（AI・EPS・PDF・高解像度JPG/PNG）をご用意ください。手書きのラフスケッチからのデータ作成も承っております。
+          </p>
+        </div>
+        <div class="bg-white rounded-lg border border-warm-200 p-6">
+          <h3 class="font-bold text-navy-800 mb-2">個人のお客様へ</h3>
+          <p class="text-sm text-warm-700 leading-relaxed">
+            「1枚だけでも注文できますか？」──はい、もちろん承ります。お子様のお名前入れ、チームのユニフォーム、記念品など、個人のお客様も大歓迎です。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- CTA -->
   <section class="py-section-sm md:py-section bg-navy-800">
