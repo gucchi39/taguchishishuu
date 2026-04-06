@@ -2,14 +2,53 @@
 import Layout from '../layouts/Layout.astro'
 import SectionHeading from '../components/SectionHeading.astro'
 
+const highlights = [
+  {
+    title: 'DTFプリンター',
+    badge: '最新設備',
+    image: '/images/facility/dryer.jpg',
+    description: 'フルカラー・小ロットに対応するDTF（Direct to Film）転写プリンター。版が不要なため、1枚からでもフルカラーの精細なプリントが可能。従来のカットプリントやデジタルプリントに比べ、発色・耐久性・風合いが大幅に向上しています。',
+    points: ['版不要でフルカラー対応', '1枚からの小ロットに最適', '伸縮性のある素材にも対応', '洗濯堅牢度が高い'],
+  },
+  {
+    title: 'UVプリンター',
+    badge: '最新設備',
+    image: '/images/facility/heat-press-flat.jpg',
+    description: 'UV硬化インクを使用し、立体物やさまざまな素材に直接プリントできる最新機器。平面だけでなく、グッズやノベルティなど多様な製品への加工を可能にしています。',
+    points: ['立体物・グッズに直接プリント', '多素材対応（金属・木・アクリル等）', 'オリジナルグッズ製作に最適', '高精細なフルカラー表現'],
+  },
+  {
+    title: 'レーザー加工機',
+    badge: '最新設備',
+    image: '/images/facility/laser-cutter.jpg',
+    description: 'Universal製レーザーカッターを2台保有。ワッペンのヒートカットや素材のカットに使用。手作業では難しい精密なカットを高速で行い、品質と生産性を両立しています。',
+    points: ['精密なヒートカット加工', 'ワッペンの仕上がり品質が向上', '複雑な形状にも対応', '2台体制で納期に余裕'],
+  },
+]
+
+const craftsmanship = [
+  {
+    title: '刺繍 ─ 職人の手と最新機器の融合',
+    image: '/images/facility/embroidery-line.jpg',
+    description: '多頭式3台・単頭式11台、合計14台の刺繍機を保有。Barudan・Happy Japanなど信頼のメーカー機を、熟練の職人が操作します。機械だけでは出せない仕上がりの美しさは、糸のテンション調整やデザインデータの最適化など、長年の経験に裏打ちされた技術から生まれます。',
+    points: ['多頭式（10頭・6頭・4頭）で量産に対応', '単頭式11台で多品種・小ロットに柔軟対応', '糸のテンションを素材ごとに最適化', 'デザインデータの調整は熟練職人が手作業で'],
+  },
+  {
+    title: 'プリント ─ 用途に合わせた最適提案',
+    image: '/images/facility/factory-work-01.jpg',
+    description: 'DTF・シルクスクリーン・UVの3種のプリント機を揃え、用途・数量・素材に応じて最適な加工方法をご提案。同じデザインでも素材やロットに合わせて手法を変えることで、品質とコストの最適なバランスを実現します。実は売上の半分以上がプリント加工。刺繍だけじゃないのがタグチの強みです。',
+    points: ['DTF：小ロット・フルカラー対応', 'シルクスクリーン：量産・高耐久', 'UV：立体物・グッズ対応', '素材とロットに合わせた最適提案'],
+  },
+]
+
 const equipment = [
   { category: '刺繍機', name: '多頭機（10頭・6頭・4頭）', count: '3台', use: '量産対応' },
   { category: '刺繍機', name: '単頭機', count: '11台', use: '多品種小ロット対応' },
-  { category: 'プリント', name: 'DTFプリンター', count: '1台', use: '小ロット対応' },
-  { category: 'プリント', name: 'シルクプリンター', count: '1台', use: '量産対応' },
-  { category: 'プリント', name: 'UVプリンター', count: '1台', use: 'グッズ製造' },
-  { category: '仕上げ', name: '熱プレス機', count: '7台', use: '後工程' },
-  { category: '仕上げ', name: 'レーザー加工機', count: '2台', use: '後工程' },
+  { category: 'プリント', name: 'DTFプリンター', count: '1台', use: '小ロット・フルカラー', isNew: true },
+  { category: 'プリント', name: 'シルクスクリーン', count: '1台', use: '量産対応' },
+  { category: 'プリント', name: 'UVプリンター', count: '1台', use: 'グッズ・立体物', isNew: true },
+  { category: '仕上げ', name: '熱プレス機', count: '7台', use: '転写・仕上げ' },
+  { category: '仕上げ', name: 'レーザー加工機（Universal）', count: '2台', use: 'ヒートカット・精密加工', isNew: true },
 ]
 
 const photos = [
@@ -31,10 +70,11 @@ const stats = [
   { number: '7', unit: '台', label: '熱プレス機' },
   { number: '2', unit: '台', label: 'レーザー加工機' },
 ]
+
 import { url } from '../utils/paths'
 ---
 
-<Layout title="設備紹介｜タグチ刺繍ネーム有限会社">
+<Layout title="設備・技術紹介｜タグチ刺繍ネーム有限会社">
 
   <section class="relative h-48 md:h-64 flex items-center">
     <div class="absolute inset-0">
@@ -42,8 +82,9 @@ import { url } from '../utils/paths'
       <div class="absolute inset-0 bg-navy-800/70"></div>
     </div>
     <div class="relative z-10 mx-auto max-w-[1200px] px-4 md:px-8 w-full">
-      <p class="text-sm text-gold-300 tracking-[0.2em] uppercase mb-2">Facility</p>
-      <h1 class="heading-accent text-2xl md:text-4xl text-white">設備紹介</h1>
+      <p class="text-sm text-gold-300 tracking-[0.2em] uppercase mb-2">Facility & Technology</p>
+      <h1 class="heading-accent text-2xl md:text-4xl text-white">設備・技術紹介</h1>
+      <p class="text-navy-200 text-sm mt-2">最新設備と熟練の技術で、高品質な加工をお届けします</p>
     </div>
   </section>
 
@@ -51,7 +92,7 @@ import { url } from '../utils/paths'
   <section class="py-section-sm md:py-section">
     <div class="mx-auto max-w-[1200px] px-4 md:px-8">
       <SectionHeading en="Equipment" ja="数字で見る設備力" />
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-12">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
         {stats.map((item, i) => (
           <div class="js-fade-in bg-white rounded-lg border border-warm-200 p-6 md:p-8 text-center" style={`transition-delay: ${i * 80}ms`}>
             <span class="heading-accent text-3xl md:text-5xl text-navy-800">{item.number}</span>
@@ -60,8 +101,85 @@ import { url } from '../utils/paths'
           </div>
         ))}
       </div>
+    </div>
+  </section>
 
-      <!-- Table -->
+  <!-- Latest Equipment Highlights -->
+  <section class="py-section-sm md:py-section bg-gold-50">
+    <div class="mx-auto max-w-[1200px] px-4 md:px-8">
+      <SectionHeading en="Latest Technology" ja="他社にない最新設備" />
+      <p class="text-center text-warm-600 text-sm -mt-8 mb-10">
+        業界でもまだ導入が少ない最新鋭の設備を自社工場に完備しています
+      </p>
+
+      <div class="space-y-8">
+        {highlights.map((item, i) => (
+          <div class="js-fade-in bg-white rounded-lg border border-warm-200 overflow-hidden" style={`transition-delay: ${i * 100}ms`}>
+            <div class="grid grid-cols-1 lg:grid-cols-[400px_1fr]">
+              <div class="overflow-hidden">
+                <img src={url(item.image)} alt={item.title} class="w-full h-full object-cover aspect-video lg:aspect-auto" loading="lazy" />
+              </div>
+              <div class="p-6 md:p-8">
+                <div class="flex items-center gap-3 mb-3">
+                  <span class="inline-block text-[11px] text-white font-bold bg-gold-500 px-3 py-1 rounded-full tracking-wider">
+                    {item.badge}
+                  </span>
+                  <h3 class="text-lg md:text-xl font-bold text-navy-800">{item.title}</h3>
+                </div>
+                <p class="text-sm text-warm-700 leading-relaxed mb-4">{item.description}</p>
+                <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                  {item.points.map((p) => (
+                    <li class="flex items-start gap-2 text-sm text-warm-700">
+                      <svg class="w-4 h-4 text-gold-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      {p}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Craftsmanship -->
+  <section class="py-section-sm md:py-section">
+    <div class="mx-auto max-w-[1200px] px-4 md:px-8">
+      <SectionHeading en="Craftsmanship" ja="設備を活かす、職人の技術" />
+
+      {craftsmanship.map((item, i) => (
+        <div class={`js-fade-in grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center ${i > 0 ? 'mt-12 md:mt-16' : ''}`} style={`transition-delay: ${i * 100}ms`}>
+          <div class={i % 2 === 1 ? 'lg:order-2' : ''}>
+            <img src={url(item.image)} alt={item.title} class="w-full aspect-video object-cover rounded-lg" loading="lazy" />
+          </div>
+          <div class={i % 2 === 1 ? 'lg:order-1' : ''}>
+            <h3 class="heading-accent text-lg md:text-xl text-navy-800 mb-4">
+              <span class="gold-underline">{item.title}</span>
+            </h3>
+            <p class="text-sm text-warm-700 leading-relaxed mb-5">{item.description}</p>
+            <ul class="space-y-2">
+              {item.points.map((p) => (
+                <li class="flex items-start gap-2 text-sm text-warm-700">
+                  <svg class="w-5 h-5 text-gold-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  {p}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Equipment Table -->
+  <section class="py-section-sm md:py-section bg-warm-50">
+    <div class="mx-auto max-w-[1000px] px-4 md:px-8">
+      <SectionHeading en="Equipment List" ja="設備一覧" />
       <div class="js-fade-in bg-white rounded-lg border border-warm-200 overflow-hidden">
         <table class="w-full text-sm">
           <thead>
@@ -76,7 +194,10 @@ import { url } from '../utils/paths'
             {equipment.map((row) => (
               <tr class="hover:bg-warm-50 transition-colors">
                 <td class="px-4 md:px-6 py-3 text-warm-700">{row.category}</td>
-                <td class="px-4 md:px-6 py-3 font-medium text-navy-800">{row.name}</td>
+                <td class="px-4 md:px-6 py-3 font-medium text-navy-800">
+                  {row.name}
+                  {row.isNew && <span class="ml-2 inline-block text-[10px] text-white font-bold bg-gold-500 px-2 py-0.5 rounded-full">最新</span>}
+                </td>
                 <td class="px-4 md:px-6 py-3 text-center font-bold text-navy-800">{row.count}</td>
                 <td class="px-4 md:px-6 py-3 text-warm-600 hidden md:table-cell">{row.use}</td>
               </tr>
@@ -88,7 +209,7 @@ import { url } from '../utils/paths'
   </section>
 
   <!-- Photo Gallery -->
-  <section class="py-section-sm md:py-section bg-warm-50">
+  <section class="py-section-sm md:py-section">
     <div class="mx-auto max-w-[1200px] px-4 md:px-8">
       <SectionHeading en="Gallery" ja="設備フォトギャラリー" />
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
@@ -106,11 +227,16 @@ import { url } from '../utils/paths'
     <div class="mx-auto max-w-[800px] px-4 md:px-8 text-center">
       <div class="js-fade-in">
         <h2 class="heading-accent text-xl md:text-2xl text-white mb-3">設備・加工に関するご相談</h2>
-        <p class="text-navy-200 text-sm mb-6">設備の詳細や加工対応範囲など、お気軽にお問い合わせください。</p>
-        <a href={url("/contact")} class="inline-flex items-center px-8 py-3.5 bg-gold-500 text-navy-950 font-medium rounded tracking-wider hover:bg-gold-400 transition-all duration-200 hover:-translate-y-px hover:shadow-md">
-          お問い合わせ
-          <svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
-        </a>
+        <p class="text-navy-200 text-sm mb-6">「こんな加工はできる？」など、お気軽にお問い合わせください。工場見学も歓迎です。</p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a href={url("/contact")} class="inline-flex items-center px-8 py-3.5 bg-gold-500 text-navy-950 font-medium rounded tracking-wider hover:bg-gold-400 transition-all duration-200 hover:-translate-y-px hover:shadow-md">
+            お問い合わせ
+            <svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+          </a>
+          <a href={url("/estimate")} class="inline-flex items-center px-8 py-3.5 border border-navy-400 text-white rounded tracking-wider hover:bg-navy-700 transition-all duration-200">
+            かんたん見積もり
+          </a>
+        </div>
       </div>
     </div>
   </section>
