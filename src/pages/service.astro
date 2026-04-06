@@ -55,6 +55,16 @@ const services = [
     features: ['織りネーム', 'プリントネーム', '下げ札・タグ', 'サイズ表示・品質表示'],
   },
 ]
+
+const positions = [
+  { name: '左胸', desc: 'ロゴ・社名（最も人気）', size: '~8cm' },
+  { name: '右胸', desc: '個人名・役職名', size: '~8cm' },
+  { name: '背中（上部）', desc: '社名・チーム名', size: '~12cm' },
+  { name: '背中（大）', desc: '大型ロゴ・デザイン', size: '~25cm' },
+  { name: '袖', desc: 'ワッペン・ロゴ', size: '~8cm' },
+  { name: 'キャップ正面', desc: 'ロゴ・チーム名', size: '~6cm' },
+]
+
 import { url } from '../utils/paths'
 ---
 
@@ -68,9 +78,28 @@ import { url } from '../utils/paths'
     <div class="relative z-10 mx-auto max-w-[1200px] px-4 md:px-8 w-full">
       <p class="text-sm text-gold-300 tracking-[0.2em] uppercase mb-2">Service</p>
       <h1 class="heading-accent text-2xl md:text-4xl text-white">加工サービス</h1>
+      <p class="text-navy-200 text-sm mt-2">料金目安・加工方法・対応範囲をご案内します</p>
     </div>
   </section>
 
+  <!-- Page anchor nav -->
+  <nav class="bg-warm-50 border-b border-warm-200 sticky top-16 md:top-20 z-40">
+    <div class="mx-auto max-w-[1200px] px-4 md:px-8 flex gap-1 overflow-x-auto py-3">
+      {services.map((svc) => (
+        <a href={`#${svc.id}`} class="shrink-0 px-4 py-2 text-sm text-warm-700 hover:text-navy-800 hover:bg-white rounded transition-colors">
+          {svc.title}
+        </a>
+      ))}
+      <a href="#pricing" class="shrink-0 px-4 py-2 text-sm text-gold-700 font-medium hover:bg-gold-50 rounded transition-colors">
+        料金目安
+      </a>
+      <a href="#position" class="shrink-0 px-4 py-2 text-sm text-warm-700 hover:text-navy-800 hover:bg-white rounded transition-colors">
+        加工位置
+      </a>
+    </div>
+  </nav>
+
+  <!-- Service sections -->
   {services.map((svc, i) => (
     <section id={svc.id} class={`py-section-sm md:py-section ${i % 2 === 0 ? '' : 'bg-warm-50'}`}>
       <div class="mx-auto max-w-[1200px] px-4 md:px-8">
@@ -100,6 +129,162 @@ import { url } from '../utils/paths'
     </section>
   ))}
 
+  <!-- ============================================
+       PRICING (料金目安)
+       ============================================ -->
+  <section id="pricing" class="py-section-sm md:py-section bg-gold-50">
+    <div class="mx-auto max-w-[1200px] px-4 md:px-8">
+      <SectionHeading en="Pricing" ja="料金の目安" />
+      <p class="text-center text-warm-600 text-sm -mt-8 mb-10">
+        下記は参考価格です。素材・色数・デザインの複雑さにより変動します。<br class="hidden md:block" />正式な料金はお見積りにてご案内いたします。
+      </p>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+        <!-- Embroidery pricing -->
+        <div class="js-fade-in bg-white rounded-lg border border-warm-200 overflow-hidden">
+          <div class="bg-navy-800 px-6 py-3">
+            <h3 class="text-white font-medium">刺繍加工の料金目安</h3>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm">
+              <thead>
+                <tr class="bg-navy-50">
+                  <th class="px-4 py-2.5 text-left font-medium text-navy-800">数量</th>
+                  <th class="px-4 py-2.5 text-left font-medium text-navy-800">左胸ワンポイント<span class="block text-xs text-warm-500 font-normal">（~5cm）</span></th>
+                  <th class="px-4 py-2.5 text-left font-medium text-navy-800">背中 大<span class="block text-xs text-warm-500 font-normal">（~20cm）</span></th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-warm-100">
+                <tr><td class="px-4 py-2.5 font-medium text-navy-800">1〜9枚</td><td class="px-4 py-2.5 text-warm-700">800〜1,200円/枚</td><td class="px-4 py-2.5 text-warm-700">2,000〜3,500円/枚</td></tr>
+                <tr><td class="px-4 py-2.5 font-medium text-navy-800">10〜29枚</td><td class="px-4 py-2.5 text-warm-700">600〜900円/枚</td><td class="px-4 py-2.5 text-warm-700">1,500〜2,500円/枚</td></tr>
+                <tr><td class="px-4 py-2.5 font-medium text-navy-800">30〜99枚</td><td class="px-4 py-2.5 text-warm-700">400〜700円/枚</td><td class="px-4 py-2.5 text-warm-700">1,000〜2,000円/枚</td></tr>
+                <tr><td class="px-4 py-2.5 font-medium text-navy-800">100枚〜</td><td class="px-4 py-2.5 text-gold-700 font-medium" colspan="2">お見積りにて対応</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="px-6 py-3 bg-warm-50 border-t border-warm-200">
+            <p class="text-xs text-warm-600">※ 初回のみ型代（デジタイズ費）3,000〜10,000円が別途かかります</p>
+          </div>
+        </div>
+
+        <!-- Print pricing -->
+        <div class="js-fade-in bg-white rounded-lg border border-warm-200 overflow-hidden" style="transition-delay: 100ms">
+          <div class="bg-navy-800 px-6 py-3">
+            <h3 class="text-white font-medium">プリント加工の料金目安</h3>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm">
+              <thead>
+                <tr class="bg-navy-50">
+                  <th class="px-4 py-2.5 text-left font-medium text-navy-800">数量</th>
+                  <th class="px-4 py-2.5 text-left font-medium text-navy-800">DTFプリント<span class="block text-xs text-warm-500 font-normal">（A4以内）</span></th>
+                  <th class="px-4 py-2.5 text-left font-medium text-navy-800">シルクスクリーン<span class="block text-xs text-warm-500 font-normal">（1色）</span></th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-warm-100">
+                <tr><td class="px-4 py-2.5 font-medium text-navy-800">1〜9枚</td><td class="px-4 py-2.5 text-warm-700">1,000〜1,500円/枚</td><td class="px-4 py-2.5 text-warm-400">—</td></tr>
+                <tr><td class="px-4 py-2.5 font-medium text-navy-800">10〜29枚</td><td class="px-4 py-2.5 text-warm-700">800〜1,200円/枚</td><td class="px-4 py-2.5 text-warm-400">—</td></tr>
+                <tr><td class="px-4 py-2.5 font-medium text-navy-800">30〜99枚</td><td class="px-4 py-2.5 text-warm-400">—</td><td class="px-4 py-2.5 text-warm-700">500〜800円/枚 +版代</td></tr>
+                <tr><td class="px-4 py-2.5 font-medium text-navy-800">100枚〜</td><td class="px-4 py-2.5 text-gold-700 font-medium" colspan="2">お見積りにて対応</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="px-6 py-3 bg-warm-50 border-t border-warm-200">
+            <p class="text-xs text-warm-600">※ シルクスクリーン版代：1色につき8,000〜15,000円（初回のみ）</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Wappen & Name pricing -->
+      <div class="js-fade-in bg-white rounded-lg border border-warm-200 overflow-hidden max-w-2xl mx-auto" style="transition-delay: 200ms">
+        <div class="bg-navy-800 px-6 py-3">
+          <h3 class="text-white font-medium">ワッペン・ネーム加工の料金目安</h3>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="bg-navy-50">
+                <th class="px-4 py-2.5 text-left font-medium text-navy-800">種類</th>
+                <th class="px-4 py-2.5 text-left font-medium text-navy-800">最小ロット</th>
+                <th class="px-4 py-2.5 text-left font-medium text-navy-800">目安単価</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-warm-100">
+              <tr><td class="px-4 py-2.5 font-medium text-navy-800">ワッペン（ヒートカット）</td><td class="px-4 py-2.5 text-warm-700">10枚〜</td><td class="px-4 py-2.5 text-warm-700">300〜800円/枚</td></tr>
+              <tr><td class="px-4 py-2.5 font-medium text-navy-800">織りネーム</td><td class="px-4 py-2.5 text-warm-700">100枚〜</td><td class="px-4 py-2.5 text-warm-700">30〜80円/枚</td></tr>
+              <tr><td class="px-4 py-2.5 font-medium text-navy-800">プリントネーム</td><td class="px-4 py-2.5 text-warm-700">100枚〜</td><td class="px-4 py-2.5 text-warm-700">15〜40円/枚</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- CTA inline -->
+      <div class="text-center mt-8">
+        <a href={url("/contact")} class="inline-flex items-center px-8 py-3.5 bg-navy-800 text-white font-medium rounded tracking-wider hover:bg-navy-700 transition-all duration-200 hover:-translate-y-px hover:shadow-md">
+          正式なお見積りを依頼する
+          <svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       POSITION GUIDE (加工位置ガイド)
+       ============================================ -->
+  <section id="position" class="py-section-sm md:py-section">
+    <div class="mx-auto max-w-[1000px] px-4 md:px-8">
+      <SectionHeading en="Position Guide" ja="よくある加工位置" />
+      <p class="text-center text-warm-600 text-sm -mt-8 mb-10">
+        ユニフォーム・作業着への刺繍・プリントでよくご依頼いただく加工位置です。
+      </p>
+
+      <div class="js-fade-in grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-8 items-start">
+        <!-- Uniform silhouette (SVG) -->
+        <div class="mx-auto lg:mx-0">
+          <svg viewBox="0 0 200 280" class="w-56 h-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Body -->
+            <path d="M60 50 L40 60 L20 55 L15 90 L35 95 L35 250 L80 250 L80 160 L120 160 L120 250 L165 250 L165 95 L185 90 L180 55 L160 60 L140 50" fill="#E0EDF9" stroke="#1B365D" stroke-width="2"/>
+            <!-- Collar -->
+            <path d="M60 50 Q80 35 100 42 Q120 35 140 50 Q130 55 100 48 Q70 55 60 50" fill="#BDDBF2" stroke="#1B365D" stroke-width="1.5"/>
+            <!-- Left chest marker -->
+            <circle cx="75" cy="85" r="12" fill="#C9963A" fill-opacity="0.3" stroke="#C9963A" stroke-width="1.5" stroke-dasharray="4 2"/>
+            <text x="75" y="89" text-anchor="middle" fill="#1B365D" font-size="8" font-weight="600">左胸</text>
+            <!-- Right chest marker -->
+            <circle cx="125" cy="85" r="12" fill="#C9963A" fill-opacity="0.15" stroke="#C9963A" stroke-width="1" stroke-dasharray="4 2"/>
+            <text x="125" y="89" text-anchor="middle" fill="#8A7D72" font-size="7">右胸</text>
+            <!-- Sleeve markers -->
+            <circle cx="30" cy="80" r="10" fill="#C9963A" fill-opacity="0.15" stroke="#C9963A" stroke-width="1" stroke-dasharray="4 2"/>
+            <text x="30" y="83" text-anchor="middle" fill="#8A7D72" font-size="6">袖</text>
+            <!-- Back upper -->
+            <rect x="70" y="110" width="60" height="15" rx="3" fill="#5A8FCC" fill-opacity="0.2" stroke="#5A8FCC" stroke-width="1" stroke-dasharray="4 2"/>
+            <text x="100" y="121" text-anchor="middle" fill="#234578" font-size="7">背中上</text>
+            <!-- Back large -->
+            <rect x="60" y="135" width="80" height="40" rx="4" fill="#5A8FCC" fill-opacity="0.15" stroke="#5A8FCC" stroke-width="1" stroke-dasharray="4 2"/>
+            <text x="100" y="159" text-anchor="middle" fill="#234578" font-size="8">背中 大</text>
+          </svg>
+        </div>
+
+        <!-- Position details -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          {positions.map((pos) => (
+            <div class="bg-warm-50 rounded-lg p-4 border border-warm-200">
+              <div class="flex items-center gap-2 mb-1">
+                <span class="w-2 h-2 rounded-full bg-gold-500"></span>
+                <h4 class="font-bold text-navy-800 text-sm">{pos.name}</h4>
+                <span class="text-xs text-warm-500 ml-auto">{pos.size}</span>
+              </div>
+              <p class="text-xs text-warm-600">{pos.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <p class="text-center text-xs text-warm-500 mt-6">
+        上記以外の位置にも対応可能です。ご希望をお問い合わせ時にお伝えください。
+      </p>
+    </div>
+  </section>
+
   <!-- Comparison: Embroidery vs Print -->
   <section class="py-section-sm md:py-section bg-warm-50">
     <div class="mx-auto max-w-[900px] px-4 md:px-8">
@@ -124,6 +309,9 @@ import { url } from '../utils/paths'
           </tbody>
         </table>
       </div>
+      <p class="text-center text-sm text-warm-600 mt-4">
+        どちらが最適かわからない場合も、お気軽にご相談ください。最適な加工方法をご提案します。
+      </p>
     </div>
   </section>
 
