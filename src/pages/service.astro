@@ -135,86 +135,216 @@ import { url } from '../utils/paths'
   <section id="pricing" class="py-section-sm md:py-section bg-gold-50">
     <div class="mx-auto max-w-[1200px] px-4 md:px-8">
       <SectionHeading en="Pricing" ja="料金の目安" />
-      <p class="text-center text-warm-600 text-sm -mt-8 mb-10">
-        下記は参考価格です。素材・色数・デザインの複雑さにより変動します。<br class="hidden md:block" />正式な料金はお見積りにてご案内いたします。
+      <p class="text-center text-warm-600 text-sm -mt-8 mb-3">
+        下記は法人・卸売のお客様向けの参考価格（税別）です。<br class="hidden md:block" />正式な料金はお見積りにてご案内いたします。
+      </p>
+      <p class="text-center text-xs text-gold-700 bg-gold-100 rounded-lg py-2 px-4 max-w-md mx-auto mb-10">
+        個人のお客様向け価格は別途ご案内いたします。お気軽にお問い合わせください。
       </p>
 
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-        <!-- Embroidery pricing -->
-        <div class="js-fade-in bg-white rounded-lg border border-warm-200 overflow-hidden">
+      <!-- Embroidery: Name & Text -->
+      <div class="js-fade-in bg-white rounded-lg border border-warm-200 overflow-hidden mb-6">
+        <div class="bg-navy-800 px-6 py-3">
+          <h3 class="text-white font-medium">刺繍加工 ─ 会社名・個人名</h3>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm min-w-[480px]">
+            <thead>
+              <tr class="bg-navy-50">
+                <th class="px-4 py-2.5 text-left font-medium text-navy-800">内容</th>
+                <th class="px-4 py-2.5 text-left font-medium text-navy-800">サイズ</th>
+                <th class="px-4 py-2.5 text-right font-medium text-navy-800">単価（税別）</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-warm-100">
+              <tr><td class="px-4 py-2.5 text-warm-700">会社名（5文字まで）</td><td class="px-4 py-2.5 text-warm-600">1文字1.2cm角</td><td class="px-4 py-2.5 text-right font-medium text-navy-800">150円</td></tr>
+              <tr><td class="px-4 py-2.5 text-warm-700">個人名 漢字（5文字まで）</td><td class="px-4 py-2.5 text-warm-600">1文字1.2cm角</td><td class="px-4 py-2.5 text-right font-medium text-navy-800">250円</td></tr>
+              <tr><td class="px-4 py-2.5 text-warm-700">個人名 漢字フルネーム</td><td class="px-4 py-2.5 text-warm-600">1文字1.5cm角</td><td class="px-4 py-2.5 text-right font-medium text-navy-800">350円</td></tr>
+              <tr><td class="px-4 py-2.5 text-warm-700">個人名 漢字フルネーム</td><td class="px-4 py-2.5 text-warm-600">1文字2cm角</td><td class="px-4 py-2.5 text-right font-medium text-navy-800">500円</td></tr>
+              <tr><td class="px-4 py-2.5 text-warm-700">個人名 漢字フルネーム</td><td class="px-4 py-2.5 text-warm-600">1文字3cm角</td><td class="px-4 py-2.5 text-right font-medium text-navy-800">750円</td></tr>
+              <tr><td class="px-4 py-2.5 text-warm-700">個人名 英字イニシャル</td><td class="px-4 py-2.5 text-warm-600">1文字1.2cm角</td><td class="px-4 py-2.5 text-right font-medium text-navy-800">150円</td></tr>
+              <tr><td class="px-4 py-2.5 text-warm-700">個人名 英字筆記体</td><td class="px-4 py-2.5 text-warm-600">1文字1.2cm角</td><td class="px-4 py-2.5 text-right font-medium text-navy-800">250円</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="px-6 py-3 bg-warm-50 border-t border-warm-200">
+          <p class="text-xs text-warm-600">※ 5文字以降：漢字+20円/文字、英字+30円/文字 ※ 金糸・銀糸：+30円 ※ 防寒服：+50円</p>
+        </div>
+      </div>
+
+      <!-- Embroidery: Logo -->
+      <div class="js-fade-in bg-white rounded-lg border border-warm-200 overflow-hidden mb-6" style="transition-delay: 80ms">
+        <div class="bg-navy-800 px-6 py-3">
+          <h3 class="text-white font-medium">刺繍加工 ─ ロゴマーク・ワンポイント</h3>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm min-w-[480px]">
+            <thead>
+              <tr class="bg-navy-50">
+                <th class="px-4 py-2.5 text-left font-medium text-navy-800">内容</th>
+                <th class="px-4 py-2.5 text-left font-medium text-navy-800">サイズ</th>
+                <th class="px-4 py-2.5 text-right font-medium text-navy-800">単価（税別）</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-warm-100">
+              <tr><td class="px-4 py-2.5 text-warm-700">文字1段</td><td class="px-4 py-2.5 text-warm-600">縦1.5cm×横10cm</td><td class="px-4 py-2.5 text-right font-medium text-navy-800">400円</td></tr>
+              <tr><td class="px-4 py-2.5 text-warm-700">文字1段</td><td class="px-4 py-2.5 text-warm-600">縦2cm×横10cm</td><td class="px-4 py-2.5 text-right font-medium text-navy-800">500円</td></tr>
+              <tr><td class="px-4 py-2.5 text-warm-700">文字2段</td><td class="px-4 py-2.5 text-warm-600">縦5cm×横10cm</td><td class="px-4 py-2.5 text-right font-medium text-navy-800">600円</td></tr>
+              <tr><td class="px-4 py-2.5 text-warm-700">ロゴマーク大</td><td class="px-4 py-2.5 text-warm-600">縦5cm×横30cm</td><td class="px-4 py-2.5 text-right font-medium text-navy-800">1,800円</td></tr>
+              <tr><td class="px-4 py-2.5 text-warm-700">緑十字マーク</td><td class="px-4 py-2.5 text-warm-600">3cm角</td><td class="px-4 py-2.5 text-right font-medium text-navy-800">200円</td></tr>
+              <tr><td class="px-4 py-2.5 text-warm-700">番号（2桁まで）</td><td class="px-4 py-2.5 text-warm-600">3cm角</td><td class="px-4 py-2.5 text-right font-medium text-navy-800">300円</td></tr>
+              <tr><td class="px-4 py-2.5 text-warm-700">家紋</td><td class="px-4 py-2.5 text-warm-600">4cm</td><td class="px-4 py-2.5 text-right font-medium text-navy-800">400円</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="px-6 py-3 bg-warm-50 border-t border-warm-200">
+          <p class="text-xs text-warm-600">※ オリジナルロゴ・指定デザインは別途型代・校正代が発生します</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+        <!-- DTF pricing -->
+        <div class="js-fade-in bg-white rounded-lg border border-warm-200 overflow-hidden" style="transition-delay: 160ms">
           <div class="bg-navy-800 px-6 py-3">
-            <h3 class="text-white font-medium">刺繍加工の料金目安</h3>
+            <h3 class="text-white font-medium">DTF転写プリント</h3>
           </div>
           <div class="overflow-x-auto">
-            <table class="w-full text-sm">
+            <table class="w-full text-sm min-w-[360px]">
               <thead>
                 <tr class="bg-navy-50">
-                  <th class="px-4 py-2.5 text-left font-medium text-navy-800">数量</th>
-                  <th class="px-4 py-2.5 text-left font-medium text-navy-800">左胸ワンポイント<span class="block text-xs text-warm-500 font-normal">（~5cm）</span></th>
-                  <th class="px-4 py-2.5 text-left font-medium text-navy-800">背中 大<span class="block text-xs text-warm-500 font-normal">（~20cm）</span></th>
+                  <th class="px-4 py-2.5 text-left font-medium text-navy-800">サイズ（mm）</th>
+                  <th class="px-4 py-2.5 text-right font-medium text-navy-800">1枚単価（税別）</th>
                 </tr>
               </thead>
               <tbody class="divide-y divide-warm-100">
-                <tr><td class="px-4 py-2.5 font-medium text-navy-800">1〜9枚</td><td class="px-4 py-2.5 text-warm-700">800〜1,200円/枚</td><td class="px-4 py-2.5 text-warm-700">2,000〜3,500円/枚</td></tr>
-                <tr><td class="px-4 py-2.5 font-medium text-navy-800">10〜29枚</td><td class="px-4 py-2.5 text-warm-700">600〜900円/枚</td><td class="px-4 py-2.5 text-warm-700">1,500〜2,500円/枚</td></tr>
-                <tr><td class="px-4 py-2.5 font-medium text-navy-800">30〜99枚</td><td class="px-4 py-2.5 text-warm-700">400〜700円/枚</td><td class="px-4 py-2.5 text-warm-700">1,000〜2,000円/枚</td></tr>
-                <tr><td class="px-4 py-2.5 font-medium text-navy-800">100枚〜</td><td class="px-4 py-2.5 text-gold-700 font-medium" colspan="2">お見積りにて対応</td></tr>
+                <tr><td class="px-4 py-2.5 text-warm-700">50×50</td><td class="px-4 py-2.5 text-right font-medium text-navy-800">300円</td></tr>
+                <tr><td class="px-4 py-2.5 text-warm-700">30×100</td><td class="px-4 py-2.5 text-right font-medium text-navy-800">420円</td></tr>
+                <tr><td class="px-4 py-2.5 text-warm-700">60×100</td><td class="px-4 py-2.5 text-right font-medium text-navy-800">600円</td></tr>
+                <tr><td class="px-4 py-2.5 text-warm-700">100×150</td><td class="px-4 py-2.5 text-right font-medium text-navy-800">1,000円</td></tr>
+                <tr><td class="px-4 py-2.5 text-warm-700">150×300</td><td class="px-4 py-2.5 text-right font-medium text-navy-800">1,500円</td></tr>
+                <tr><td class="px-4 py-2.5 text-warm-700">300×300</td><td class="px-4 py-2.5 text-right font-medium text-navy-800">2,100円</td></tr>
               </tbody>
             </table>
           </div>
-          <div class="px-6 py-3 bg-warm-50 border-t border-warm-200">
-            <p class="text-xs text-warm-600">※ 初回のみ型代（デジタイズ費）3,000〜10,000円が別途かかります</p>
+          <div class="px-6 py-3 bg-warm-50 border-t border-warm-200 space-y-1">
+            <p class="text-xs text-warm-600">※ 9枚以下：セットアップ料 1,800〜2,700円が別途</p>
+            <p class="text-xs text-warm-600">※ 10〜29枚：+600円、30〜49枚：+550円、50枚〜：+500円</p>
+            <p class="text-xs text-warm-600">※ 2色目以降+100円/色、金銀蛍光+100円、ナイロン+100円</p>
           </div>
         </div>
 
-        <!-- Print pricing -->
-        <div class="js-fade-in bg-white rounded-lg border border-warm-200 overflow-hidden" style="transition-delay: 100ms">
+        <!-- Silk screen pricing -->
+        <div class="js-fade-in bg-white rounded-lg border border-warm-200 overflow-hidden" style="transition-delay: 240ms">
           <div class="bg-navy-800 px-6 py-3">
-            <h3 class="text-white font-medium">プリント加工の料金目安</h3>
+            <h3 class="text-white font-medium">シルクスクリーンプリント（単色）</h3>
           </div>
           <div class="overflow-x-auto">
-            <table class="w-full text-sm">
+            <table class="w-full text-sm min-w-[360px]">
               <thead>
                 <tr class="bg-navy-50">
-                  <th class="px-4 py-2.5 text-left font-medium text-navy-800">数量</th>
-                  <th class="px-4 py-2.5 text-left font-medium text-navy-800">DTFプリント<span class="block text-xs text-warm-500 font-normal">（A4以内）</span></th>
-                  <th class="px-4 py-2.5 text-left font-medium text-navy-800">シルクスクリーン<span class="block text-xs text-warm-500 font-normal">（1色）</span></th>
+                  <th class="px-4 py-2.5 text-left font-medium text-navy-800">サイズ（mm）</th>
+                  <th class="px-4 py-2.5 text-right font-medium text-navy-800">10〜29枚</th>
+                  <th class="px-4 py-2.5 text-right font-medium text-navy-800">30〜49枚</th>
+                  <th class="px-4 py-2.5 text-right font-medium text-navy-800">50枚〜</th>
                 </tr>
               </thead>
               <tbody class="divide-y divide-warm-100">
-                <tr><td class="px-4 py-2.5 font-medium text-navy-800">1〜9枚</td><td class="px-4 py-2.5 text-warm-700">1,000〜1,500円/枚</td><td class="px-4 py-2.5 text-warm-400">—</td></tr>
-                <tr><td class="px-4 py-2.5 font-medium text-navy-800">10〜29枚</td><td class="px-4 py-2.5 text-warm-700">800〜1,200円/枚</td><td class="px-4 py-2.5 text-warm-400">—</td></tr>
-                <tr><td class="px-4 py-2.5 font-medium text-navy-800">30〜99枚</td><td class="px-4 py-2.5 text-warm-400">—</td><td class="px-4 py-2.5 text-warm-700">500〜800円/枚 +版代</td></tr>
-                <tr><td class="px-4 py-2.5 font-medium text-navy-800">100枚〜</td><td class="px-4 py-2.5 text-gold-700 font-medium" colspan="2">お見積りにて対応</td></tr>
+                <tr><td class="px-4 py-2.5 text-warm-700">30×100</td><td class="px-4 py-2.5 text-right text-navy-800">300円</td><td class="px-4 py-2.5 text-right text-navy-800">200円</td><td class="px-4 py-2.5 text-right text-navy-800">180円</td></tr>
+                <tr><td class="px-4 py-2.5 text-warm-700">60×100</td><td class="px-4 py-2.5 text-right text-navy-800">400円</td><td class="px-4 py-2.5 text-right text-navy-800">300円</td><td class="px-4 py-2.5 text-right text-navy-800">—</td></tr>
+                <tr><td class="px-4 py-2.5 text-warm-700">100×300</td><td class="px-4 py-2.5 text-right text-navy-800">900円</td><td class="px-4 py-2.5 text-right text-navy-800">—</td><td class="px-4 py-2.5 text-right text-navy-800">—</td></tr>
+                <tr><td class="px-4 py-2.5 text-warm-700">300×300</td><td class="px-4 py-2.5 text-right text-navy-800">1,500円</td><td class="px-4 py-2.5 text-right text-navy-800">—</td><td class="px-4 py-2.5 text-right text-navy-800">—</td></tr>
               </tbody>
             </table>
           </div>
-          <div class="px-6 py-3 bg-warm-50 border-t border-warm-200">
-            <p class="text-xs text-warm-600">※ シルクスクリーン版代：1色につき8,000〜15,000円（初回のみ）</p>
+          <div class="px-6 py-3 bg-warm-50 border-t border-warm-200 space-y-1">
+            <p class="text-xs text-warm-600">※ 製版代：通常版 7,000円/版、特注版 8,000円〜/版</p>
+            <p class="text-xs text-warm-600">※ 色替え代：1,000円/版（都度）</p>
+            <p class="text-xs text-warm-600">※ 2色目以降+100円/色</p>
           </div>
         </div>
       </div>
 
       <!-- Wappen & Name pricing -->
-      <div class="js-fade-in bg-white rounded-lg border border-warm-200 overflow-hidden max-w-2xl mx-auto" style="transition-delay: 200ms">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+        <div class="js-fade-in bg-white rounded-lg border border-warm-200 overflow-hidden" style="transition-delay: 320ms">
+          <div class="bg-navy-800 px-6 py-3">
+            <h3 class="text-white font-medium">ワッペン</h3>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm">
+              <thead>
+                <tr class="bg-navy-50">
+                  <th class="px-4 py-2.5 text-left font-medium text-navy-800">種類 / 数量</th>
+                  <th class="px-4 py-2.5 text-right font-medium text-navy-800">5〜49枚</th>
+                  <th class="px-4 py-2.5 text-right font-medium text-navy-800">50〜99枚</th>
+                  <th class="px-4 py-2.5 text-right font-medium text-navy-800">100枚〜</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-warm-100">
+                <tr><td class="px-4 py-2.5 text-warm-700">刺繍ワッペン 天地8cm</td><td class="px-4 py-2.5 text-right text-navy-800">600円</td><td class="px-4 py-2.5 text-right text-navy-800">550円</td><td class="px-4 py-2.5 text-right text-navy-800">500円</td></tr>
+                <tr><td class="px-4 py-2.5 text-warm-700">刺繍ワッペン 天地10cm</td><td class="px-4 py-2.5 text-right text-navy-800">750円</td><td class="px-4 py-2.5 text-right text-navy-800">700円</td><td class="px-4 py-2.5 text-right text-navy-800">650円</td></tr>
+                <tr><td class="px-4 py-2.5 text-warm-700">プリントワッペン 天地8cm</td><td class="px-4 py-2.5 text-right text-navy-800">400円</td><td class="px-4 py-2.5 text-right text-navy-800">350円</td><td class="px-4 py-2.5 text-right text-navy-800">300円</td></tr>
+                <tr><td class="px-4 py-2.5 text-warm-700">プリントワッペン 天地10cm</td><td class="px-4 py-2.5 text-right text-navy-800">500円</td><td class="px-4 py-2.5 text-right text-navy-800">450円</td><td class="px-4 py-2.5 text-right text-navy-800">400円</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="px-6 py-3 bg-warm-50 border-t border-warm-200">
+            <p class="text-xs text-warm-600">※ 縫付け代 100円、圧着代 80円（別途）</p>
+          </div>
+        </div>
+
+        <div class="js-fade-in bg-white rounded-lg border border-warm-200 overflow-hidden" style="transition-delay: 400ms">
+          <div class="bg-navy-800 px-6 py-3">
+            <h3 class="text-white font-medium">刺繍名札</h3>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm">
+              <thead>
+                <tr class="bg-navy-50">
+                  <th class="px-4 py-2.5 text-left font-medium text-navy-800">サイズ</th>
+                  <th class="px-4 py-2.5 text-left font-medium text-navy-800">内容</th>
+                  <th class="px-4 py-2.5 text-right font-medium text-navy-800">単価（税別）</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-warm-100">
+                <tr><td class="px-4 py-2.5 text-warm-700">2cm×5cm</td><td class="px-4 py-2.5 text-warm-600">苗字のみ</td><td class="px-4 py-2.5 text-right font-medium text-navy-800">300円</td></tr>
+                <tr><td class="px-4 py-2.5 text-warm-700">2.5cm×7cm</td><td class="px-4 py-2.5 text-warm-600">フルネーム</td><td class="px-4 py-2.5 text-right font-medium text-navy-800">400円</td></tr>
+                <tr><td class="px-4 py-2.5 text-warm-700">3cm×7cm</td><td class="px-4 py-2.5 text-warm-600">施設名+フルネーム</td><td class="px-4 py-2.5 text-right font-medium text-navy-800">550円</td></tr>
+                <tr><td class="px-4 py-2.5 text-warm-700">3.5cm×7cm</td><td class="px-4 py-2.5 text-warm-600">苗字のみ</td><td class="px-4 py-2.5 text-right font-medium text-navy-800">400円</td></tr>
+                <tr><td class="px-4 py-2.5 text-warm-700">4.5cm×7cm</td><td class="px-4 py-2.5 text-warm-600">施設名+フルネーム</td><td class="px-4 py-2.5 text-right font-medium text-navy-800">400円</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Other products -->
+      <div class="js-fade-in bg-white rounded-lg border border-warm-200 overflow-hidden" style="transition-delay: 480ms">
         <div class="bg-navy-800 px-6 py-3">
-          <h3 class="text-white font-medium">ワッペン・ネーム加工の料金目安</h3>
+          <h3 class="text-white font-medium">その他の加工・商品</h3>
         </div>
         <div class="overflow-x-auto">
-          <table class="w-full text-sm">
+          <table class="w-full text-sm min-w-[480px]">
             <thead>
               <tr class="bg-navy-50">
-                <th class="px-4 py-2.5 text-left font-medium text-navy-800">種類</th>
-                <th class="px-4 py-2.5 text-left font-medium text-navy-800">最小ロット</th>
-                <th class="px-4 py-2.5 text-left font-medium text-navy-800">目安単価</th>
+                <th class="px-4 py-2.5 text-left font-medium text-navy-800">商品</th>
+                <th class="px-4 py-2.5 text-left font-medium text-navy-800">条件</th>
+                <th class="px-4 py-2.5 text-right font-medium text-navy-800">単価（税別）</th>
               </tr>
             </thead>
             <tbody class="divide-y divide-warm-100">
-              <tr><td class="px-4 py-2.5 font-medium text-navy-800">ワッペン（ヒートカット）</td><td class="px-4 py-2.5 text-warm-700">10枚〜</td><td class="px-4 py-2.5 text-warm-700">300〜800円/枚</td></tr>
-              <tr><td class="px-4 py-2.5 font-medium text-navy-800">織りネーム</td><td class="px-4 py-2.5 text-warm-700">100枚〜</td><td class="px-4 py-2.5 text-warm-700">30〜80円/枚</td></tr>
-              <tr><td class="px-4 py-2.5 font-medium text-navy-800">プリントネーム</td><td class="px-4 py-2.5 text-warm-700">100枚〜</td><td class="px-4 py-2.5 text-warm-700">15〜40円/枚</td></tr>
+              <tr><td class="px-4 py-2.5 text-warm-700">オーダーキャップ（帽子代+刺繍込み）</td><td class="px-4 py-2.5 text-warm-600">30個〜</td><td class="px-4 py-2.5 text-right font-medium text-navy-800">2,000円</td></tr>
+              <tr><td class="px-4 py-2.5 text-warm-700">メモリアル刺繍額</td><td class="px-4 py-2.5 text-warm-600">A4・1枚〜</td><td class="px-4 py-2.5 text-right font-medium text-navy-800">5,000円</td></tr>
+              <tr><td class="px-4 py-2.5 text-warm-700">リストバンド刺繍</td><td class="px-4 py-2.5 text-warm-600">本体400円+刺繍代</td><td class="px-4 py-2.5 text-right font-medium text-navy-800">400円〜</td></tr>
+              <tr><td class="px-4 py-2.5 text-warm-700">横断幕</td><td class="px-4 py-2.5 text-warm-600">幅90cm / 1m単価</td><td class="px-4 py-2.5 text-right font-medium text-navy-800">7,500円</td></tr>
+              <tr><td class="px-4 py-2.5 text-warm-700">のぼり（180×60cm）</td><td class="px-4 py-2.5 text-warm-600">2枚〜</td><td class="px-4 py-2.5 text-right font-medium text-navy-800">3,000円</td></tr>
+              <tr><td class="px-4 py-2.5 text-warm-700">刺繍腕章</td><td class="px-4 py-2.5 text-warm-600">5枚〜</td><td class="px-4 py-2.5 text-right font-medium text-navy-800">600円</td></tr>
+              <tr><td class="px-4 py-2.5 text-warm-700">アクリル名札（社名+個人名）</td><td class="px-4 py-2.5 text-warm-600">彫刻加工</td><td class="px-4 py-2.5 text-right font-medium text-navy-800">450円</td></tr>
             </tbody>
           </table>
+        </div>
+        <div class="px-6 py-3 bg-warm-50 border-t border-warm-200">
+          <p class="text-xs text-warm-600">※ 送料：1梱包700円（税抜10,000円以上で無料） ※ 商品代は別途</p>
         </div>
       </div>
 
