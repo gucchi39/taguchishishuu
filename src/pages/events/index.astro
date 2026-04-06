@@ -1,0 +1,100 @@
+---
+import Layout from '../../layouts/Layout.astro'
+import SectionHeading from '../../components/SectionHeading.astro'
+import { url } from '../../utils/paths'
+
+// イベント一覧データ（新しいものを上に追加していく）
+const events = [
+  {
+    title: '法政大学 岩瀬ゼミの皆さまが工場見学にお越しくださいました',
+    date: '2025年',
+    tag: '工場見学',
+    description: '法政大学 経営大学院 岩瀬ゼミの皆さまに、刺繍加工やプリント工程など自社工場の現場をご見学いただきました。',
+    image: '/images/events/hosei-visit/hosei-08.jpg',
+    href: '/events/hosei-visit',
+  },
+  // 新しいイベントはここに追加
+  // {
+  //   title: 'イベント名',
+  //   date: '2025年○月',
+  //   tag: 'カテゴリ',
+  //   description: '説明文',
+  //   image: '/images/events/xxx/yyy.jpg',
+  //   href: '/events/xxx',
+  // },
+]
+---
+
+<Layout title="イベント｜タグチ刺繍ネーム有限会社">
+
+  <section class="relative h-48 md:h-64 flex items-center">
+    <div class="absolute inset-0 bg-navy-800"></div>
+    <div class="relative z-10 mx-auto max-w-[1200px] px-4 md:px-8 w-full">
+      <p class="text-sm text-gold-300 tracking-[0.2em] uppercase mb-2">Events</p>
+      <h1 class="heading-accent text-2xl md:text-4xl text-white">イベント</h1>
+      <p class="text-navy-200 text-sm mt-2">工場見学・地域交流などの活動をご紹介します</p>
+    </div>
+  </section>
+
+  <section class="py-section-sm md:py-section">
+    <div class="mx-auto max-w-[1000px] px-4 md:px-8">
+
+      <div class="space-y-6">
+        {events.map((event, i) => (
+          <a
+            href={url(event.href)}
+            class="js-fade-in group grid grid-cols-1 md:grid-cols-[320px_1fr] gap-5 bg-white rounded-lg border border-warm-200 overflow-hidden hover:shadow-md hover:border-gold-300 transition-all duration-200"
+            style={`transition-delay: ${i * 80}ms`}
+          >
+            <div class="overflow-hidden">
+              <img
+                src={url(event.image)}
+                alt={event.title}
+                class="w-full h-full object-cover aspect-video md:aspect-[4/3] group-hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+              />
+            </div>
+            <div class="p-5 md:py-6 flex flex-col justify-center">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="inline-block text-[11px] text-gold-700 font-medium bg-gold-50 px-2.5 py-0.5 rounded-full">{event.tag}</span>
+                <span class="text-xs text-warm-500">{event.date}</span>
+              </div>
+              <h2 class="text-base md:text-lg font-bold text-navy-800 mb-2 leading-snug group-hover:text-navy-600 transition-colors">
+                {event.title}
+              </h2>
+              <p class="text-sm text-warm-600 leading-relaxed mb-3">
+                {event.description}
+              </p>
+              <span class="inline-flex items-center text-sm text-gold-600 font-medium group-hover:text-gold-500 transition-colors">
+                レポートを見る
+                <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                </svg>
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      {events.length === 0 && (
+        <p class="text-center text-warm-500 py-12">まだイベントの掲載はありません。</p>
+      )}
+
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-section-sm md:py-section bg-navy-800">
+    <div class="mx-auto max-w-[800px] px-4 md:px-8 text-center">
+      <div class="js-fade-in">
+        <h2 class="heading-accent text-xl md:text-2xl text-white mb-3">工場見学を受け付けています</h2>
+        <p class="text-navy-200 text-sm mb-6">学校・企業・団体様の工場見学も歓迎です。お気軽にお問い合わせください。</p>
+        <a href={url("/contact")} class="inline-flex items-center px-8 py-3.5 bg-gold-500 text-navy-950 font-medium rounded tracking-wider hover:bg-gold-400 transition-all duration-200 hover:-translate-y-px hover:shadow-md">
+          お問い合わせ
+          <svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</Layout>
