@@ -126,8 +126,8 @@ import { url } from '../utils/paths'
           </div>
 
           <div class="mt-4 bg-gold-50 border border-gold-200 rounded-lg px-4 py-3">
-            <p class="text-xs text-gold-800 font-medium mb-1">個人のお客様へ</p>
-            <p class="text-xs text-gold-700">こちらは法人・卸売のお客様向けの参考価格です。個人のお客様向け価格は別途ご案内いたします。</p>
+            <p class="text-xs text-gold-800 font-medium mb-1">法人のお客様へ</p>
+            <p class="text-xs text-gold-700">大口のご注文や継続的なお取引には別途お見積りいたします。お気軽にお問い合わせください。</p>
           </div>
         </div>
 
@@ -141,102 +141,102 @@ import { url } from '../utils/paths'
       'embroidery-name': {
         label: '刺繍（名入れ）',
         options: [
-          { id: 'company-12', label: '会社名（5文字まで）1.2cm角', price: 150 },
-          { id: 'name-12', label: '個人名 漢字（5文字まで）1.2cm角', price: 250 },
-          { id: 'name-15', label: '個人名 漢字フルネーム 1.5cm角', price: 350 },
-          { id: 'name-20', label: '個人名 漢字フルネーム 2cm角', price: 500 },
-          { id: 'name-30', label: '個人名 漢字フルネーム 3cm角', price: 750 },
-          { id: 'initial', label: '英字イニシャル 1.2cm角', price: 150 },
-          { id: 'cursive', label: '英字筆記体 1.2cm角', price: 250 },
+          { id: 'company-12', label: '会社名（5文字まで）1.2cm角', price: 300 },
+          { id: 'name-12', label: '個人名 漢字（5文字まで）1.2cm角', price: 500 },
+          { id: 'name-15', label: '個人名 漢字フルネーム 1.5cm角', price: 700 },
+          { id: 'name-20', label: '個人名 漢字フルネーム 2cm角', price: 1000 },
+          { id: 'name-30', label: '個人名 漢字フルネーム 3cm角', price: 1500 },
+          { id: 'initial', label: '英字イニシャル 1.2cm角', price: 300 },
+          { id: 'cursive', label: '英字筆記体 1.2cm角', price: 500 },
         ],
         minLot: 1,
         extras: [
-          { id: 'gold-thread', label: '金糸・銀糸使用', price: 30 },
-          { id: 'winter', label: '防寒服への加工', price: 50 },
+          { id: 'gold-thread', label: '金糸・銀糸使用', price: 60 },
+          { id: 'winter', label: '防寒服への加工', price: 100 },
         ],
       },
       'embroidery-logo': {
         label: '刺繍（ロゴ）',
         options: [
-          { id: 'logo-15x10', label: '文字1段 縦1.5cm×横10cm', price: 400 },
-          { id: 'logo-2x10', label: '文字1段 縦2cm×横10cm', price: 500 },
-          { id: 'logo-5x10', label: '文字2段 縦5cm×横10cm', price: 600 },
-          { id: 'logo-5x30', label: 'ロゴ大 縦5cm×横30cm', price: 1800 },
-          { id: 'cross', label: '緑十字マーク 3cm角', price: 200 },
-          { id: 'number', label: '番号（2桁まで）3cm角', price: 300 },
-          { id: 'kamon', label: '家紋 4cm', price: 400 },
+          { id: 'logo-15x10', label: '文字1段 縦1.5cm×横10cm', price: 800 },
+          { id: 'logo-2x10', label: '文字1段 縦2cm×横10cm', price: 1000 },
+          { id: 'logo-5x10', label: '文字2段 縦5cm×横10cm', price: 1200 },
+          { id: 'logo-5x30', label: 'ロゴ大 縦5cm×横30cm', price: 3600 },
+          { id: 'cross', label: '緑十字マーク 3cm角', price: 400 },
+          { id: 'number', label: '番号（2桁まで）3cm角', price: 600 },
+          { id: 'kamon', label: '家紋 4cm', price: 800 },
         ],
         minLot: 1,
         extras: [
-          { id: 'gold-thread', label: '金糸・銀糸使用', price: 30 },
-          { id: 'winter', label: '防寒服への加工', price: 50 },
+          { id: 'gold-thread', label: '金糸・銀糸使用', price: 60 },
+          { id: 'winter', label: '防寒服への加工', price: 100 },
         ],
         setupNote: 'オリジナルロゴは別途型代・校正代が発生します',
       },
       'dtf': {
         label: 'DTFプリント',
         options: [
-          { id: 'dtf-5050', label: '50×50mm', price: 300 },
-          { id: 'dtf-15100', label: '15×100mm', price: 360 },
-          { id: 'dtf-30100', label: '30×100mm', price: 420 },
-          { id: 'dtf-60100', label: '60×100mm', price: 600 },
-          { id: 'dtf-100100', label: '100×100mm / 50×150mm', price: 900 },
-          { id: 'dtf-100150', label: '100×150mm / 50×300mm', price: 1000 },
-          { id: 'dtf-100300', label: '100×300mm', price: 1200 },
-          { id: 'dtf-150300', label: '150×300mm', price: 1500 },
-          { id: 'dtf-200300', label: '200×300mm', price: 1800 },
-          { id: 'dtf-300300', label: '250×300mm / 300×300mm', price: 2100 },
+          { id: 'dtf-5050', label: '50×50mm', price: 600 },
+          { id: 'dtf-15100', label: '15×100mm', price: 720 },
+          { id: 'dtf-30100', label: '30×100mm', price: 840 },
+          { id: 'dtf-60100', label: '60×100mm', price: 1200 },
+          { id: 'dtf-100100', label: '100×100mm / 50×150mm', price: 1800 },
+          { id: 'dtf-100150', label: '100×150mm / 50×300mm', price: 2000 },
+          { id: 'dtf-100300', label: '100×300mm', price: 2400 },
+          { id: 'dtf-150300', label: '150×300mm', price: 3000 },
+          { id: 'dtf-200300', label: '200×300mm', price: 3600 },
+          { id: 'dtf-300300', label: '250×300mm / 300×300mm', price: 4200 },
         ],
         minLot: 1,
         extras: [
-          { id: 'dtf-color2', label: '2色目以降（+100円/色）', price: 100 },
-          { id: 'dtf-metallic', label: '金・銀・蛍光インク', price: 100 },
-          { id: 'dtf-nylon', label: 'ナイロン素材（1色限定）', price: 100 },
+          { id: 'dtf-color2', label: '2色目以降（+100円/色）', price: 200 },
+          { id: 'dtf-metallic', label: '金・銀・蛍光インク', price: 200 },
+          { id: 'dtf-nylon', label: 'ナイロン素材（1色限定）', price: 200 },
         ],
-        setupNote: '9枚以下はセットアップ料1,800〜2,700円が別途かかります',
+        setupNote: '9枚以下はセットアップ料3,600〜5,400円が別途かかります',
         setupFee: function(qty) {
-          if (qty <= 9) return 1800
-          if (qty <= 29) return 600
-          if (qty <= 49) return 550
-          return 500
+          if (qty <= 9) return 3600
+          if (qty <= 29) return 1200
+          if (qty <= 49) return 1100
+          return 1000
         },
       },
       'silk': {
         label: 'シルクスクリーン（単色）',
         options: [
-          { id: 'silk-30100', label: '30×100mm', prices: { 10: 300, 30: 200, 50: 180 } },
-          { id: 'silk-60100', label: '60×100mm', prices: { 10: 400, 30: 300, 50: 250 } },
-          { id: 'silk-100300', label: '100×300mm', prices: { 10: 900, 30: 700, 50: 600 } },
-          { id: 'silk-300300', label: '300×300mm', prices: { 10: 1500, 30: 1200, 50: 1000 } },
+          { id: 'silk-30100', label: '30×100mm', prices: { 10: 600, 30: 400, 50: 360 } },
+          { id: 'silk-60100', label: '60×100mm', prices: { 10: 800, 30: 600, 50: 500 } },
+          { id: 'silk-100300', label: '100×300mm', prices: { 10: 1800, 30: 1400, 50: 1200 } },
+          { id: 'silk-300300', label: '300×300mm', prices: { 10: 3000, 30: 2400, 50: 2000 } },
         ],
         minLot: 10,
-        plateFee: 7000,
+        plateFee: 14000,
         extras: [
-          { id: 'silk-color2', label: '2色目以降（+100円/色 + 版代追加）', price: 100, platePlus: 7000 },
+          { id: 'silk-color2', label: '2色目以降（+100円/色 + 版代追加）', price: 200, platePlus: 14000 },
         ],
       },
       'wappen': {
         label: 'ワッペン',
         options: [
-          { id: 'emb-w8', label: '刺繍ワッペン 天地8cm', prices: { 5: 600, 50: 550, 100: 500 } },
-          { id: 'emb-w10', label: '刺繍ワッペン 天地10cm', prices: { 5: 750, 50: 700, 100: 650 } },
-          { id: 'prt-w8', label: 'プリントワッペン 天地8cm', prices: { 5: 400, 50: 350, 100: 300 } },
-          { id: 'prt-w10', label: 'プリントワッペン 天地10cm', prices: { 5: 500, 50: 450, 100: 400 } },
+          { id: 'emb-w8', label: '刺繍ワッペン 天地8cm', prices: { 5: 1200, 50: 1100, 100: 1000 } },
+          { id: 'emb-w10', label: '刺繍ワッペン 天地10cm', prices: { 5: 1500, 50: 1400, 100: 1300 } },
+          { id: 'prt-w8', label: 'プリントワッペン 天地8cm', prices: { 5: 800, 50: 700, 100: 600 } },
+          { id: 'prt-w10', label: 'プリントワッペン 天地10cm', prices: { 5: 1000, 50: 900, 100: 800 } },
         ],
         minLot: 5,
         extras: [
-          { id: 'sew', label: '縫付け代', price: 100 },
-          { id: 'press', label: '圧着代', price: 80 },
+          { id: 'sew', label: '縫付け代', price: 200 },
+          { id: 'press', label: '圧着代', price: 160 },
         ],
       },
       'nafuda': {
         label: '刺繍名札',
         options: [
-          { id: 'nf-2x5', label: '2cm×5cm 苗字のみ', price: 300 },
-          { id: 'nf-25x7', label: '2.5cm×7cm フルネーム', price: 400 },
-          { id: 'nf-3x7', label: '3cm×7cm 施設名+フルネーム', price: 550 },
-          { id: 'nf-35x7', label: '3.5cm×7cm 苗字のみ', price: 400 },
-          { id: 'nf-45x7', label: '4.5cm×7cm 施設名+フルネーム', price: 400 },
+          { id: 'nf-2x5', label: '2cm×5cm 苗字のみ', price: 600 },
+          { id: 'nf-25x7', label: '2.5cm×7cm フルネーム', price: 800 },
+          { id: 'nf-3x7', label: '3cm×7cm 施設名+フルネーム', price: 1100 },
+          { id: 'nf-35x7', label: '3.5cm×7cm 苗字のみ', price: 800 },
+          { id: 'nf-45x7', label: '4.5cm×7cm 施設名+フルネーム', price: 800 },
         ],
         minLot: 1,
         extras: [],
