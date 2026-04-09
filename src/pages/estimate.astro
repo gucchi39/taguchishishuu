@@ -142,9 +142,9 @@ import { url } from '../utils/paths'
               </div>
             </div>
             <div class="px-5 pb-5">
-              <a href={url("/contact")} class="block w-full py-3 bg-gold-500 text-navy-950 text-center text-sm font-medium rounded tracking-wider hover:bg-gold-400 transition-all duration-200">
+              <button id="scroll-to-form" class="block w-full py-3 bg-gold-500 text-navy-950 text-center text-sm font-medium rounded tracking-wider hover:bg-gold-400 transition-all duration-200 cursor-pointer">
                 正式なお見積りを依頼する
-              </a>
+              </button>
               <p class="text-[11px] text-warm-500 text-center mt-2">
                 ※ 概算です。正式な料金は<br />お見積りにてご案内します
               </p>
@@ -158,6 +158,69 @@ import { url } from '../utils/paths'
           </div>
         </div>
 
+      </div>
+    </div>
+  </section>
+
+  <!-- Estimate Request Form -->
+  <section id="estimate-form" class="py-section-sm md:py-section bg-warm-50">
+    <div class="mx-auto max-w-[700px] px-4 md:px-8">
+      <div class="text-center mb-8">
+        <span class="block text-sm text-warm-500 font-light tracking-[0.2em] uppercase mb-1">Request</span>
+        <h2 class="heading-accent text-2xl md:text-[2rem] text-navy-800 leading-snug">
+          <span class="gold-underline">お見積りを依頼する</span>
+        </h2>
+      </div>
+
+      <!-- Auto-filled summary -->
+      <div id="form-summary" class="bg-navy-50 border border-navy-200 rounded-lg p-5 mb-6">
+        <p class="text-xs text-navy-600 font-medium mb-2">シミュレーター入力内容</p>
+        <div id="form-summary-content" class="text-sm text-navy-800 space-y-1">
+          <p class="text-warm-500">上のシミュレーターで条件を選ぶと、ここに自動入力されます</p>
+        </div>
+      </div>
+
+      <form id="estimate-request-form" class="space-y-5">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div>
+            <label for="est-company" class="block text-sm font-medium text-navy-800 mb-1.5">会社名 <span class="text-warm-400 text-xs">（任意）</span></label>
+            <input type="text" id="est-company" name="company" class="w-full px-4 py-3 border border-warm-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-gold-500" placeholder="株式会社○○" />
+          </div>
+          <div>
+            <label for="est-name" class="block text-sm font-medium text-navy-800 mb-1.5">お名前 <span class="text-gold-600 text-xs">*必須</span></label>
+            <input type="text" id="est-name" name="name" required class="w-full px-4 py-3 border border-warm-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-gold-500" placeholder="田口 太郎" />
+          </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div>
+            <label for="est-email" class="block text-sm font-medium text-navy-800 mb-1.5">メールアドレス <span class="text-gold-600 text-xs">*必須</span></label>
+            <input type="email" id="est-email" name="email" required class="w-full px-4 py-3 border border-warm-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-gold-500" placeholder="info@example.com" />
+          </div>
+          <div>
+            <label for="est-tel" class="block text-sm font-medium text-navy-800 mb-1.5">電話番号 <span class="text-warm-400 text-xs">（任意）</span></label>
+            <input type="tel" id="est-tel" name="tel" class="w-full px-4 py-3 border border-warm-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-gold-500" placeholder="0296-57-2644" />
+          </div>
+        </div>
+        <div>
+          <label for="est-message" class="block text-sm font-medium text-navy-800 mb-1.5">補足・ご要望 <span class="text-warm-400 text-xs">（任意）</span></label>
+          <textarea id="est-message" name="message" rows="4" class="w-full px-4 py-3 border border-warm-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-gold-500 resize-y" placeholder="加工位置のご希望、素材の種類、納期のご要望など"></textarea>
+        </div>
+
+        <!-- Hidden field for simulator data -->
+        <input type="hidden" id="est-detail" name="detail" value="" />
+
+        <div class="text-center">
+          <button type="submit" class="inline-flex items-center px-10 py-3.5 bg-navy-800 text-white font-medium rounded tracking-wider hover:bg-navy-700 transition-all duration-200 hover:-translate-y-px hover:shadow-md">
+            この内容でお見積りを依頼する
+            <svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" /></svg>
+          </button>
+        </div>
+      </form>
+
+      <div id="est-form-success" class="hidden bg-gold-50 border border-gold-300 rounded-lg p-6 text-center">
+        <svg class="w-12 h-12 text-gold-500 mx-auto mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+        <h3 class="text-lg font-bold text-navy-800 mb-2">送信準備ができました</h3>
+        <p class="text-sm text-warm-700">メールアプリが開きます。内容をご確認のうえ送信してください。</p>
       </div>
     </div>
   </section>
@@ -458,7 +521,52 @@ import { url } from '../utils/paths'
       ).join('')
       unitPriceEl.textContent = `${totalPerUnit.toLocaleString()}円`
       qtyDisplay.textContent = `${qty}枚`
+
+      // Update form summary
+      const summaryContent = document.getElementById('form-summary-content')!
+      const detailField = document.getElementById('est-detail') as HTMLInputElement
+      const summaryText = [
+        `加工種類：${config.label}`,
+        `仕様：${opt.label}`,
+        `数量：${qty}枚`,
+        ...(extrasPerUnit > 0 ? [`オプション：${state.extras.map(i => config.extras[i].label).join('、')}`] : []),
+        `概算金額：${subtotal.toLocaleString()}円（税別）`,
+      ]
+      summaryContent.innerHTML = summaryText.map(t =>
+        `<p>${t}</p>`
+      ).join('')
+      detailField.value = summaryText.join('\n')
     }
+
+    // ===== Scroll to form =====
+    document.getElementById('scroll-to-form')!.addEventListener('click', () => {
+      document.getElementById('estimate-form')!.scrollIntoView({ behavior: 'smooth' })
+    })
+
+    // ===== Form submit =====
+    const estForm = document.getElementById('estimate-request-form') as HTMLFormElement
+    estForm.addEventListener('submit', (e) => {
+      e.preventDefault()
+      const data = new FormData(estForm)
+      const detail = data.get('detail') || '（シミュレーター未入力）'
+      const subject = '【かんたん見積り】お見積り依頼'
+      const body = [
+        '--- シミュレーター入力内容 ---',
+        detail,
+        '',
+        '--- お客様情報 ---',
+        `会社名: ${data.get('company') || '（未記入）'}`,
+        `お名前: ${data.get('name')}`,
+        `メール: ${data.get('email')}`,
+        `電話: ${data.get('tel') || '（未記入）'}`,
+        '',
+        '--- 補足・ご要望 ---',
+        data.get('message') || '（なし）',
+      ].join('\n')
+      window.location.href = `mailto:info@taguchi-shishu.co.jp?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+      document.getElementById('est-form-success')!.classList.remove('hidden')
+      estForm.classList.add('hidden')
+    })
 
     // ===== File Upload Preview =====
     const fileInput = document.getElementById('file-input') as HTMLInputElement
