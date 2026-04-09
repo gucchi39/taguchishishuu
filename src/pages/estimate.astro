@@ -88,6 +88,32 @@ import { url } from '../utils/paths'
               <!-- Populated by JS -->
             </div>
           </div>
+
+          <!-- Step 5: Image Upload -->
+          <div id="step5-upload" class="mb-8 hidden">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="w-8 h-8 rounded-full bg-navy-800 text-gold-400 text-sm font-bold flex items-center justify-center shrink-0">5</span>
+              <h2 class="text-lg font-bold text-navy-800">デザイン画像を添付</h2>
+            </div>
+            <p class="text-xs text-warm-600 mb-3">
+              ロゴやデザインの画像をお送りいただくと、デザインの内容を確認のうえ正確なお見積りをお出しします。<br />
+              <span class="text-gold-700 font-medium">※ デザインの複雑さによって価格が変動する場合があります。</span>
+            </p>
+            <label id="drop-zone" class="flex flex-col items-center justify-center w-full h-36 border-2 border-dashed border-warm-300 rounded-lg cursor-pointer hover:border-gold-400 hover:bg-gold-50/30 transition-all">
+              <div id="upload-placeholder" class="flex flex-col items-center">
+                <svg class="w-8 h-8 text-warm-400 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z" />
+                </svg>
+                <span class="text-sm text-warm-500">クリックまたはドラッグで画像を添付</span>
+                <span class="text-xs text-warm-400 mt-1">JPG, PNG, PDF（10MBまで）</span>
+              </div>
+              <div id="upload-preview" class="hidden text-center">
+                <img id="upload-thumb" class="max-h-20 rounded mx-auto mb-1" alt="" />
+                <span id="upload-filename" class="text-sm text-navy-800 font-medium"></span>
+              </div>
+              <input id="file-input" type="file" accept="image/*,.pdf" class="hidden" />
+            </label>
+          </div>
         </div>
 
         <!-- Right: Price Panel (sticky) -->
@@ -279,6 +305,7 @@ import { url } from '../utils/paths'
         step2Container.classList.remove('hidden')
         step3Container.classList.remove('hidden')
         step4Container.classList.remove('hidden')
+        document.getElementById('step5-upload')!.classList.remove('hidden')
 
         // Update min lot
         const config = PRICES[type]
@@ -432,6 +459,55 @@ import { url } from '../utils/paths'
       unitPriceEl.textContent = `${totalPerUnit.toLocaleString()}円`
       qtyDisplay.textContent = `${qty}枚`
     }
+
+    // ===== File Upload Preview =====
+    const fileInput = document.getElementById('file-input') as HTMLInputElement
+    const dropZone = document.getElementById('drop-zone')!
+    const placeholder = document.getElementById('upload-placeholder')!
+    const preview = document.getElementById('upload-preview')!
+    const thumb = document.getElementById('upload-thumb') as HTMLImageElement
+    const filename = document.getElementById('upload-filename')!
+
+    function handleFile(file: File) {
+      if (file.size > 10 * 1024 * 1024) {
+        alert('ファイルサイズは10MB以下にしてください')
+        return
+      }
+      filename.textContent = file.name
+      placeholder.classList.add('hidden')
+      preview.classList.remove('hidden')
+
+      if (file.type.startsWith('image/')) {
+        const reader = new FileReader()
+        reader.onload = (e) => {
+          thumb.src = e.target!.result as string
+          thumb.classList.remove('hidden')
+        }
+        reader.readAsDataURL(file)
+      } else {
+        thumb.classList.add('hidden')
+      }
+    }
+
+    fileInput.addEventListener('change', () => {
+      if (fileInput.files && fileInput.files[0]) handleFile(fileInput.files[0])
+    })
+
+    dropZone.addEventListener('dragover', (e) => {
+      e.preventDefault()
+      dropZone.classList.add('border-gold-400', 'bg-gold-50/30')
+    })
+    dropZone.addEventListener('dragleave', () => {
+      dropZone.classList.remove('border-gold-400', 'bg-gold-50/30')
+    })
+    dropZone.addEventListener('drop', (e) => {
+      e.preventDefault()
+      dropZone.classList.remove('border-gold-400', 'bg-gold-50/30')
+      if (e.dataTransfer?.files && e.dataTransfer.files[0]) {
+        fileInput.files = e.dataTransfer.files
+        handleFile(e.dataTransfer.files[0])
+      }
+    })
   </script>
 
 </Layout>
