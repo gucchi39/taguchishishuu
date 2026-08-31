@@ -1,0 +1,247 @@
+---
+import {
+  calendarMode,
+  googleCalendarId,
+  weeklyClosedDays,
+  closedDates,
+  openDates,
+  calendarNote,
+} from '../data/calendar'
+
+interface Props {
+  /** 生成する月数（ビルド時点の月から先） */
+  months?: number
+}
+const { months = 12 } = Astro.props
+
+const WEEKDAY_LABELS = ['日', '月', '火', '水', '木', '金', '土']
+
+const pad = (n: number) => String(n).padStart(2, '0')
+
+/** その日が休業日かどうかを判定（臨時営業日が最優先） */
+function isClosed(iso: string, weekday: number): boolean {
+  if (openDates.includes(iso)) return false
+  if (closedDates.includes(iso)) return true
+  return weeklyClosedDays.includes(weekday)
+}
+
+// --- ビルド時点の月を起点に、months ヶ月分のカレンダーを生成 ---
+const today = new Date()
+const baseYear = today.getFullYear()
+const baseMonth = today.getMonth() // 0-11
+
+const monthData = Array.from({ length: months }, (_, i) => {
+  const year = baseYear + Math.floor((baseMonth + i) / 12)
+  const month = (baseMonth + i) % 12 // 0-11
+
+  const firstWeekday = new Date(year, month, 1).getDay()
+  const daysInMonth = new Date(year, month + 1, 0).getDate()
+
+  type Cell = { day: number; iso: string; weekday: number; closed: boolean } | null
+  const cells: Cell[] = []
+
+  // 月初までの空白
+  for (let b = 0; b < firstWeekday; b++) cells.push(null)
+
+  for (let d = 1; d <= daysInMonth; d++) {
+    const iso = `${year}-${pad(month + 1)}-${pad(d)}`
+    const weekday = (firstWeekday + d - 1) % 7
+    cells.push({ day: d, iso, weekday, closed: isClosed(iso, weekday) })
+  }
+
+  // 最終週の空白（7の倍数に揃える）
+  while (cells.length % 7 !== 0) cells.push(null)
+
+  return { key: `${year}-${pad(month + 1)}`, year, month: month + 1, cells }
+})
+
+// 休業日データがまだ1件も登録されていないか（案内文の出し分けに使用）
+const hasNoClosedData = closedDates.length === 0 && weeklyClosedDays.length === 0
+
+const googleSrc = googleCalendarId
+  ? `https://calendar.google.com/calendar/embed?src=${encodeURIComponent(googleCalendarId)}&ctz=Asia%2FTokyo&hl=ja&mode=MONTH&showTitle=0&showPrint=0&showTabs=0&showCalendars=0&showTz=0&wkst=1`
+  : ''
+---
+
+<div class="rounded-lg border border-warm-200 bg-white overflow-hidden">
+
+  {calendarMode === 'google' && googleSrc && (
+    <div class="p-3 md:p-5">
+      <iframe
+        src={googleSrc}
+        title="営業カレンダー"
+        class="w-full h-[520px] md:h-[600px] border-0 rounded"
+        loading="lazy"
+      ></iframe>
+    </div>
+  )}
+
+  {calendarMode === 'google' && !googleSrc && (
+    <div class="p-8 text-center">
+      <p class="text-sm text-warm-600 leading-relaxed">
+        Googleカレンダー連携が選択されていますが、カレンダーIDが未設定です。<br />
+        <code class="text-xs bg-warm-100 px-1.5 py-0.5 rounded">src/data/calendar.ts</code> の
+        <code class="text-xs bg-warm-100 px-1.5 py-0.5 rounded">googleCalendarId</code> をご設定ください。
+      </p>
+    </div>
+  )}
+
+  {calendarMode === 'builtin' && (
+    <div>
+      <!-- 月切り替えヘッダー -->
+      <div class="flex items-center justify-between px-4 md:px-6 py-4 border-b border-warm-200 bg-navy-50">
+        <button
+          type="button"
+          data-cal-prev
+          class="p-3 rounded text-navy-800 hover:bg-white disabled:opacity-30 disabled:hover:bg-transparent transition-colors"
+          aria-label="前の月を表示"
+        >
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+          </svg>
+        </button>
+
+        <p data-cal-title class="heading-accent text-lg md:text-xl text-navy-800" aria-live="polite">
+          {monthData[0].year}年 {monthData[0].month}月
+        </p>
+
+        <button
+          type="button"
+          data-cal-next
+          class="p-3 rounded text-navy-800 hover:bg-white disabled:opacity-30 disabled:hover:bg-transparent transition-colors"
+          aria-label="次の月を表示"
+        >
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- 月グリッド -->
+      <div class="p-3 md:p-5">
+        {monthData.map((m, i) => (
+          <div data-cal-month={m.key} class={i === 0 ? '' : 'hidden'}>
+            <!-- 曜日見出し -->
+            <div class="grid grid-cols-7 mb-1">
+              {WEEKDAY_LABELS.map((label, w) => (
+                <div
+                  class={`text-center text-xs font-medium py-2 ${
+                    w === 0 ? 'text-red-600' : w === 6 ? 'text-navy-600' : 'text-warm-500'
+                  }`}
+                >
+                  {label}
+                </div>
+              ))}
+            </div>
+
+            <!-- 日付 -->
+            <div class="grid grid-cols-7 gap-px bg-warm-100 border border-warm-100 rounded overflow-hidden">
+              {m.cells.map((cell) => (
+                cell === null ? (
+                  <div class="bg-warm-50 aspect-square md:aspect-[4/3]"></div>
+                ) : (
+                  <div
+                    data-cal-date={cell.iso}
+                    class={`relative aspect-square md:aspect-[4/3] flex flex-col items-center justify-center ${
+                      cell.closed ? 'bg-red-50' : 'bg-white'
+                    }`}
+                  >
+                    <span
+                      class={`text-sm md:text-base leading-none ${
+                        cell.closed
+                          ? 'text-red-600 font-medium'
+                          : cell.weekday === 0
+                            ? 'text-red-600'
+                            : cell.weekday === 6
+                              ? 'text-navy-600'
+                              : 'text-warm-800'
+                      }`}
+                    >
+                      {cell.day}
+                    </span>
+                    {cell.closed && (
+                      <span class="mt-0.5 text-[10px] leading-none text-red-500">休</span>
+                    )}
+                  </div>
+                )
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- 凡例 -->
+      <div class="flex flex-wrap items-center gap-x-5 gap-y-2 px-4 md:px-6 pb-5 text-xs text-warm-600">
+        <span class="flex items-center gap-1.5">
+          <span class="w-3.5 h-3.5 rounded-sm border border-warm-200 bg-white inline-block"></span>
+          営業日
+        </span>
+        <span class="flex items-center gap-1.5">
+          <span class="w-3.5 h-3.5 rounded-sm border border-red-200 bg-red-50 inline-block"></span>
+          休業日
+        </span>
+        <span class="flex items-center gap-1.5">
+          <span class="w-3.5 h-3.5 rounded-sm ring-2 ring-gold-500 bg-white inline-block"></span>
+          本日
+        </span>
+      </div>
+
+      {hasNoClosedData && (
+        <div class="mx-4 md:mx-6 mb-5 px-4 py-3 rounded bg-gold-50 border border-gold-200">
+          <p class="text-xs text-gold-800 leading-relaxed">
+            休業日はまだ登録されていません。<code class="bg-white/70 px-1 py-0.5 rounded">src/data/calendar.ts</code> に日付を追加すると、このカレンダーに反映されます。
+          </p>
+        </div>
+      )}
+    </div>
+  )}
+</div>
+
+{calendarMode === 'builtin' && calendarNote && (
+  <p class="mt-4 text-xs md:text-sm text-warm-600 leading-relaxed">{calendarNote}</p>
+)}
+
+<script>
+    // 生成済みの月パネルを取得し、実際の「今月」を初期表示する。
+    // （静的サイトのため、ビルド後に月をまたいでも正しい月が開くようにする）
+    const panels = Array.from(
+      document.querySelectorAll<HTMLElement>('[data-cal-month]')
+    )
+
+    if (panels.length > 0) {
+      const keys = panels.map((p) => p.dataset.calMonth!)
+      const title = document.querySelector<HTMLElement>('[data-cal-title]')
+      const prevBtn = document.querySelector<HTMLButtonElement>('[data-cal-prev]')
+      const nextBtn = document.querySelector<HTMLButtonElement>('[data-cal-next]')
+
+      const now = new Date()
+      const pad = (n: number) => String(n).padStart(2, '0')
+      const todayKey = `${now.getFullYear()}-${pad(now.getMonth() + 1)}`
+      const todayIso = `${todayKey}-${pad(now.getDate())}`
+
+      // 今月が生成範囲外（長期間ビルドしていない場合）は先頭月にフォールバック
+      let index = keys.indexOf(todayKey)
+      if (index === -1) index = 0
+
+      function render() {
+        panels.forEach((p, i) => p.classList.toggle('hidden', i !== index))
+        const [y, m] = keys[index].split('-')
+        if (title) title.textContent = `${y}年 ${Number(m)}月`
+        if (prevBtn) prevBtn.disabled = index === 0
+        if (nextBtn) nextBtn.disabled = index === panels.length - 1
+      }
+
+      prevBtn?.addEventListener('click', () => {
+        if (index > 0) { index--; render() }
+      })
+      nextBtn?.addEventListener('click', () => {
+        if (index < panels.length - 1) { index++; render() }
+      })
+
+      // 本日をハイライト
+      const todayCell = document.querySelector<HTMLElement>(`[data-cal-date="${todayIso}"]`)
+      todayCell?.classList.add('ring-2', 'ring-gold-500', 'ring-inset', 'z-10')
+
+      render()
+    }
+</script>
