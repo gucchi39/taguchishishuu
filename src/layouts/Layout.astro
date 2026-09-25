@@ -7,12 +7,63 @@ import { url } from '../utils/paths'
 interface Props {
   title: string
   description?: string
+  /** OGP画像（サイト内パス。例: /images/ogp.jpg） */
+  ogImage?: string
+  ogType?: 'website' | 'article'
+  noindex?: boolean
 }
 
 const {
   title,
-  description = 'タグチ刺繍ネーム有限会社｜茨城県筑西市の刺繍・プリント加工専門メーカー。創業65年の信頼と実績。'
+  description = 'タグチ刺繍ネーム有限会社｜茨城県筑西市の刺繍・プリント加工専門メーカー。創業65年の信頼と実績。',
+  ogImage = '/images/ogp.jpg',
+  ogType = 'website',
+  noindex = false,
 } = Astro.props
+
+const siteName = 'タグチ刺繍ネーム有限会社'
+// URL はすべて astro.config.mjs の site + base から組み立てる（直書きしない）
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href
+const homeUrl = new URL(url('/'), Astro.site).href
+const ogImageUrl = new URL(url(ogImage), Astro.site).href
+
+const localBusiness = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: siteName,
+  alternateName: 'タグチ刺繍ネーム',
+  url: homeUrl,
+  image: ogImageUrl,
+  telephone: '+81-296-57-2644',
+  faxNumber: '+81-296-57-5224',
+  address: {
+    '@type': 'PostalAddress',
+    postalCode: '309-1106',
+    addressRegion: '茨城県',
+    addressLocality: '筑西市',
+    streetAddress: '新治2001-4',
+    addressCountry: 'JP',
+  },
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '09:00',
+      closes: '17:45',
+    },
+  ],
+  foundingDate: '1960',
+  areaServed: [
+    { '@type': 'City', name: '茨城県筑西市' },
+    { '@type': 'State', name: '茨城県' },
+    { '@type': 'AdministrativeArea', name: '関東地方' },
+    { '@type': 'Country', name: '日本' },
+  ],
+  description:
+    '茨城県筑西市の刺繍・プリント加工工場。刺繍加工、プリント加工（DTF・シルクスクリーン・UV）、ワッペン製作、織りネーム・プリントネーム・下げ札などのネーム加工を行っています。ユニフォーム・作業着・ポロシャツ・キャップ・タオルへの名入れを1枚から承ります。',
+}
+// 固定データのみだが、念のため "<" をエスケープして </script> による脱出を防ぐ
+const localBusinessJson = JSON.stringify(localBusiness).replace(/</g, '\\u003c')
 ---
 
 <!doctype html>
@@ -22,11 +73,29 @@ const {
     <link rel="icon" type="image/svg+xml" href={url("/favicon.svg")} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex" />}
+    <link rel="canonical" href={canonicalUrl} />
     <meta name="generator" content={Astro.generator} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Shippori+Mincho:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <title>{title}</title>
+
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="ja_JP" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    <script type="application/ld+json" set:html={localBusinessJson} />
   </head>
   <body class="min-h-screen flex flex-col">
     <Header />
