@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro'
 import SectionHeading from '../components/SectionHeading.astro'
 import Philosophy from '../components/Philosophy.astro'
+import Clients from '../components/Clients.astro'
 
 const companyInfo = [
   { label: '社名', value: 'タグチ刺繍ネーム有限会社' },
@@ -75,6 +76,9 @@ import { url } from '../utils/paths'
       </div>
     </div>
   </section>
+
+  <!-- Clients（主な取引先・実績 ※内容は src/data/trust.ts） -->
+  <Clients class="bg-navy-50" />
 
   <!-- Access -->
   <section class="py-section-sm md:py-section">

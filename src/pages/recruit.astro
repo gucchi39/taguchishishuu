@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro'
 import SectionHeading from '../components/SectionHeading.astro'
+import StaffVoices from '../components/StaffVoices.astro'
 
 const points = [
   {
@@ -87,6 +88,9 @@ import { url } from '../utils/paths'
       </div>
     </div>
   </section>
+
+  <!-- Staff Voice（働く人の声 ※内容は src/data/trust.ts） -->
+  <StaffVoices />
 
   <!-- Job Info -->
   <section class="py-section-sm md:py-section bg-navy-50">

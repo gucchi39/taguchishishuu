@@ -2,6 +2,8 @@
 import Layout from '../layouts/Layout.astro'
 import SectionHeading from '../components/SectionHeading.astro'
 import Philosophy from '../components/Philosophy.astro'
+import Testimonials from '../components/Testimonials.astro'
+import Clients from '../components/Clients.astro'
 
 const strengths = [
   {
@@ -323,6 +325,16 @@ import { url } from '../utils/paths'
       </div>
     </div>
   </section>
+
+  <!-- ============================================
+       TESTIMONIALS (お客様の声) ※内容は src/data/trust.ts
+       ============================================ -->
+  <Testimonials />
+
+  <!-- ============================================
+       CLIENTS (主な取引先・実績) ※内容は src/data/trust.ts
+       ============================================ -->
+  <Clients class="bg-warm-50" />
 
   <!-- ============================================
        EVENT (お知らせ・イベント)
