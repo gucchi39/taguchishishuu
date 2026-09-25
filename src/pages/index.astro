@@ -73,8 +73,8 @@ import { url } from '../utils/paths'
     <!-- Content -->
     <div class="relative z-10 mx-auto max-w-[1200px] px-4 md:px-8 py-20 md:py-28">
       <div class="max-w-2xl">
-        <h1 class="heading-accent text-3xl md:text-5xl text-white leading-snug md:leading-tight mb-5">
-          糸の一本、色の一刷りに、<br />65年の技術と誇り。
+        <h1 class="heading-accent text-[1.6rem] sm:text-3xl md:text-5xl text-white leading-snug md:leading-tight mb-5">
+          糸の一本、色の一刷りに、<br class="hidden sm:block" /><span class="whitespace-nowrap">65年</span>の技術と誇り。
         </h1>
         <p class="text-base md:text-lg text-navy-200 leading-relaxed mb-8 max-w-lg">
           刺繍・ネーム・プリント加工のことなら、<br class="hidden md:block" />タグチ刺繍ネームにお任せください
@@ -222,43 +222,64 @@ import { url } from '../utils/paths'
           <tbody class="divide-y divide-warm-100">
             <tr class="hover:bg-warm-50 transition-colors">
               <td class="px-4 md:px-6 py-3 text-warm-700">刺繍機</td>
-              <td class="px-4 md:px-6 py-3 font-medium text-navy-800">多頭機（10頭・6頭・4頭）</td>
+              <td class="px-4 md:px-6 py-3 font-medium text-navy-800">
+                多頭機（10頭・6頭・4頭）
+                <p class="text-xs text-warm-500 font-normal mt-0.5 md:hidden">量産対応</p>
+              </td>
               <td class="px-4 md:px-6 py-3 text-center font-bold text-navy-800">3台</td>
               <td class="px-4 md:px-6 py-3 text-warm-600 hidden md:table-cell">量産対応</td>
             </tr>
             <tr class="hover:bg-warm-50 transition-colors">
               <td class="px-4 md:px-6 py-3 text-warm-700">刺繍機</td>
-              <td class="px-4 md:px-6 py-3 font-medium text-navy-800">単頭機</td>
+              <td class="px-4 md:px-6 py-3 font-medium text-navy-800">
+                単頭機
+                <p class="text-xs text-warm-500 font-normal mt-0.5 md:hidden">多品種小ロット対応</p>
+              </td>
               <td class="px-4 md:px-6 py-3 text-center font-bold text-navy-800">11台</td>
               <td class="px-4 md:px-6 py-3 text-warm-600 hidden md:table-cell">多品種小ロット対応</td>
             </tr>
             <tr class="hover:bg-warm-50 transition-colors">
               <td class="px-4 md:px-6 py-3 text-warm-700">プリント</td>
-              <td class="px-4 md:px-6 py-3 font-medium text-navy-800">DTFプリンター</td>
+              <td class="px-4 md:px-6 py-3 font-medium text-navy-800">
+                DTFプリンター
+                <p class="text-xs text-warm-500 font-normal mt-0.5 md:hidden">小ロット対応</p>
+              </td>
               <td class="px-4 md:px-6 py-3 text-center font-bold text-navy-800">1台</td>
               <td class="px-4 md:px-6 py-3 text-warm-600 hidden md:table-cell">小ロット対応</td>
             </tr>
             <tr class="hover:bg-warm-50 transition-colors">
               <td class="px-4 md:px-6 py-3 text-warm-700">プリント</td>
-              <td class="px-4 md:px-6 py-3 font-medium text-navy-800">シルクプリンター</td>
+              <td class="px-4 md:px-6 py-3 font-medium text-navy-800">
+                シルクプリンター
+                <p class="text-xs text-warm-500 font-normal mt-0.5 md:hidden">量産対応</p>
+              </td>
               <td class="px-4 md:px-6 py-3 text-center font-bold text-navy-800">1台</td>
               <td class="px-4 md:px-6 py-3 text-warm-600 hidden md:table-cell">量産対応</td>
             </tr>
             <tr class="hover:bg-warm-50 transition-colors">
               <td class="px-4 md:px-6 py-3 text-warm-700">プリント</td>
-              <td class="px-4 md:px-6 py-3 font-medium text-navy-800">UVプリンター</td>
+              <td class="px-4 md:px-6 py-3 font-medium text-navy-800">
+                UVプリンター
+                <p class="text-xs text-warm-500 font-normal mt-0.5 md:hidden">グッズ製造</p>
+              </td>
               <td class="px-4 md:px-6 py-3 text-center font-bold text-navy-800">1台</td>
               <td class="px-4 md:px-6 py-3 text-warm-600 hidden md:table-cell">グッズ製造</td>
             </tr>
             <tr class="hover:bg-warm-50 transition-colors">
               <td class="px-4 md:px-6 py-3 text-warm-700">仕上げ</td>
-              <td class="px-4 md:px-6 py-3 font-medium text-navy-800">熱プレス機</td>
+              <td class="px-4 md:px-6 py-3 font-medium text-navy-800">
+                熱プレス機
+                <p class="text-xs text-warm-500 font-normal mt-0.5 md:hidden">後工程</p>
+              </td>
               <td class="px-4 md:px-6 py-3 text-center font-bold text-navy-800">7台</td>
               <td class="px-4 md:px-6 py-3 text-warm-600 hidden md:table-cell">後工程</td>
             </tr>
             <tr class="hover:bg-warm-50 transition-colors">
               <td class="px-4 md:px-6 py-3 text-warm-700">仕上げ</td>
-              <td class="px-4 md:px-6 py-3 font-medium text-navy-800">レーザー加工機</td>
+              <td class="px-4 md:px-6 py-3 font-medium text-navy-800">
+                レーザー加工機
+                <p class="text-xs text-warm-500 font-normal mt-0.5 md:hidden">後工程</p>
+              </td>
               <td class="px-4 md:px-6 py-3 text-center font-bold text-navy-800">2台</td>
               <td class="px-4 md:px-6 py-3 text-warm-600 hidden md:table-cell">後工程</td>
             </tr>

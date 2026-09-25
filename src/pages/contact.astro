@@ -34,28 +34,28 @@ import SectionHeading from '../components/SectionHeading.astro'
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label for="company" class="block text-sm font-medium text-navy-800 mb-1.5">会社名 <span class="text-warm-400 text-xs">（任意）</span></label>
-                <input type="text" id="company" name="company" class="w-full px-4 py-3 border border-warm-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-gold-500 transition-colors" placeholder="株式会社○○" />
+                <input type="text" id="company" name="company" class="w-full px-4 py-3 border border-warm-300 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-gold-500 transition-colors" placeholder="株式会社○○" />
               </div>
               <div>
                 <label for="name" class="block text-sm font-medium text-navy-800 mb-1.5">お名前 <span class="text-gold-600 text-xs">*必須</span></label>
-                <input type="text" id="name" name="name" required class="w-full px-4 py-3 border border-warm-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-gold-500 transition-colors" placeholder="田口 太郎" />
+                <input type="text" id="name" name="name" required class="w-full px-4 py-3 border border-warm-300 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-gold-500 transition-colors" placeholder="田口 太郎" />
               </div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label for="email" class="block text-sm font-medium text-navy-800 mb-1.5">メールアドレス <span class="text-gold-600 text-xs">*必須</span></label>
-                <input type="email" id="email" name="email" required class="w-full px-4 py-3 border border-warm-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-gold-500 transition-colors" placeholder="info@example.com" />
+                <input type="email" id="email" name="email" required class="w-full px-4 py-3 border border-warm-300 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-gold-500 transition-colors" placeholder="info@example.com" />
               </div>
               <div>
                 <label for="tel" class="block text-sm font-medium text-navy-800 mb-1.5">電話番号 <span class="text-warm-400 text-xs">（任意）</span></label>
-                <input type="tel" id="tel" name="tel" class="w-full px-4 py-3 border border-warm-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-gold-500 transition-colors" placeholder="0296-57-2644" />
+                <input type="tel" id="tel" name="tel" class="w-full px-4 py-3 border border-warm-300 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-gold-500 transition-colors" placeholder="0296-57-2644" />
               </div>
             </div>
 
             <div>
               <label for="category" class="block text-sm font-medium text-navy-800 mb-1.5">お問い合わせ種別</label>
-              <select id="category" name="category" class="w-full px-4 py-3 border border-warm-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-gold-500 transition-colors bg-white">
+              <select id="category" name="category" class="w-full px-4 py-3 border border-warm-300 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-gold-500 transition-colors bg-white">
                 <option value="">選択してください</option>
                 <option value="estimate">お見積り依頼</option>
                 <option value="sample">サンプル請求</option>
@@ -68,7 +68,7 @@ import SectionHeading from '../components/SectionHeading.astro'
 
             <div>
               <label for="message" class="block text-sm font-medium text-navy-800 mb-1.5">お問い合わせ内容 <span class="text-gold-600 text-xs">*必須</span></label>
-              <textarea id="message" name="message" rows="6" required class="w-full px-4 py-3 border border-warm-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-gold-500 transition-colors resize-y" placeholder="ご希望の加工内容、数量、納期などをお知らせください。"></textarea>
+              <textarea id="message" name="message" rows="6" required class="w-full px-4 py-3 border border-warm-300 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-gold-500 transition-colors resize-y" placeholder="ご希望の加工内容、数量、納期などをお知らせください。"></textarea>
             </div>
 
             <div>
@@ -81,7 +81,7 @@ import SectionHeading from '../components/SectionHeading.astro'
         </div>
 
         <!-- Sidebar -->
-        <aside class="space-y-6">
+        <aside class="order-first lg:order-none space-y-6">
           <!-- Phone -->
           <div class="bg-navy-50 rounded-lg p-6 border border-warm-200">
             <h3 class="font-bold text-navy-800 mb-3">お電話でのお問い合わせ</h3>
