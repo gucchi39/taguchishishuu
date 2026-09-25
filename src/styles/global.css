@@ -90,15 +90,28 @@ body {
 
 /* ========================================
    Scroll Animation (IntersectionObserver)
+   ------------------------------------------
+   .js-fade-in は既定では常に表示（opacity:1）。
+   JS が動く環境だけ、<html> に付く .js クラスの下で
+   「観測されるまで隠す→表示時にフェードイン」という
+   演出に切り替える（JS無効・読み込み前でも本文が読める）。
    ======================================== */
-.js-fade-in {
+.js .js-fade-in {
   opacity: 0;
   transform: translateY(24px);
   transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
-.js-fade-in.is-visible {
+.js .js-fade-in.is-visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* 「動きを減らす」設定のユーザーには、フェードインの移動・トランジションを無効化する */
+@media (prefers-reduced-motion: reduce) {
+  .js .js-fade-in {
+    transition: none;
+    transform: none;
+  }
 }
 
 /* ========================================

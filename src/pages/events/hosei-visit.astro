@@ -2,24 +2,31 @@
 import Layout from '../../layouts/Layout.astro'
 
 const photos = [
-  { src: '/images/events/hosei-visit/hosei-01.jpg', caption: 'ご来訪' },
-  { src: '/images/events/hosei-visit/hosei-05.jpg', caption: '会社説明' },
-  { src: '/images/events/hosei-visit/hosei-08.jpg', caption: '事務所にて' },
-  { src: '/images/events/hosei-visit/hosei-10.jpg', caption: '工場見学' },
-  { src: '/images/events/hosei-visit/hosei-15.jpg', caption: '刺繍機の見学' },
-  { src: '/images/events/hosei-visit/hosei-18.jpg', caption: 'プリント工程の説明' },
-  { src: '/images/events/hosei-visit/hosei-20.jpg', caption: 'シルクスクリーン見学' },
-  { src: '/images/events/hosei-visit/hosei-22.jpg', caption: '質疑応答' },
+  { src: '/images/events/hosei-visit/hosei-01.jpg', caption: 'ご来訪', width: 1200, height: 900 },
+  { src: '/images/events/hosei-visit/hosei-05.jpg', caption: '会社説明', width: 1200, height: 900 },
+  { src: '/images/events/hosei-visit/hosei-08.jpg', caption: '事務所にて', width: 1200, height: 900 },
+  { src: '/images/events/hosei-visit/hosei-10.jpg', caption: '工場見学', width: 1200, height: 900 },
+  { src: '/images/events/hosei-visit/hosei-15.jpg', caption: '刺繍機の見学', width: 1200, height: 900 },
+  { src: '/images/events/hosei-visit/hosei-18.jpg', caption: 'プリント工程の説明', width: 1200, height: 900 },
+  { src: '/images/events/hosei-visit/hosei-20.jpg', caption: 'シルクスクリーン見学', width: 1200, height: 900 },
+  { src: '/images/events/hosei-visit/hosei-22.jpg', caption: '質疑応答', width: 1200, height: 900 },
 ]
 import { url } from '../../utils/paths'
 ---
 
-<Layout title="法政大学 岩瀬ゼミ 工場見学レポート｜タグチ刺繍ネーム">
+<Layout
+  title="法政大学 工場見学レポート｜タグチ刺繍ネーム｜茨城県筑西市の刺繍・プリント加工"
+  description="法政大学 経営大学院 岩瀬ゼミの皆さまが、茨城県筑西市のタグチ刺繍ネーム工場を見学されました。刺繍機やシルクスクリーンなど、刺繍加工からプリントまで一貫して行う現場の様子を写真でご紹介します。"
+  ogType="article"
+>
 
   <!-- Hero -->
   <section class="relative h-64 md:h-80 flex items-center">
     <div class="absolute inset-0">
-      <img src={url("/images/events/hosei-visit/hosei-10.jpg")} alt="" class="w-full h-full object-cover" />
+      <picture>
+        <source type="image/webp" srcset={url("/images/events/hosei-visit/hosei-10.webp")} />
+        <img src={url("/images/events/hosei-visit/hosei-10.jpg")} alt="" width="1200" height="900" class="w-full h-full object-cover" loading="lazy" decoding="async" />
+      </picture>
       <div class="absolute inset-0 bg-navy-800/70"></div>
     </div>
     <div class="relative z-10 mx-auto max-w-[1200px] px-4 md:px-8 w-full">
@@ -58,12 +65,18 @@ import { url } from '../../utils/paths'
             class="js-fade-in overflow-hidden rounded-lg"
             style={`transition-delay: ${i * 60}ms`}
           >
-            <img
-              src={url(photo.src)}
-              alt={photo.caption}
-              class="w-full aspect-[4/3] object-cover"
-              loading="lazy"
-            />
+            <picture>
+              <source type="image/webp" srcset={url(photo.src.replace(/\.jpg$/, '.webp'))} />
+              <img
+                src={url(photo.src)}
+                alt={`法政大学 岩瀬ゼミ 工場見学：${photo.caption}`}
+                width={photo.width}
+                height={photo.height}
+                class="w-full aspect-[4/3] object-cover"
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
             <figcaption class="text-xs text-warm-500 mt-1.5 px-0.5">{photo.caption}</figcaption>
           </figure>
         ))}

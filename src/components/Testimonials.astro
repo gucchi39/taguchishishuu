@@ -1,0 +1,47 @@
+---
+/**
+ * お客様の声
+ * 内容は src/data/trust.ts の testimonials で管理。空の場合は「準備中」を表示する。
+ */
+import SectionHeading from './SectionHeading.astro'
+import { testimonials, pendingMessage } from '../data/trust'
+
+interface Props {
+  /** セクションに追加するクラス（背景色の交互パターン用。例: 'bg-warm-50'） */
+  class?: string
+}
+const { class: className = '' } = Astro.props
+---
+
+<section class:list={['py-section-sm md:py-section', className]}>
+  <div class="mx-auto max-w-[1200px] px-4 md:px-8">
+    <SectionHeading en="Voice" ja="お客様の声" />
+
+    {testimonials.length === 0 ? (
+      <div class="js-fade-in max-w-[800px] mx-auto px-6 py-8 rounded-lg bg-gold-50 border border-gold-200 text-center">
+        <p class="text-sm text-gold-800 leading-relaxed">{pendingMessage}</p>
+      </div>
+    ) : (
+      <!-- 件数が3の倍数でなくても中央にそろうよう flex で3列に並べる -->
+      <div class="flex flex-wrap justify-center gap-6">
+        {testimonials.map((item, i) => (
+          <figure
+            class="js-fade-in flex flex-col w-full md:w-[calc((100%-3rem)/3)] bg-white rounded-lg border border-warm-200 p-6 md:p-8"
+            style={`transition-delay: ${i * 100}ms`}
+          >
+            <svg class="w-8 h-8 text-gold-400 mb-4 shrink-0" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M9.983 3v7.391c0 5.704-3.731 9.57-8.983 10.609l-.995-2.151c2.432-.917 3.995-3.638 3.995-5.849h-4v-10h9.983zm14.017 0v7.391c0 5.704-3.748 9.571-9 10.609l-.996-2.151c2.433-.917 3.996-3.638 3.996-5.849h-3.983v-10h9.983z" />
+            </svg>
+            <blockquote class="flex-1 text-sm text-warm-800 leading-relaxed">
+              <p>{item.body}</p>
+            </blockquote>
+            <figcaption class="mt-6 pt-4 border-t border-warm-100">
+              <p class="text-sm font-bold text-navy-800">{item.name}</p>
+              <p class="text-xs text-warm-500 mt-1">{item.attr}</p>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    )}
+  </div>
+</section>

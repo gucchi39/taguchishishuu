@@ -2,13 +2,15 @@
 import Layout from '../layouts/Layout.astro'
 import SectionHeading from '../components/SectionHeading.astro'
 import Philosophy from '../components/Philosophy.astro'
+import Testimonials from '../components/Testimonials.astro'
+import Clients from '../components/Clients.astro'
 
 const strengths = [
   {
     number: '26',
     unit: '台',
-    label: '刺繍機・プリント機',
-    description: '多頭機3台・単頭機11台の刺繍機に加え、DTF・シルク・UVプリンターを完備。',
+    label: '加工設備',
+    description: '多頭機3台・単頭機11台の刺繍機、DTF・シルク・UVプリンター、熱プレス機・レーザー加工機を完備。',
     icon: 'M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z M15 12a3 3 0 11-6 0 3 3 0 016 0z',
   },
   {
@@ -32,16 +34,25 @@ const services = [
     title: '刺繍加工',
     description: 'ユニフォーム・作業着へのロゴ刺繍、チーム名入れなど。立体感と高級感のある仕上がりが特長です。',
     image: '/images/facility/embroidery-line.jpg',
+    alt: 'バルダン多頭式刺繍機が並ぶ刺繍加工ライン',
+    width: 1109,
+    height: 1477,
   },
   {
     title: 'ネーム加工',
     description: '織りネーム・プリントネーム・下げ札の製作。ブランドの顔となるネームタグを丁寧にお作りします。',
     image: '/images/facility/wappen-sample.jpg',
+    alt: 'プリントワッペンのサンプル見本',
+    width: 1600,
+    height: 900,
   },
   {
     title: 'プリント加工',
     description: 'シルクスクリーン・転写プリント・昇華プリントに対応。小ロットから大量生産まで柔軟に対応します。',
     image: '/images/facility/dryer.jpg',
+    alt: 'プリント加工で使うコンベア式乾燥機',
+    width: 1109,
+    height: 1477,
   },
 ]
 
@@ -54,7 +65,19 @@ const stats = [
 import { url } from '../utils/paths'
 ---
 
-<Layout title="タグチ刺繍ネーム有限会社｜茨城県筑西市の刺繍・プリント加工">
+<Layout
+  title="タグチ刺繍ネーム有限会社｜茨城県筑西市の刺繍・プリント・ワッペン加工工場"
+  description="茨城県筑西市の刺繍・プリント加工工場、タグチ刺繍ネーム有限会社。1960年創業。ユニフォーム・作業着・キャップへの刺繍やDTFプリント、ワッペン・ネーム製作を1枚から承ります。筑西市を拠点に茨城県全域・全国に対応。"
+>
+
+  <link
+    slot="head"
+    rel="preload"
+    as="image"
+    href={url("/images/facility/factory-work-02.webp")}
+    type="image/webp"
+    fetchpriority="high"
+  />
 
   <!-- ============================================
        HERO
@@ -62,19 +85,27 @@ import { url } from '../utils/paths'
   <section class="relative min-h-[520px] md:min-h-[620px] flex items-center">
     <!-- Background Image -->
     <div class="absolute inset-0">
-      <img
-        src={url("/images/facility/factory-work-02.jpg")}
-        alt=""
-        class="w-full h-full object-cover"
-      />
+      <picture>
+        <source type="image/webp" srcset={url("/images/facility/factory-work-02.webp")} />
+        <img
+          src={url("/images/facility/factory-work-02.jpg")}
+          alt=""
+          width="1920"
+          height="1080"
+          class="w-full h-full object-cover"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+        />
+      </picture>
       <div class="absolute inset-0 bg-navy-800/70"></div>
     </div>
 
     <!-- Content -->
     <div class="relative z-10 mx-auto max-w-[1200px] px-4 md:px-8 py-20 md:py-28">
       <div class="max-w-2xl">
-        <h1 class="heading-accent text-3xl md:text-5xl text-white leading-snug md:leading-tight mb-5">
-          糸の一本、色の一刷りに、<br />65年の技術と誇り。
+        <h1 class="heading-accent text-[1.6rem] sm:text-3xl md:text-5xl text-white leading-snug md:leading-tight mb-5">
+          糸の一本、色の一刷りに、<br class="hidden sm:block" /><span class="whitespace-nowrap">65年</span>の技術と誇り。
         </h1>
         <p class="text-base md:text-lg text-navy-200 leading-relaxed mb-8 max-w-lg">
           刺繍・ネーム・プリント加工のことなら、<br class="hidden md:block" />タグチ刺繍ネームにお任せください
@@ -163,12 +194,18 @@ import { url } from '../utils/paths'
             style={`transition-delay: ${i * 100}ms`}
           >
             <div class="aspect-video overflow-hidden">
-              <img
-                src={url(item.image)}
-                alt={item.title}
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                loading="lazy"
-              />
+              <picture>
+                <source type="image/webp" srcset={url(item.image.replace(/\.jpg$/, '.webp'))} />
+                <img
+                  src={url(item.image)}
+                  alt={item.alt}
+                  width={item.width}
+                  height={item.height}
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
             </div>
             <div class="p-6">
               <h3 class="text-lg font-bold text-navy-800 mb-2 group-hover:text-navy-600 transition-colors">
@@ -176,7 +213,7 @@ import { url } from '../utils/paths'
               </h3>
               <p class="text-sm text-warm-600 leading-relaxed">{item.description}</p>
               <span class="inline-flex items-center text-sm text-gold-600 font-medium mt-4 group-hover:text-gold-500 transition-colors">
-                料金目安・詳細を見る
+                詳細を見る
                 <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
                 </svg>
@@ -222,43 +259,64 @@ import { url } from '../utils/paths'
           <tbody class="divide-y divide-warm-100">
             <tr class="hover:bg-warm-50 transition-colors">
               <td class="px-4 md:px-6 py-3 text-warm-700">刺繍機</td>
-              <td class="px-4 md:px-6 py-3 font-medium text-navy-800">多頭機（10頭・6頭・4頭）</td>
+              <td class="px-4 md:px-6 py-3 font-medium text-navy-800">
+                多頭機（10頭・6頭・4頭）
+                <p class="text-xs text-warm-500 font-normal mt-0.5 md:hidden">量産対応</p>
+              </td>
               <td class="px-4 md:px-6 py-3 text-center font-bold text-navy-800">3台</td>
               <td class="px-4 md:px-6 py-3 text-warm-600 hidden md:table-cell">量産対応</td>
             </tr>
             <tr class="hover:bg-warm-50 transition-colors">
               <td class="px-4 md:px-6 py-3 text-warm-700">刺繍機</td>
-              <td class="px-4 md:px-6 py-3 font-medium text-navy-800">単頭機</td>
+              <td class="px-4 md:px-6 py-3 font-medium text-navy-800">
+                単頭機
+                <p class="text-xs text-warm-500 font-normal mt-0.5 md:hidden">多品種小ロット対応</p>
+              </td>
               <td class="px-4 md:px-6 py-3 text-center font-bold text-navy-800">11台</td>
               <td class="px-4 md:px-6 py-3 text-warm-600 hidden md:table-cell">多品種小ロット対応</td>
             </tr>
             <tr class="hover:bg-warm-50 transition-colors">
               <td class="px-4 md:px-6 py-3 text-warm-700">プリント</td>
-              <td class="px-4 md:px-6 py-3 font-medium text-navy-800">DTFプリンター</td>
+              <td class="px-4 md:px-6 py-3 font-medium text-navy-800">
+                DTFプリンター
+                <p class="text-xs text-warm-500 font-normal mt-0.5 md:hidden">小ロット対応</p>
+              </td>
               <td class="px-4 md:px-6 py-3 text-center font-bold text-navy-800">1台</td>
               <td class="px-4 md:px-6 py-3 text-warm-600 hidden md:table-cell">小ロット対応</td>
             </tr>
             <tr class="hover:bg-warm-50 transition-colors">
               <td class="px-4 md:px-6 py-3 text-warm-700">プリント</td>
-              <td class="px-4 md:px-6 py-3 font-medium text-navy-800">シルクプリンター</td>
+              <td class="px-4 md:px-6 py-3 font-medium text-navy-800">
+                シルクプリンター
+                <p class="text-xs text-warm-500 font-normal mt-0.5 md:hidden">量産対応</p>
+              </td>
               <td class="px-4 md:px-6 py-3 text-center font-bold text-navy-800">1台</td>
               <td class="px-4 md:px-6 py-3 text-warm-600 hidden md:table-cell">量産対応</td>
             </tr>
             <tr class="hover:bg-warm-50 transition-colors">
               <td class="px-4 md:px-6 py-3 text-warm-700">プリント</td>
-              <td class="px-4 md:px-6 py-3 font-medium text-navy-800">UVプリンター</td>
+              <td class="px-4 md:px-6 py-3 font-medium text-navy-800">
+                UVプリンター
+                <p class="text-xs text-warm-500 font-normal mt-0.5 md:hidden">グッズ製造</p>
+              </td>
               <td class="px-4 md:px-6 py-3 text-center font-bold text-navy-800">1台</td>
               <td class="px-4 md:px-6 py-3 text-warm-600 hidden md:table-cell">グッズ製造</td>
             </tr>
             <tr class="hover:bg-warm-50 transition-colors">
               <td class="px-4 md:px-6 py-3 text-warm-700">仕上げ</td>
-              <td class="px-4 md:px-6 py-3 font-medium text-navy-800">熱プレス機</td>
+              <td class="px-4 md:px-6 py-3 font-medium text-navy-800">
+                熱プレス機
+                <p class="text-xs text-warm-500 font-normal mt-0.5 md:hidden">後工程</p>
+              </td>
               <td class="px-4 md:px-6 py-3 text-center font-bold text-navy-800">7台</td>
               <td class="px-4 md:px-6 py-3 text-warm-600 hidden md:table-cell">後工程</td>
             </tr>
             <tr class="hover:bg-warm-50 transition-colors">
               <td class="px-4 md:px-6 py-3 text-warm-700">仕上げ</td>
-              <td class="px-4 md:px-6 py-3 font-medium text-navy-800">レーザー加工機</td>
+              <td class="px-4 md:px-6 py-3 font-medium text-navy-800">
+                レーザー加工機
+                <p class="text-xs text-warm-500 font-normal mt-0.5 md:hidden">後工程</p>
+              </td>
               <td class="px-4 md:px-6 py-3 text-center font-bold text-navy-800">2台</td>
               <td class="px-4 md:px-6 py-3 text-warm-600 hidden md:table-cell">後工程</td>
             </tr>
@@ -267,6 +325,16 @@ import { url } from '../utils/paths'
       </div>
     </div>
   </section>
+
+  <!-- ============================================
+       TESTIMONIALS (お客様の声) ※内容は src/data/trust.ts
+       ============================================ -->
+  <Testimonials />
+
+  <!-- ============================================
+       CLIENTS (主な取引先・実績) ※内容は src/data/trust.ts
+       ============================================ -->
+  <Clients class="bg-warm-50" />
 
   <!-- ============================================
        EVENT (お知らせ・イベント)
@@ -280,12 +348,18 @@ import { url } from '../utils/paths'
         class="js-fade-in group grid grid-cols-1 md:grid-cols-[400px_1fr] gap-6 bg-white rounded-lg border border-warm-200 overflow-hidden hover:shadow-md hover:border-gold-300 transition-all duration-200"
       >
         <div class="overflow-hidden">
-          <img
-            src={url("/images/events/hosei-visit/hosei-08.jpg")}
-            alt="法政大学 岩瀬ゼミ 工場見学"
-            class="w-full h-full object-cover aspect-video md:aspect-auto group-hover:scale-105 transition-transform duration-500"
-            loading="lazy"
-          />
+          <picture>
+            <source type="image/webp" srcset={url("/images/events/hosei-visit/hosei-08.webp")} />
+            <img
+              src={url("/images/events/hosei-visit/hosei-08.jpg")}
+              alt="法政大学 岩瀬ゼミの皆さまの工場見学の様子"
+              width="1200"
+              height="900"
+              class="w-full h-full object-cover aspect-video md:aspect-auto group-hover:scale-105 transition-transform duration-500"
+              loading="lazy"
+              decoding="async"
+            />
+          </picture>
         </div>
         <div class="p-6 md:py-8 flex flex-col justify-center">
           <span class="inline-block text-xs text-gold-600 font-medium bg-gold-50 px-3 py-1 rounded-full w-fit mb-3">
@@ -329,7 +403,8 @@ import { url } from '../utils/paths'
         </h2>
         <p class="text-navy-200 text-sm md:text-base mb-8 max-w-lg mx-auto leading-relaxed">
           刺繍・プリント加工のお見積り、サンプルのご依頼、<br class="hidden md:block" />
-          加工方法のご相談など、どんなことでもお問い合わせください。
+          加工方法のご相談など、どんなことでもお問い合わせください。<br class="hidden md:block" />
+          筑西市を拠点に、茨城県全域・関東一円、全国からのご依頼に対応しています。
         </p>
 
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">

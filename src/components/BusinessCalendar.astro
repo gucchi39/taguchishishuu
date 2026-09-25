@@ -1,0 +1,309 @@
+---
+import {
+  calendarMode,
+  googleCalendarId,
+  weeklyClosedDays,
+  closedDates,
+  openDates,
+  calendarNote,
+  pendingHolidayNote,
+} from '../data/calendar'
+
+interface Props {
+  /** 生成する月数（ビルド時点の月から先） */
+  months?: number
+}
+const { months = 24 } = Astro.props
+
+const WEEKDAY_LABELS = ['日', '月', '火', '水', '木', '金', '土']
+
+const pad = (n: number) => String(n).padStart(2, '0')
+
+/**
+ * 設定ファイルに書かれた日付を 'YYYY-MM-DD' に揃える。
+ * 全角数字・前後の空白・'2026/1/1' のような表記ゆれも受け付ける。
+ * 解釈できない場合は null を返す。
+ */
+function normalizeDate(input: string): string | null {
+  const m = input.normalize('NFKC').trim().match(/^(\d{4})\D(\d{1,2})\D(\d{1,2})$/)
+  if (!m) return null
+  const [, y, mo, d] = m
+  const month = Number(mo)
+  const day = Number(d)
+  if (month < 1 || month > 12 || day < 1 || day > 31) return null
+  return `${y}-${pad(month)}-${pad(day)}`
+}
+
+/** 設定値を正規化しつつ、解釈できなかったものはビルドログに警告を出す */
+function toDateSet(list: string[], label: string): Set<string> {
+  const set = new Set<string>()
+  for (const raw of list) {
+    const iso = normalizeDate(raw)
+    if (iso) set.add(iso)
+    else console.warn(`[営業カレンダー] ${label} の「${raw}」は日付として読み取れないため無視しました（例: 2026-08-13）`)
+  }
+  return set
+}
+
+const closedSet = toDateSet(closedDates, 'closedDates')
+const openSet = toDateSet(openDates, 'openDates')
+
+/** その日が休業日かどうかを判定（臨時営業日が最優先） */
+function isClosed(iso: string, weekday: number): boolean {
+  if (openSet.has(iso)) return false
+  if (closedSet.has(iso)) return true
+  return weeklyClosedDays.includes(weekday)
+}
+
+// --- ビルド時点の月を起点に、months ヶ月分のカレンダーを生成 ---
+const today = new Date()
+const baseYear = today.getFullYear()
+const baseMonth = today.getMonth() // 0-11
+
+const monthData = Array.from({ length: months }, (_, i) => {
+  const year = baseYear + Math.floor((baseMonth + i) / 12)
+  const month = (baseMonth + i) % 12 // 0-11
+
+  const firstWeekday = new Date(year, month, 1).getDay()
+  const daysInMonth = new Date(year, month + 1, 0).getDate()
+
+  type Cell = { day: number; iso: string; weekday: number; closed: boolean } | null
+  const cells: Cell[] = []
+
+  // 月初までの空白
+  for (let b = 0; b < firstWeekday; b++) cells.push(null)
+
+  for (let d = 1; d <= daysInMonth; d++) {
+    const iso = `${year}-${pad(month + 1)}-${pad(d)}`
+    const weekday = (firstWeekday + d - 1) % 7
+    cells.push({ day: d, iso, weekday, closed: isClosed(iso, weekday) })
+  }
+
+  // 最終週の空白（7の倍数に揃える）
+  while (cells.length % 7 !== 0) cells.push(null)
+
+  return { key: `${year}-${pad(month + 1)}`, year, month: month + 1, cells }
+})
+
+// 祝日など個別の休業日が未登録か（お客様向けの案内を出すかどうかの判定）
+const hasPendingHolidays = closedSet.size === 0
+
+// 'google' 以外の値は誤記の可能性があるため、安全側に倒して内蔵カレンダーを表示する
+const useGoogle = calendarMode === 'google'
+
+const googleSrc = googleCalendarId
+  ? `https://calendar.google.com/calendar/embed?src=${encodeURIComponent(googleCalendarId)}&ctz=Asia%2FTokyo&hl=ja&mode=MONTH&showTitle=0&showPrint=0&showTabs=0&showCalendars=0&showTz=0&wkst=1`
+  : ''
+---
+
+<div class="rounded-lg border border-warm-200 bg-white overflow-hidden">
+
+  {useGoogle && googleSrc && (
+    <div class="p-4 md:p-6">
+      <iframe
+        src={googleSrc}
+        title="営業カレンダー"
+        class="w-full h-[520px] md:h-[600px] border-0 rounded"
+        loading="lazy"
+      ></iframe>
+    </div>
+  )}
+
+  {useGoogle && !googleSrc && (
+    <div class="p-8 text-center">
+      <p class="text-sm text-warm-600 leading-relaxed">
+        カレンダーを準備しています。お手数ですが、営業日については下記の営業時間欄をご確認ください。
+      </p>
+      {import.meta.env.DEV && (
+        <p class="mt-3 text-xs text-gold-800">
+          設定メモ: <code class="bg-warm-100 px-1.5 py-0.5 rounded">src/data/calendar.ts</code> の
+          <code class="bg-warm-100 px-1.5 py-0.5 rounded">googleCalendarId</code> が未設定です。
+        </p>
+      )}
+    </div>
+  )}
+
+  {!useGoogle && (
+    <div>
+      <!-- 月切り替えヘッダー -->
+      <div class="flex items-center justify-between px-4 md:px-6 py-4 border-b border-warm-200 bg-navy-50">
+        <button
+          type="button"
+          data-cal-prev
+          class="p-3 rounded text-navy-800 hover:bg-white aria-disabled:opacity-30 aria-disabled:hover:bg-transparent aria-disabled:cursor-default transition-colors"
+          aria-label="前の月を表示"
+        >
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+          </svg>
+        </button>
+
+        <p data-cal-title class="heading-accent text-lg md:text-xl text-navy-800" aria-live="polite">
+          {monthData[0].year}年 {monthData[0].month}月
+        </p>
+
+        <button
+          type="button"
+          data-cal-next
+          class="p-3 rounded text-navy-800 hover:bg-white aria-disabled:opacity-30 aria-disabled:hover:bg-transparent aria-disabled:cursor-default transition-colors"
+          aria-label="次の月を表示"
+        >
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- 月グリッド -->
+      <div class="px-4 md:px-6 py-4 md:py-5">
+        {monthData.map((m, i) => (
+          <div data-cal-month={m.key} class={i === 0 ? '' : 'hidden'}>
+            <!-- 曜日見出し -->
+            <div class="grid grid-cols-7 mb-1" aria-hidden="true">
+              {WEEKDAY_LABELS.map((label, w) => (
+                <div
+                  class={`text-center text-xs font-medium py-2 ${
+                    w === 0 ? 'text-red-600' : w === 6 ? 'text-navy-600' : 'text-warm-600'
+                  }`}
+                >
+                  {label}
+                </div>
+              ))}
+            </div>
+
+            <!-- 日付 -->
+            <div class="grid grid-cols-7 gap-px bg-warm-100 border border-warm-100 rounded overflow-hidden">
+              {m.cells.map((cell) => (
+                cell === null ? (
+                  <div class="bg-warm-50 aspect-square md:aspect-[4/3]"></div>
+                ) : (
+                  <div
+                    data-cal-date={cell.iso}
+                    class={`relative aspect-square md:aspect-[4/3] flex flex-col items-center justify-center ${
+                      cell.closed ? 'bg-red-50' : 'bg-white'
+                    }`}
+                  >
+                    <span class="sr-only">
+                      {m.month}月{cell.day}日（{WEEKDAY_LABELS[cell.weekday]}）
+                      {cell.closed ? '休業日' : '営業日'}
+                    </span>
+                    <span
+                      aria-hidden="true"
+                      class={`text-sm md:text-base leading-none ${
+                        cell.closed
+                          ? 'text-red-600 font-medium'
+                          : cell.weekday === 0
+                            ? 'text-red-600'
+                            : cell.weekday === 6
+                              ? 'text-navy-600'
+                              : 'text-warm-800'
+                      }`}
+                    >
+                      {cell.day}
+                    </span>
+                    {cell.closed && (
+                      <span aria-hidden="true" class="mt-0.5 text-[10px] leading-none text-red-500">休</span>
+                    )}
+                  </div>
+                )
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- 凡例 -->
+      <div class="flex flex-wrap items-center gap-x-5 gap-y-2 px-4 md:px-6 pb-5 text-xs text-warm-600">
+        <span class="flex items-center gap-1.5">
+          <span class="w-3.5 h-3.5 rounded-sm border border-warm-200 bg-white inline-block" aria-hidden="true"></span>
+          営業日
+        </span>
+        <span class="flex items-center gap-1.5">
+          <span class="w-3.5 h-3.5 rounded-sm border border-red-200 bg-red-50 inline-block" aria-hidden="true"></span>
+          休業日
+        </span>
+        <span class="flex items-center gap-1.5">
+          <span class="w-3.5 h-3.5 rounded-sm ring-2 ring-gold-500 bg-white inline-block" aria-hidden="true"></span>
+          本日
+        </span>
+      </div>
+
+      {hasPendingHolidays && pendingHolidayNote && (
+        <div class="mx-4 md:mx-6 mb-5 px-4 py-3 rounded bg-gold-50 border border-gold-200">
+          <p class="text-xs text-gold-800 leading-relaxed">{pendingHolidayNote}</p>
+          {import.meta.env.DEV && (
+            <p class="mt-2 text-xs text-gold-700">
+              設定メモ: <code class="bg-white/70 px-1 py-0.5 rounded">src/data/calendar.ts</code> の
+              <code class="bg-white/70 px-1 py-0.5 rounded">closedDates</code> に日付を追加すると、この案内は消えます。
+            </p>
+          )}
+        </div>
+      )}
+
+      <!-- 表示中のカレンダーが最新でない場合の注意（JSが判定して表示） -->
+      <div data-cal-stale class="hidden mx-4 md:mx-6 mb-5 px-4 py-3 rounded bg-red-50 border border-red-200">
+        <p class="text-xs text-red-700 leading-relaxed">
+          このカレンダーは更新されてから時間が経っており、今月の情報が含まれていません。
+          お手数ですが、営業日はお電話（0296-57-2644）にてご確認ください。
+        </p>
+      </div>
+    </div>
+  )}
+</div>
+
+{!useGoogle && calendarNote && (
+  <p class="mt-4 text-xs md:text-sm text-warm-600 leading-relaxed">{calendarNote}</p>
+)}
+
+<script>
+  // 生成済みの月パネルから、実際の「今月」を初期表示する。
+  // （静的サイトのため、ビルド後に月をまたいでも正しい月が開くようにする）
+  const panels = Array.from(document.querySelectorAll<HTMLElement>('[data-cal-month]'))
+
+  if (panels.length > 0) {
+    const keys = panels.map((p) => p.dataset.calMonth!)
+    const title = document.querySelector<HTMLElement>('[data-cal-title]')
+    const prevBtn = document.querySelector<HTMLButtonElement>('[data-cal-prev]')
+    const nextBtn = document.querySelector<HTMLButtonElement>('[data-cal-next]')
+    const staleNote = document.querySelector<HTMLElement>('[data-cal-stale]')
+
+    const now = new Date()
+    const pad = (n: number) => String(n).padStart(2, '0')
+    const todayKey = `${now.getFullYear()}-${pad(now.getMonth() + 1)}`
+    const todayIso = `${todayKey}-${pad(now.getDate())}`
+
+    // 今月が生成範囲外（長期間ビルドしていない場合）は、範囲の近い端に寄せて警告を出す
+    let index = keys.indexOf(todayKey)
+    if (index === -1) {
+      index = todayKey > keys[keys.length - 1] ? keys.length - 1 : 0
+      staleNote?.classList.remove('hidden')
+    }
+
+    // disabled にするとキーボードのフォーカスが外れてしまうため、aria-disabled で表現する
+    function setDisabled(btn: HTMLButtonElement | null, off: boolean) {
+      if (!btn) return
+      btn.setAttribute('aria-disabled', String(off))
+    }
+
+    function render() {
+      panels.forEach((p, i) => p.classList.toggle('hidden', i !== index))
+      const [y, m] = keys[index].split('-')
+      if (title) title.textContent = `${y}年 ${Number(m)}月`
+      setDisabled(prevBtn, index === 0)
+      setDisabled(nextBtn, index === panels.length - 1)
+    }
+
+    prevBtn?.addEventListener('click', () => {
+      if (index > 0) { index--; render() }
+    })
+    nextBtn?.addEventListener('click', () => {
+      if (index < panels.length - 1) { index++; render() }
+    })
+
+    // 本日をハイライト
+    const todayCell = document.querySelector<HTMLElement>(`[data-cal-date="${todayIso}"]`)
+    todayCell?.classList.add('ring-2', 'ring-gold-500', 'ring-inset', 'z-10')
+
+    render()
+  }
+</script>

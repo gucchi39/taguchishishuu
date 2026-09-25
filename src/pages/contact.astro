@@ -3,7 +3,10 @@ import Layout from '../layouts/Layout.astro'
 import SectionHeading from '../components/SectionHeading.astro'
 ---
 
-<Layout title="お問い合わせ｜タグチ刺繍ネーム有限会社">
+<Layout
+  title="お問い合わせ・お見積り｜タグチ刺繍ネーム｜茨城県筑西市の刺繍・プリント加工"
+  description="刺繍・プリント加工、ワッペン・ネーム製作のお見積り・ご相談はこちら。茨城県筑西市のタグチ刺繍ネームがお電話（0296-57-2644）とメールフォームで承ります。1枚からの小ロット、県外からのご依頼も歓迎です。"
+>
 
   <section class="relative h-48 md:h-64 flex items-center">
     <div class="absolute inset-0 bg-navy-800"></div>
@@ -26,36 +29,36 @@ import SectionHeading from '../components/SectionHeading.astro'
 
           <div id="form-success" class="hidden bg-gold-50 border border-gold-300 rounded-lg p-6 text-center">
             <svg class="w-12 h-12 text-gold-500 mx-auto mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-            <h3 class="text-lg font-bold text-navy-800 mb-2">送信準備ができました</h3>
-            <p class="text-sm text-warm-700">メールアプリが開きます。内容をご確認のうえ送信してください。</p>
+            <h3 class="text-lg font-bold text-navy-800 mb-2">メールアプリを起動しました</h3>
+            <p class="text-sm text-warm-700">メールアプリが開かない場合は、お電話（0296-57-2644）でご連絡ください。入力内容はそのまま残っています。</p>
           </div>
 
           <form id="contact-form" class="space-y-6">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label for="company" class="block text-sm font-medium text-navy-800 mb-1.5">会社名 <span class="text-warm-400 text-xs">（任意）</span></label>
-                <input type="text" id="company" name="company" class="w-full px-4 py-3 border border-warm-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-gold-500 transition-colors" placeholder="株式会社○○" />
+                <input type="text" id="company" name="company" class="w-full px-4 py-3 border border-warm-300 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-gold-500 transition-colors" placeholder="株式会社○○" />
               </div>
               <div>
                 <label for="name" class="block text-sm font-medium text-navy-800 mb-1.5">お名前 <span class="text-gold-600 text-xs">*必須</span></label>
-                <input type="text" id="name" name="name" required class="w-full px-4 py-3 border border-warm-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-gold-500 transition-colors" placeholder="田口 太郎" />
+                <input type="text" id="name" name="name" required class="w-full px-4 py-3 border border-warm-300 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-gold-500 transition-colors" placeholder="田口 太郎" />
               </div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label for="email" class="block text-sm font-medium text-navy-800 mb-1.5">メールアドレス <span class="text-gold-600 text-xs">*必須</span></label>
-                <input type="email" id="email" name="email" required class="w-full px-4 py-3 border border-warm-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-gold-500 transition-colors" placeholder="info@example.com" />
+                <input type="email" id="email" name="email" required class="w-full px-4 py-3 border border-warm-300 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-gold-500 transition-colors" placeholder="info@example.com" />
               </div>
               <div>
                 <label for="tel" class="block text-sm font-medium text-navy-800 mb-1.5">電話番号 <span class="text-warm-400 text-xs">（任意）</span></label>
-                <input type="tel" id="tel" name="tel" class="w-full px-4 py-3 border border-warm-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-gold-500 transition-colors" placeholder="0296-57-2644" />
+                <input type="tel" id="tel" name="tel" class="w-full px-4 py-3 border border-warm-300 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-gold-500 transition-colors" placeholder="0296-57-2644" />
               </div>
             </div>
 
             <div>
               <label for="category" class="block text-sm font-medium text-navy-800 mb-1.5">お問い合わせ種別</label>
-              <select id="category" name="category" class="w-full px-4 py-3 border border-warm-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-gold-500 transition-colors bg-white">
+              <select id="category" name="category" class="w-full px-4 py-3 border border-warm-300 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-gold-500 transition-colors bg-white">
                 <option value="">選択してください</option>
                 <option value="estimate">お見積り依頼</option>
                 <option value="sample">サンプル請求</option>
@@ -68,7 +71,7 @@ import SectionHeading from '../components/SectionHeading.astro'
 
             <div>
               <label for="message" class="block text-sm font-medium text-navy-800 mb-1.5">お問い合わせ内容 <span class="text-gold-600 text-xs">*必須</span></label>
-              <textarea id="message" name="message" rows="6" required class="w-full px-4 py-3 border border-warm-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-gold-500 transition-colors resize-y" placeholder="ご希望の加工内容、数量、納期などをお知らせください。"></textarea>
+              <textarea id="message" name="message" rows="6" required class="w-full px-4 py-3 border border-warm-300 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-gold-500 transition-colors resize-y" placeholder="ご希望の加工内容、数量、納期などをお知らせください。"></textarea>
             </div>
 
             <div>
@@ -81,7 +84,7 @@ import SectionHeading from '../components/SectionHeading.astro'
         </div>
 
         <!-- Sidebar -->
-        <aside class="space-y-6">
+        <aside class="order-first lg:order-none space-y-6">
           <!-- Phone -->
           <div class="bg-navy-50 rounded-lg p-6 border border-warm-200">
             <h3 class="font-bold text-navy-800 mb-3">お電話でのお問い合わせ</h3>
@@ -110,23 +113,37 @@ import SectionHeading from '../components/SectionHeading.astro'
 
   <script>
     const form = document.getElementById('contact-form') as HTMLFormElement
+    const category = document.getElementById('category') as HTMLSelectElement
+
+    // ?subject=recruit など、既存の選択肢の value と一致する場合のみ種別を初期選択する
+    const preset = new URLSearchParams(window.location.search).get('subject')
+    if (preset && Array.from(category.options).some((o) => o.value !== '' && o.value === preset)) {
+      category.value = preset
+    }
+
     form.addEventListener('submit', (e) => {
       e.preventDefault()
       const data = new FormData(form)
-      const subject = `【Webお問い合わせ】${data.get('category') || 'その他'}`
+      // 件名・本文には英字コードではなく選択肢の日本語ラベルを使う
+      const categoryLabel = category.value ? category.options[category.selectedIndex].text : ''
+      const subject = `【Webお問い合わせ】${categoryLabel || 'その他'}`
       const body = [
         `会社名: ${data.get('company') || '（未記入）'}`,
         `お名前: ${data.get('name')}`,
         `メール: ${data.get('email')}`,
         `電話: ${data.get('tel') || '（未記入）'}`,
-        `種別: ${data.get('category') || '（未選択）'}`,
+        `種別: ${categoryLabel || '（未選択）'}`,
         '',
         `お問い合わせ内容:`,
         data.get('message'),
       ].join('\n')
-      window.location.href = `mailto:info@taguchi-shishu.co.jp?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+      const url = `mailto:info@taguchi-shishu.co.jp?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+      if (url.length > 1900) {
+        alert('入力内容が長いため、メールアプリで本文が途中で切れる可能性があります。お手数ですがご要望欄を短くするか、お電話でご連絡ください。')
+        return
+      }
+      window.location.href = url
       document.getElementById('form-success')!.classList.remove('hidden')
-      form.classList.add('hidden')
     })
   </script>
 
