@@ -40,46 +40,30 @@ const steps = [
   },
 ]
 
-const delivery = [
-  { type: '刺繍加工', standard: '5〜7営業日', express: '3営業日〜' },
-  { type: 'プリント加工', standard: '5〜10営業日', express: '3営業日〜' },
-  { type: 'ワッペン製作', standard: '7〜14営業日', express: '5営業日〜' },
-]
-
 const examples = [
   {
     title: '子どもの体操着にお名前を入れたい',
     detail: '個人名刺繍 1枚（1.2cm角）',
-    price: '500円〜',
-    time: '最短翌日',
     tag: 'お名前入れ',
   },
   {
     title: '草野球チーム15枚にチーム名刺繍',
     detail: '文字1段 縦2cm×横10cm 15枚',
-    price: '1,000円/枚',
-    time: '約5営業日',
     tag: 'チーム・団体',
   },
   {
     title: '作業着50枚に会社名刺繍',
     detail: '会社名5文字 1.2cm角 50枚',
-    price: '300円/枚',
-    time: '約5営業日',
     tag: 'ユニフォーム',
   },
   {
     title: 'ユニフォーム30枚にロゴ入れ',
     detail: '左胸ロゴ 縦5cm×横10cm 30枚',
-    price: '1,200円/枚 +型代',
-    time: '約7営業日',
     tag: 'ロゴ刺繍',
   },
   {
     title: 'イベントスタッフTシャツ50枚',
     detail: 'シルクスクリーン 30×100mm 50枚',
-    price: '360円/枚 +版代14,000円',
-    time: '約7営業日',
     tag: 'プリント',
   },
 ]
@@ -144,28 +128,10 @@ import { url } from '../utils/paths'
   <!-- Delivery -->
   <section class="py-section-sm md:py-section bg-warm-50">
     <div class="mx-auto max-w-[800px] px-4 md:px-8">
-      <SectionHeading en="Delivery" ja="納期の目安" />
-      <div class="js-fade-in bg-white rounded-lg border border-warm-200 overflow-hidden">
-        <table class="w-full text-sm">
-          <thead>
-            <tr class="bg-navy-800 text-white">
-              <th class="px-4 md:px-6 py-3 text-left font-medium">加工種類</th>
-              <th class="px-4 md:px-6 py-3 text-center font-medium">通常納期</th>
-              <th class="px-4 md:px-6 py-3 text-center font-medium">特急対応</th>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-warm-100">
-            {delivery.map((row) => (
-              <tr class="hover:bg-warm-50 transition-colors">
-                <td class="px-4 md:px-6 py-3 font-medium text-navy-800">{row.type}</td>
-                <td class="px-4 md:px-6 py-3 text-center text-warm-700">{row.standard}</td>
-                <td class="px-4 md:px-6 py-3 text-center text-gold-600 font-medium">{row.express}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-      <p class="mt-3 text-xs text-warm-500">※数量・内容により変動します。お急ぎの場合はご相談ください。</p>
+      <SectionHeading en="Delivery" ja="納期について" />
+      <p class="js-fade-in text-center text-sm text-warm-700 leading-relaxed">
+        小ロット・短納期のご相談にも柔軟に対応します。<br class="hidden md:block" />納期は加工内容・数量により異なりますので、お気軽にお問い合わせください。
+      </p>
     </div>
   </section>
 
@@ -189,19 +155,10 @@ import { url } from '../utils/paths'
                 <span>内容</span>
                 <span class="font-medium text-warm-800">{ex.detail}</span>
               </div>
-              <div class="flex justify-between">
-                <span>料金目安</span>
-                <span class="font-bold text-navy-800">{ex.price}</span>
-              </div>
-              <div class="flex justify-between">
-                <span>納期目安</span>
-                <span class="font-medium text-warm-800">{ex.time}</span>
-              </div>
             </div>
           </div>
         ))}
       </div>
-      <p class="text-center text-xs text-warm-500 mt-4">※上記は参考価格です。正式な料金はお見積りにてご案内いたします。</p>
     </div>
   </section>
 
