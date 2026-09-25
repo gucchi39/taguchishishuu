@@ -3,8 +3,9 @@ const navItems = [
   { label: 'ホーム', href: '/' },
   { label: '加工サービス', href: '/service' },
   { label: '作品集', href: '/works' },
+  { label: '設備紹介', href: '/facility' },
   { label: 'ご注文の流れ', href: '/flow' },
-  { label: 'イベント', href: '/events' },
+  { label: 'よくある質問', href: '/faq' },
   { label: '会社案内', href: '/about' },
 ]
 import { url } from '../utils/paths'
@@ -21,11 +22,11 @@ import { url } from '../utils/paths'
       </a>
 
       <!-- Desktop Nav -->
-      <nav class="hidden lg:flex items-center gap-1">
+      <nav class="hidden lg:flex items-center xl:gap-1">
         {navItems.map((item) => (
           <a
             href={url(item.href)}
-            class="px-3 py-2 text-sm text-warm-700 hover:text-navy-800 transition-colors duration-200 tracking-wide"
+            class="whitespace-nowrap px-1.5 xl:px-3 py-2 text-[13px] xl:text-sm text-warm-700 hover:text-navy-800 transition-colors duration-200 tracking-wide"
           >
             {item.label}
           </a>

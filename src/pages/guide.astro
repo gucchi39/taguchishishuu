@@ -2,30 +2,45 @@
 import Layout from '../layouts/Layout.astro'
 import SectionHeading from '../components/SectionHeading.astro'
 
-const comparison = [
-  { item: '質感', embroidery: '立体的・高級感', print: 'フラット・鮮やか' },
-  { item: '耐久性', embroidery: '非常に高い（洗濯に強い）', print: '高い（加工方法による）' },
-  { item: '色数', embroidery: '最大15色程度', print: 'フルカラー対応可' },
-  { item: 'コスト（少量）', embroidery: 'やや高め', print: 'DTFなら低コスト' },
-  { item: 'コスト（大量）', embroidery: '数量が多いほど割安', print: 'シルクスクリーンが割安' },
-  { item: '最小ロット', embroidery: '1枚〜', print: '1枚〜（DTF）/ 30枚〜（シルク）' },
-  { item: '向いている用途', embroidery: 'ユニフォーム・作業着・キャップ', print: 'Tシャツ・タオル・グッズ' },
-]
-
-const useCases = [
-  { title: 'ユニフォーム・作業着', description: '会社名・ロゴの刺繍入れ。チームの一体感と信頼感を高めます。' },
-  { title: 'スポーツチーム', description: 'チーム名・背番号・ワッペンなど。各種スポーツユニフォームに対応。' },
-  { title: '記念品・ノベルティ', description: '卒業記念、イベント記念品など。名前入れで特別な一品に。' },
-  { title: 'アパレルブランド', description: 'ブランドネーム・タグ・ワッペンの製作。小ロットから対応可能。' },
-  { title: '学校・幼稚園', description: '体操着・スモック・帽子へのお名前刺繍。個人のお客様も歓迎。' },
-  { title: '飲食店・サービス業', description: 'エプロン・コックコート・キャップへの店名・ロゴ入れ。' },
+// データ入稿ガイド（/service と重複しない、このページ独自の内容）
+const dataGuide = [
+  {
+    title: '推奨ファイル形式',
+    description: 'AI（Illustrator）・PDF が最適です。PNG・JPEG でも承ります。スマホで撮影した画像でもまずはご相談ください。',
+    icon: 'M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z',
+  },
+  {
+    title: '解像度の目安',
+    description: 'PNG・JPEG の場合は、できるだけ高解像度の画像をお送りください（仕上がりサイズで 300dpi 程度、または長辺 1000px 以上が目安です）。小さな画像は線がぼやけ、再現性が下がります。',
+    icon: 'M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15',
+  },
+  {
+    title: '文字はアウトライン化を',
+    description: 'AI・PDF で文字を含む場合は、アウトライン化（図形化）してからお送りください。難しい場合は、使用しているフォント名を明記していただければ対応いたします。',
+    icon: 'M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 01.865-.501 48.172 48.172 0 003.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z',
+  },
+  {
+    title: '色の指定',
+    description: 'ご希望の色は、DIC・PANTONE などの色番号や「コーポレートカラーと同じ色」など、分かる範囲でお知らせください。刺繍は糸の色見本から近い色をご提案します。',
+    icon: 'M4.098 19.902a3.75 3.75 0 005.304 0l6.401-6.402M6.75 21A3.75 3.75 0 013 17.25V4.125C3 3.504 3.504 3 4.125 3h5.25c.621 0 1.125.504 1.125 1.125v4.072M6.75 21a3.75 3.75 0 003.75-3.75V8.197M6.75 21h13.125c.621 0 1.125-.504 1.125-1.125v-5.25c0-.621-.504-1.125-1.125-1.125h-4.072M10.5 8.197l2.88-2.88c.438-.439 1.15-.439 1.59 0l3.712 3.713c.44.44.44 1.152 0 1.59l-2.879 2.88M6.75 17.25h.008v.008H6.75v-.008z',
+  },
+  {
+    title: '手描き・写真からもOK',
+    description: 'データがなくても大丈夫です。手描きのラフスケッチや写真、お手元の刺繍品からデータを起こすこともできます。お気軽にご相談ください。',
+    icon: 'M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10',
+  },
+  {
+    title: 'データの送り方',
+    description: 'お問い合わせフォームからご連絡いただくとメールアプリが開きますので、そのメールにデータを添付してお送りください。メール（info@taguchi-shishu.co.jp）へ直接お送りいただいても構いません。',
+    icon: 'M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75',
+  },
 ]
 import { url } from '../utils/paths'
 ---
 
 <Layout
   title="刺繍加工ガイド｜タグチ刺繍ネーム｜茨城県筑西市の刺繍・プリント加工"
-  description="初めての方向けの刺繍加工ガイド。刺繍の特長やプリントとの違い、用途例、素材やデータ準備の注意点をわかりやすく解説します。茨城県筑西市でユニフォーム・作業着の名入れを手がけるタグチ刺繍ネームがご案内します。"
+  description="初めての方向けの刺繍加工ガイド。刺繍の特長と、ロゴ・文字データの入稿方法（ファイル形式・解像度・アウトライン化・色指定）をわかりやすく解説します。茨城県筑西市でユニフォーム・作業着の名入れを手がけるタグチ刺繍ネームがご案内します。"
 >
 
   <section class="relative h-48 md:h-64 flex items-center">
@@ -53,41 +68,36 @@ import { url } from '../utils/paths'
     </div>
   </section>
 
-  <!-- Comparison -->
-  <section class="py-section-sm md:py-section bg-warm-50">
-    <div class="mx-auto max-w-[900px] px-4 md:px-8">
-      <SectionHeading en="Comparison" ja="刺繍 vs プリント 比較表" />
-      <div class="js-fade-in bg-white rounded-lg border border-warm-200 overflow-x-auto">
-        <table class="w-full text-sm min-w-[500px]">
-          <thead>
-            <tr class="bg-navy-800 text-white">
-              <th class="px-4 py-3 text-left font-medium w-28"></th>
-              <th class="px-4 py-3 text-left font-medium">刺繍</th>
-              <th class="px-4 py-3 text-left font-medium">プリント</th>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-warm-100">
-            {comparison.map((row) => (
-              <tr class="hover:bg-warm-50 transition-colors">
-                <td class="px-4 py-3 font-medium text-navy-800">{row.item}</td>
-                <td class="px-4 py-3 text-warm-700">{row.embroidery}</td>
-                <td class="px-4 py-3 text-warm-700">{row.print}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+  <!-- Link to service (比較表・用途は加工サービスページに集約) -->
+  <section class="pb-section-sm md:pb-section">
+    <div class="mx-auto max-w-[800px] px-4 md:px-8">
+      <a href={url("/service")} class="js-fade-in group flex flex-col sm:flex-row sm:items-center gap-4 bg-white rounded-lg border border-warm-200 p-6 hover:shadow-md hover:border-gold-300 transition-all duration-200">
+        <div class="flex-1">
+          <p class="text-xs text-gold-600 tracking-[0.2em] uppercase mb-1">Service</p>
+          <h3 class="font-bold text-navy-800 mb-1">刺繍とプリントの比較・用途例</h3>
+          <p class="text-sm text-warm-700 leading-relaxed">刺繍とプリントの違い（質感・耐久性・色数・ロット）や、ユニフォーム・記念品などの用途例は加工サービスページでご案内しています。</p>
+        </div>
+        <span class="shrink-0 inline-flex items-center text-sm font-medium text-navy-800 group-hover:text-gold-700 transition-colors">加工サービスを見る<svg class="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg></span>
+      </a>
     </div>
   </section>
 
-  <!-- Use cases -->
-  <section class="py-section-sm md:py-section">
+  <!-- Data guide -->
+  <section class="py-section-sm md:py-section bg-warm-50">
     <div class="mx-auto max-w-[1200px] px-4 md:px-8">
-      <SectionHeading en="Use Cases" ja="こんな用途に使えます" />
+      <SectionHeading en="Data Guide" ja="データ入稿ガイド" />
+      <p class="text-center text-warm-600 text-sm -mt-8 mb-10">
+        ロゴや文字のデータをお送りいただく際のポイントです。分からない点はお気軽にお尋ねください。
+      </p>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-        {useCases.map((item, i) => (
+        {dataGuide.map((item, i) => (
           <div class="js-fade-in bg-white rounded-lg border border-warm-200 p-6 hover:shadow-md hover:border-gold-300 transition-all duration-200" style={`transition-delay: ${i * 60}ms`}>
-            <h3 class="text-base font-bold text-navy-800 mb-2">{item.title}</h3>
+            <div class="flex items-center gap-2 mb-2">
+              <svg class="w-5 h-5 text-gold-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d={item.icon} />
+              </svg>
+              <h3 class="text-base font-bold text-navy-800">{item.title}</h3>
+            </div>
             <p class="text-sm text-warm-600 leading-relaxed">{item.description}</p>
           </div>
         ))}
@@ -95,29 +105,14 @@ import { url } from '../utils/paths'
     </div>
   </section>
 
-  <!-- Tips -->
+  <!-- For individuals -->
   <section class="py-section-sm md:py-section bg-navy-50">
     <div class="mx-auto max-w-[800px] px-4 md:px-8">
-      <SectionHeading en="Tips" ja="ご注文前に知っておきたいこと" />
-      <div class="js-fade-in space-y-6">
-        <div class="bg-white rounded-lg border border-warm-200 p-6">
-          <h3 class="font-bold text-navy-800 mb-2">素材による仕上がりの違い</h3>
-          <p class="text-sm text-warm-700 leading-relaxed">
-            薄手の生地（Tシャツ素材など）に大きな刺繍を入れると、生地が引っ張られることがあります。厚手の生地（ポロシャツ・作業着・キャップなど）は刺繍に最適です。素材に不安がある場合はお気軽にご相談ください。
-          </p>
-        </div>
-        <div class="bg-white rounded-lg border border-warm-200 p-6">
-          <h3 class="font-bold text-navy-800 mb-2">データの準備について</h3>
-          <p class="text-sm text-warm-700 leading-relaxed">
-            ロゴデータ（AI・EPS・PDF・高解像度JPG/PNG）をご用意ください。手書きのラフスケッチからのデータ作成も承っております。
-          </p>
-        </div>
-        <div class="bg-white rounded-lg border border-warm-200 p-6">
-          <h3 class="font-bold text-navy-800 mb-2">個人のお客様へ</h3>
-          <p class="text-sm text-warm-700 leading-relaxed">
-            「1枚だけでも注文できますか？」──はい、もちろん承ります。お子様のお名前入れ、チームのユニフォーム、記念品など、個人のお客様も大歓迎です。
-          </p>
-        </div>
+      <SectionHeading en="For Individuals" ja="個人のお客様へ" />
+      <div class="js-fade-in bg-white rounded-lg border border-warm-200 p-6">
+        <p class="text-sm text-warm-700 leading-relaxed">
+          「1枚だけでも注文できますか？」──はい、もちろん承ります。お子様のお名前入れ、チームのユニフォーム、記念品など、個人のお客様も大歓迎です。
+        </p>
       </div>
     </div>
   </section>

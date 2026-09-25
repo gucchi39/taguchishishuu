@@ -113,16 +113,26 @@ import SectionHeading from '../components/SectionHeading.astro'
 
   <script>
     const form = document.getElementById('contact-form') as HTMLFormElement
+    const category = document.getElementById('category') as HTMLSelectElement
+
+    // ?subject=recruit など、既存の選択肢の value と一致する場合のみ種別を初期選択する
+    const preset = new URLSearchParams(window.location.search).get('subject')
+    if (preset && Array.from(category.options).some((o) => o.value !== '' && o.value === preset)) {
+      category.value = preset
+    }
+
     form.addEventListener('submit', (e) => {
       e.preventDefault()
       const data = new FormData(form)
-      const subject = `【Webお問い合わせ】${data.get('category') || 'その他'}`
+      // 件名・本文には英字コードではなく選択肢の日本語ラベルを使う
+      const categoryLabel = category.value ? category.options[category.selectedIndex].text : ''
+      const subject = `【Webお問い合わせ】${categoryLabel || 'その他'}`
       const body = [
         `会社名: ${data.get('company') || '（未記入）'}`,
         `お名前: ${data.get('name')}`,
         `メール: ${data.get('email')}`,
         `電話: ${data.get('tel') || '（未記入）'}`,
-        `種別: ${data.get('category') || '（未選択）'}`,
+        `種別: ${categoryLabel || '（未選択）'}`,
         '',
         `お問い合わせ内容:`,
         data.get('message'),
