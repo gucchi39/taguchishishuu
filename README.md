@@ -360,7 +360,17 @@ src/
 ## 11. 開発コマンド
 
 ```sh
-npm run dev       # 開発サーバー起動 (localhost:4321)
-npm run build     # 本番ビルド
-npm run preview   # ビルドプレビュー
+npm run dev              # 開発サーバー起動 (localhost:4321)
+npm run build            # 本番ビルド
+npm run preview          # ビルドプレビュー
+npm run optimize-images  # public/images 内の写真を圧縮・WebP化
 ```
+
+---
+
+## 12. 写真を追加するときの運用ルール
+
+- 写真は今までどおり `public/images/` 配下に置くだけでOKです（`src/assets` への移行は不要）。
+- 追加・差し替え後は必ず `npm run optimize-images` を実行してください。長辺1600px超のJPEGを自動で縮小・再圧縮し、同名のWebPも生成します。
+- 撮影時点で **長辺1600px以下・JPEG** に書き出しておくと、画質の劣化が少なく済みます。
+- 実行してもすでに最適化済みのファイルは変化しません（同じコマンドを何度実行しても安全です）。

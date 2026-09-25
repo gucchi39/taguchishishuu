@@ -11,6 +11,8 @@ const events = [
     tag: '工場見学',
     description: '法政大学 経営大学院 岩瀬ゼミの皆さまに、刺繍加工やプリント工程など自社工場の現場をご見学いただきました。',
     image: '/images/events/hosei-visit/hosei-08.jpg',
+    imageWidth: 1200,
+    imageHeight: 900,
     href: '/events/hosei-visit',
   },
   // 新しいイベントはここに追加
@@ -50,12 +52,18 @@ const events = [
             style={`transition-delay: ${i * 80}ms`}
           >
             <div class="overflow-hidden">
-              <img
-                src={url(event.image)}
-                alt={event.title}
-                class="w-full h-full object-cover aspect-video md:aspect-[4/3] group-hover:scale-105 transition-transform duration-500"
-                loading="lazy"
-              />
+              <picture>
+                <source type="image/webp" srcset={url(event.image.replace(/\.jpg$/, '.webp'))} />
+                <img
+                  src={url(event.image)}
+                  alt={event.title}
+                  width={event.imageWidth}
+                  height={event.imageHeight}
+                  class="w-full h-full object-cover aspect-video md:aspect-[4/3] group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
             </div>
             <div class="p-5 md:py-6 flex flex-col justify-center">
               <div class="flex items-center gap-2 mb-2">

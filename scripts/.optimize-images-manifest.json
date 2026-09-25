@@ -1,0 +1,82 @@
+{
+  "events/hosei-visit/hosei-01.jpg": {
+    "jpegHash": "f1ddb848ab249e22a1824032cc96897c203afddc12208a1146c923a6e6ece1f2",
+    "webpHash": "96e8b5abb957b6650f45708d7b1d47f218072c8b1844e0297f87e80c8a65558b"
+  },
+  "events/hosei-visit/hosei-05.jpg": {
+    "jpegHash": "2c382f13c9ae19a7cb9d86a24875400bfc0a3eb91f01dcf06fd06af9c5541a08",
+    "webpHash": "a71c1aa1d84853cd8a1845240d89349c72e23d08fc638508967dc07d9208bbbb"
+  },
+  "events/hosei-visit/hosei-08.jpg": {
+    "jpegHash": "e6421eea09ab9785b714b38c9a8775d80d6cb7ee8399066b0c49b2bde9ebbea6",
+    "webpHash": "da926ad2127d4e30e8cf15c4a2d9d293178148713655d1bde1dbef8de240f96c"
+  },
+  "events/hosei-visit/hosei-10.jpg": {
+    "jpegHash": "b48b188c581516cccc4c543e50cf774d3a8aad0e2f48ba52e994deb0527a049d",
+    "webpHash": "3d5146b60c69e922f49dca905618f440f49fdc30304f8fe2f82a9d177b43658f"
+  },
+  "events/hosei-visit/hosei-15.jpg": {
+    "jpegHash": "fd5afe1be1e503685a13a63a63486f7bec7aa75f1efa31d3ef4d8095567c2a13",
+    "webpHash": "f2de1989fe680f22eaf3408a5da749ea060ccac4095783884d4f305c7483a7a6"
+  },
+  "events/hosei-visit/hosei-18.jpg": {
+    "jpegHash": "a90a29de76b14233cc32d3fe715ccb962155fd5507ea485c1456156a1557df8e",
+    "webpHash": "3ae809476b6175e90730d7742e91b6906b1d852c0a6e9301a9354a41569a80b6"
+  },
+  "events/hosei-visit/hosei-20.jpg": {
+    "jpegHash": "49dabd636c4d30a21510ef19e6bb32834823771d332c0673f47ed15a4519877f",
+    "webpHash": "6cfbc7d75db0f716e6d99636db89f936e731104e1c2129f22a95310361fce6cf"
+  },
+  "events/hosei-visit/hosei-22.jpg": {
+    "jpegHash": "70a53376347a0fc5a746cd07407a4500438cbd65238b62fe5cd02a21951aa242",
+    "webpHash": "4d551edfcdd716d27fd0681ceb8c95d5da36b26174713cbde47c90a09a159e9b"
+  },
+  "facility/barudan-multi.jpg": {
+    "jpegHash": "4e3ea63a82847c2c16c2b5d29fad1ccfc882b86571a55a8234a484c1af07c26b",
+    "webpHash": "05f9115f98d95067a2d6707e9f32294fa3b0062dbdbf8e7a966148871d20e2f1"
+  },
+  "facility/dryer.jpg": {
+    "jpegHash": "0764483f2f941f69ac9ad88107f99a2f72005d7e2433b41502550d675ea32ac8",
+    "webpHash": "192957f237ca2b148d912b3ad8b08df314478ffa1efa640e2be2ca5132d233c4"
+  },
+  "facility/embroidery-line.jpg": {
+    "jpegHash": "d4b79a21d8808baf1070c7ecfc1e35d4d35bbc46df6fce433a8f8207ee29f7f2",
+    "webpHash": "41d772d3213fafc645b4cf2b2440969319cf483867de336c775c8c23708d75f0"
+  },
+  "facility/factory-work-01.jpg": {
+    "jpegHash": "f0dc5909cc4a4250c379a0692866fe9898685750f0b2eaaed03147dcaeeee3da",
+    "webpHash": "843076e172a397b0b7e45cbc509f7a6aa59d5cad65a9e5f6936993d329a066c3"
+  },
+  "facility/factory-work-02.jpg": {
+    "jpegHash": "7d4fe326f004bde748a305db2ba2cdb0eb58a26b0b2044aa156087507a7a4972",
+    "webpHash": "b8619ab251420f337b216e023bb9931bbe05cbaff039873ff0de408e1806d869"
+  },
+  "facility/happy-japan.jpg": {
+    "jpegHash": "a859e3ae44bcaf1abc2d08e605058d2ab365c414b023a3d8860f144736aab408",
+    "webpHash": "527e0a1df21dffd5e5925b4d58bf399eee81066ccf682e36c320bfb34fd32134"
+  },
+  "facility/heat-press-cap.jpg": {
+    "jpegHash": "636917bd30f5080563b7653683d436aedb3a650f017dd818cc515735163b4c24",
+    "webpHash": "ed6cda753c34146b4dfb5bc9cca26a246809c65c0ee2a5b4e8607bb17a00f6ea"
+  },
+  "facility/heat-press-flat.jpg": {
+    "jpegHash": "a121beb3c4b688cbe663a4fc2298ccacc8c93a1bef0e89c9e6c30b6528b29fca",
+    "webpHash": "cea36a5b38d543b968a6787732ec0f7aa4ae754c45c887244670dd51a220b962"
+  },
+  "facility/heat-press-large.jpg": {
+    "jpegHash": "fb180382206760123ea47184224de0cca35af993644472d972269104801bd548",
+    "webpHash": "8f6658e32bc79c3b8e5c28c63e4b0d27c731712589b489c6e79a0f4d36b2143b"
+  },
+  "facility/laser-cutter.jpg": {
+    "jpegHash": "10d98b604ce65d24ffb4fccd9888b2045a5a839b6b1f6e47d7f22025b41fe872",
+    "webpHash": "d97eb39e98092613d58624b2adbda48a3de1726f13d1a6352cbde6b2f58f793a"
+  },
+  "facility/toyota-sewing.jpg": {
+    "jpegHash": "3220f4f27c5ba23a5801594a720dbc40ef7af9cadb68421f9896f26516e6a533",
+    "webpHash": "ddb9d6ebe337d94cf52a0ccccd14135d4e49c8f6ca41d0e59fdb060ec0d9db0f"
+  },
+  "facility/wappen-sample.jpg": {
+    "jpegHash": "a0b5c796dafa372462657b95991eac257326c1448cc6cf8c818cfdeb9482126d",
+    "webpHash": "e8bd94a3d4a5fc9950f5089f86165bea7994bb2f1949aafe59c0d6f154209e2e"
+  }
+}
