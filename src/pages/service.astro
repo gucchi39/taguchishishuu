@@ -27,6 +27,7 @@ const services = [
     title: '刺繍加工',
     en: 'Embroidery',
     image: '/images/facility/embroidery-line.jpg',
+    alt: 'バルダン多頭式刺繍機が並ぶ刺繍加工ライン',
     description: '多頭式・単頭式の刺繍機を合計14台保有。ユニフォーム、作業着、キャップなどへのロゴ・ネーム刺繍を得意としています。',
     features: ['立体感と高級感のある仕上がり', '多色対応（最大15色）', '小ロット1枚〜大量生産まで', 'オリジナルデザインのデータ作成可'],
   },
@@ -35,6 +36,7 @@ const services = [
     title: 'プリント加工',
     en: 'Print',
     image: '/images/facility/dryer.jpg',
+    alt: 'プリント加工で使うコンベア式乾燥機',
     description: 'DTF・シルクスクリーン・UVプリンターを保有。用途・数量・素材に応じて最適なプリント方法をご提案します。',
     features: ['DTFプリント：小ロット・フルカラー対応', 'シルクスクリーン：量産・高耐久', 'UVプリント：立体物・グッズ製作', '転写プリントにも対応'],
   },
@@ -43,6 +45,7 @@ const services = [
     title: 'ワッペン製作',
     en: 'Patch',
     image: '/images/facility/wappen-sample.jpg',
+    alt: 'プリントワッペンのサンプル見本',
     description: 'レーザーカッターによるヒートカットワッペン、ロック仕上げワッペンなど、多様な仕様に対応します。',
     features: ['ヒートカット（レーザー加工）', 'ロック仕上げ', 'アイロン接着加工', 'オリジナルデザイン対応'],
   },
@@ -51,6 +54,7 @@ const services = [
     title: 'ネーム加工',
     en: 'Name Label',
     image: '/images/facility/barudan-multi.jpg',
+    alt: 'バルダン多頭式刺繍機',
     description: 'アパレル製品の織りネーム・プリントネーム・下げ札など、ブランドの顔となるネームタグを製作します。',
     features: ['織りネーム', 'プリントネーム', '下げ札・タグ', 'サイズ表示・品質表示'],
   },
@@ -68,7 +72,10 @@ const positions = [
 import { url } from '../utils/paths'
 ---
 
-<Layout title="加工サービス｜タグチ刺繍ネーム有限会社">
+<Layout
+  title="加工サービス一覧｜タグチ刺繍ネーム｜茨城県筑西市の刺繍・プリント加工"
+  description="刺繍加工・プリント加工（DTF・シルクスクリーン・UV）・ワッペン製作・ネーム加工のご案内。茨城県筑西市の自社工場で、ユニフォームや作業着、ポロシャツ、キャップへの名入れを1枚から小ロットで承ります。"
+>
 
   <section class="relative h-48 md:h-64 flex items-center">
     <div class="absolute inset-0">
@@ -77,8 +84,8 @@ import { url } from '../utils/paths'
     </div>
     <div class="relative z-10 mx-auto max-w-[1200px] px-4 md:px-8 w-full">
       <p class="text-sm text-gold-300 tracking-[0.2em] uppercase mb-2">Service</p>
-      <h1 class="heading-accent text-2xl md:text-4xl text-white">加工サービス</h1>
-      <p class="text-navy-200 text-sm mt-2">加工方法・対応範囲をご案内します</p>
+      <h1 class="heading-accent text-2xl md:text-4xl text-white">刺繍・プリント・ワッペン<br class="sm:hidden" />加工サービス</h1>
+      <p class="text-navy-200 text-sm mt-2">茨城県筑西市の自社工場で行う加工方法・対応範囲をご案内します</p>
     </div>
   </section>
 
@@ -102,7 +109,7 @@ import { url } from '../utils/paths'
       <div class="mx-auto max-w-[1200px] px-4 md:px-8">
         <div class="js-fade-in grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           <div class={i % 2 === 1 ? 'lg:order-2' : ''}>
-            <img src={url(svc.image)} alt={svc.title} class="w-full aspect-video object-cover rounded-lg" loading="lazy" />
+            <img src={url(svc.image)} alt={svc.alt} class="w-full aspect-video object-cover rounded-lg" loading="lazy" />
           </div>
           <div class={i % 2 === 1 ? 'lg:order-1' : ''}>
             <span class="text-sm text-warm-500 font-light tracking-[0.2em] uppercase">{svc.en}</span>

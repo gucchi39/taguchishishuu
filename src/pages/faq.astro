@@ -37,10 +37,28 @@ const categories = [
     ],
   },
 ]
+// FAQPage の構造化データ（上の質問配列から生成。回答はプレーンテキスト）
+const faqPage = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: categories.flatMap((cat) =>
+    cat.faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.q,
+      acceptedAnswer: { '@type': 'Answer', text: faq.a },
+    })),
+  ),
+}
+// 固定データのみだが、念のため "<" をエスケープして </script> による脱出を防ぐ
+const faqPageJson = JSON.stringify(faqPage).replace(/</g, '\\u003c')
 import { url } from '../utils/paths'
 ---
 
-<Layout title="よくある質問｜タグチ刺繍ネーム有限会社">
+<Layout
+  title="よくある質問｜タグチ刺繍ネーム｜茨城県筑西市の刺繍・プリント加工"
+  description="刺繍・プリント加工のよくある質問。1枚からの注文や個人でのご依頼、デザインデータの作成、刺繍の最大サイズや色数、見積り、工場見学まで、茨城県筑西市のタグチ刺繍ネームがお答えします。"
+>
+  <script slot="head" type="application/ld+json" set:html={faqPageJson} />
 
   <section class="relative h-48 md:h-64 flex items-center">
     <div class="absolute inset-0 bg-navy-800"></div>

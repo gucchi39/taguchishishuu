@@ -14,7 +14,11 @@ const photos = [
 import { url } from '../../utils/paths'
 ---
 
-<Layout title="法政大学 岩瀬ゼミ 工場見学レポート｜タグチ刺繍ネーム">
+<Layout
+  title="法政大学 工場見学レポート｜タグチ刺繍ネーム｜茨城県筑西市の刺繍・プリント加工"
+  description="法政大学 経営大学院 岩瀬ゼミの皆さまが、茨城県筑西市のタグチ刺繍ネーム工場を見学されました。刺繍機やシルクスクリーンなど、刺繍加工からプリントまで一貫して行う現場の様子を写真でご紹介します。"
+  ogType="article"
+>
 
   <!-- Hero -->
   <section class="relative h-64 md:h-80 flex items-center">
@@ -60,7 +64,7 @@ import { url } from '../../utils/paths'
           >
             <img
               src={url(photo.src)}
-              alt={photo.caption}
+              alt={`法政大学 岩瀬ゼミ 工場見学：${photo.caption}`}
               class="w-full aspect-[4/3] object-cover"
               loading="lazy"
             />

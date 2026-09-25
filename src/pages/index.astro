@@ -32,16 +32,19 @@ const services = [
     title: '刺繍加工',
     description: 'ユニフォーム・作業着へのロゴ刺繍、チーム名入れなど。立体感と高級感のある仕上がりが特長です。',
     image: '/images/facility/embroidery-line.jpg',
+    alt: 'バルダン多頭式刺繍機が並ぶ刺繍加工ライン',
   },
   {
     title: 'ネーム加工',
     description: '織りネーム・プリントネーム・下げ札の製作。ブランドの顔となるネームタグを丁寧にお作りします。',
     image: '/images/facility/wappen-sample.jpg',
+    alt: 'プリントワッペンのサンプル見本',
   },
   {
     title: 'プリント加工',
     description: 'シルクスクリーン・転写プリント・昇華プリントに対応。小ロットから大量生産まで柔軟に対応します。',
     image: '/images/facility/dryer.jpg',
+    alt: 'プリント加工で使うコンベア式乾燥機',
   },
 ]
 
@@ -54,7 +57,10 @@ const stats = [
 import { url } from '../utils/paths'
 ---
 
-<Layout title="タグチ刺繍ネーム有限会社｜茨城県筑西市の刺繍・プリント加工">
+<Layout
+  title="タグチ刺繍ネーム有限会社｜茨城県筑西市の刺繍・プリント・ワッペン加工工場"
+  description="茨城県筑西市の刺繍・プリント加工工場、タグチ刺繍ネーム有限会社。1960年創業。ユニフォーム・作業着・キャップへの刺繍やDTFプリント、ワッペン・ネーム製作を1枚から承ります。筑西市を拠点に茨城県全域・全国に対応。"
+>
 
   <!-- ============================================
        HERO
@@ -165,7 +171,7 @@ import { url } from '../utils/paths'
             <div class="aspect-video overflow-hidden">
               <img
                 src={url(item.image)}
-                alt={item.title}
+                alt={item.alt}
                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 loading="lazy"
               />
@@ -303,7 +309,7 @@ import { url } from '../utils/paths'
         <div class="overflow-hidden">
           <img
             src={url("/images/events/hosei-visit/hosei-08.jpg")}
-            alt="法政大学 岩瀬ゼミ 工場見学"
+            alt="法政大学 岩瀬ゼミの皆さまの工場見学の様子"
             class="w-full h-full object-cover aspect-video md:aspect-auto group-hover:scale-105 transition-transform duration-500"
             loading="lazy"
           />
@@ -350,7 +356,8 @@ import { url } from '../utils/paths'
         </h2>
         <p class="text-navy-200 text-sm md:text-base mb-8 max-w-lg mx-auto leading-relaxed">
           刺繍・プリント加工のお見積り、サンプルのご依頼、<br class="hidden md:block" />
-          加工方法のご相談など、どんなことでもお問い合わせください。
+          加工方法のご相談など、どんなことでもお問い合わせください。<br class="hidden md:block" />
+          筑西市を拠点に、茨城県全域・関東一円、全国からのご依頼に対応しています。
         </p>
 
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">

@@ -96,6 +96,7 @@ const localBusinessJson = JSON.stringify(localBusiness).replace(/</g, '\\u003c')
     <meta name="twitter:image" content={ogImageUrl} />
 
     <script type="application/ld+json" set:html={localBusinessJson} />
+    <slot name="head" />
   </head>
   <body class="min-h-screen flex flex-col">
     <Header />

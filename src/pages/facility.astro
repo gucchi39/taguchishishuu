@@ -7,6 +7,7 @@ const highlights = [
     title: 'DTFプリンター',
     badge: '最新設備',
     image: '/images/facility/dryer.jpg',
+    alt: 'プリント加工で使うコンベア式乾燥機',
     description: 'フルカラー・小ロットに対応するDTF（Direct to Film）転写プリンター。版が不要なため、1枚からでもフルカラーの精細なプリントが可能。従来のカットプリントやデジタルプリントに比べ、発色・耐久性・風合いが大幅に向上しています。',
     points: ['版不要でフルカラー対応', '1枚からの小ロットに最適', '伸縮性のある素材にも対応', '洗濯堅牢度が高い'],
   },
@@ -14,6 +15,7 @@ const highlights = [
     title: 'UVプリンター',
     badge: '最新設備',
     image: '/images/facility/heat-press-flat.jpg',
+    alt: '平台の熱プレス機',
     description: 'UV硬化インクを使用し、立体物やさまざまな素材に直接プリントできる最新機器。平面だけでなく、グッズやノベルティなど多様な製品への加工を可能にしています。',
     points: ['立体物・グッズに直接プリント', '多素材対応（金属・木・アクリル等）', 'オリジナルグッズ製作に最適', '高精細なフルカラー表現'],
   },
@@ -21,6 +23,7 @@ const highlights = [
     title: 'レーザー加工機',
     badge: '最新設備',
     image: '/images/facility/laser-cutter.jpg',
+    alt: 'Universal製レーザー加工機',
     description: 'Universal製レーザーカッターを2台保有。ワッペンのヒートカットや素材のカットに使用。手作業では難しい精密なカットを高速で行い、品質と生産性を両立しています。',
     points: ['精密なヒートカット加工', 'ワッペンの仕上がり品質が向上', '複雑な形状にも対応', '2台体制で納期に余裕'],
   },
@@ -30,12 +33,14 @@ const craftsmanship = [
   {
     title: '刺繍 ─ 職人の手と最新機器の融合',
     image: '/images/facility/embroidery-line.jpg',
+    alt: 'バルダン多頭式刺繍機が並ぶ刺繍ライン',
     description: '多頭式3台・単頭式11台、合計14台の刺繍機を保有。Barudan・Happy Japanなど信頼のメーカー機を、熟練の職人が操作します。機械だけでは出せない仕上がりの美しさは、糸のテンション調整やデザインデータの最適化など、長年の経験に裏打ちされた技術から生まれます。',
     points: ['多頭式（10頭・6頭・4頭）で量産に対応', '単頭式11台で多品種・小ロットに柔軟対応', '糸のテンションを素材ごとに最適化', 'デザインデータの調整は熟練職人が手作業で'],
   },
   {
     title: 'プリント ─ 用途に合わせた最適提案',
     image: '/images/facility/factory-work-01.jpg',
+    alt: '多頭式刺繍機で作業するスタッフ',
     description: 'DTF・シルクスクリーン・UVの3種のプリント機を揃え、用途・数量・素材に応じて最適な加工方法をご提案。同じデザインでも素材やロットに合わせて手法を変えることで、品質とコストの最適なバランスを実現します。実は売上の半分以上がプリント加工。刺繍だけじゃないのがタグチの強みです。',
     points: ['DTF：小ロット・フルカラー対応', 'シルクスクリーン：量産・高耐久', 'UV：立体物・グッズ対応', '素材とロットに合わせた最適提案'],
   },
@@ -59,7 +64,7 @@ const photos = [
   { src: '/images/facility/heat-press-cap.jpg', caption: 'キャップ用ヒートプレス' },
   { src: '/images/facility/heat-press-large.jpg', caption: '平台ヒートプレス' },
   { src: '/images/facility/laser-cutter.jpg', caption: 'Universal レーザーカッター' },
-  { src: '/images/facility/dryer.jpg', caption: '乾燥機' },
+  { src: '/images/facility/dryer.jpg', caption: 'コンベア式乾燥機' },
   { src: '/images/facility/factory-work-01.jpg', caption: '刺繍加工の作業風景' },
   { src: '/images/facility/factory-work-02.jpg', caption: '多頭式刺繍機の稼働' },
 ]
@@ -74,7 +79,10 @@ const stats = [
 import { url } from '../utils/paths'
 ---
 
-<Layout title="設備・技術紹介｜タグチ刺繍ネーム有限会社">
+<Layout
+  title="刺繍機・プリンター設備紹介｜タグチ刺繍ネーム｜茨城県筑西市の刺繍・プリント加工"
+  description="多頭式・単頭式あわせて14台の刺繍機、DTF・シルクスクリーン・UVプリンター、レーザー加工機など、茨城県筑西市の自社工場の設備をご紹介。熟練の職人技と設備で、小ロットから量産まで対応します。"
+>
 
   <section class="relative h-48 md:h-64 flex items-center">
     <div class="absolute inset-0">
@@ -83,8 +91,8 @@ import { url } from '../utils/paths'
     </div>
     <div class="relative z-10 mx-auto max-w-[1200px] px-4 md:px-8 w-full">
       <p class="text-sm text-gold-300 tracking-[0.2em] uppercase mb-2">Facility & Technology</p>
-      <h1 class="heading-accent text-2xl md:text-4xl text-white">設備・技術紹介</h1>
-      <p class="text-navy-200 text-sm mt-2">最新設備と熟練の技術で、高品質な加工をお届けします</p>
+      <h1 class="heading-accent text-2xl md:text-4xl text-white">刺繍機・プリンターなどの<br class="sm:hidden" />設備紹介</h1>
+      <p class="text-navy-200 text-sm mt-2">筑西市の自社工場から、最新設備と熟練の技術で高品質な加工をお届けします</p>
     </div>
   </section>
 
@@ -117,7 +125,7 @@ import { url } from '../utils/paths'
           <div class="js-fade-in bg-white rounded-lg border border-warm-200 overflow-hidden" style={`transition-delay: ${i * 100}ms`}>
             <div class="grid grid-cols-1 lg:grid-cols-[400px_1fr]">
               <div class="overflow-hidden">
-                <img src={url(item.image)} alt={item.title} class="w-full h-full object-cover aspect-video lg:aspect-auto" loading="lazy" />
+                <img src={url(item.image)} alt={item.alt} class="w-full h-full object-cover aspect-video lg:aspect-auto" loading="lazy" />
               </div>
               <div class="p-6 md:p-8">
                 <div class="flex items-center gap-3 mb-3">
@@ -153,7 +161,7 @@ import { url } from '../utils/paths'
       {craftsmanship.map((item, i) => (
         <div class={`js-fade-in grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center ${i > 0 ? 'mt-12 md:mt-16' : ''}`} style={`transition-delay: ${i * 100}ms`}>
           <div class={i % 2 === 1 ? 'lg:order-2' : ''}>
-            <img src={url(item.image)} alt={item.title} class="w-full aspect-video object-cover rounded-lg" loading="lazy" />
+            <img src={url(item.image)} alt={item.alt} class="w-full aspect-video object-cover rounded-lg" loading="lazy" />
           </div>
           <div class={i % 2 === 1 ? 'lg:order-1' : ''}>
             <h3 class="heading-accent text-lg md:text-xl text-navy-800 mb-4">
