@@ -69,6 +69,7 @@ const localBusinessJson = JSON.stringify(localBusiness).replace(/</g, '\\u003c')
 <!doctype html>
 <html lang="ja">
   <head>
+    <script is:inline>document.documentElement.classList.add('js')</script>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href={url("/favicon.svg")} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -78,7 +79,13 @@ const localBusinessJson = JSON.stringify(localBusiness).replace(/</g, '\\u003c')
     <meta name="generator" content={Astro.generator} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Shippori+Mincho:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <!--
+      使用ウェイトのみ読み込み（軽量化）。
+      Noto Sans JP: 300(font-light) / 400(標準) / 500(font-medium) / 700(font-bold) を実使用。
+      Shippori Mincho: 400(font-serifの引用符など) / 600(.heading-accent固定値) のみ実使用のため、
+      500・700は読み込み対象から除外。
+    -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Shippori+Mincho:wght@400;600&display=swap" rel="stylesheet" />
     <title>{title}</title>
 
     <meta property="og:site_name" content={siteName} />
