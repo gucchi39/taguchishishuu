@@ -93,6 +93,8 @@ import SectionHeading from '../components/SectionHeading.astro'
               0296-57-2644
             </a>
             <p class="text-xs text-warm-600">FAX：0296-57-5224</p>
+            <p class="text-xs text-warm-600 mt-1">メール：<a href="mailto:irai@ekinosoba.co.jp" class="text-navy-700 underline underline-offset-2 hover:text-navy-600 break-all">irai@ekinosoba.co.jp</a></p>
+            <p class="text-xs text-warm-500 mt-2 leading-relaxed">デザインデータや画像を添付される場合は、上記メールアドレスへ直接お送りください。</p>
             <p class="text-xs text-warm-500 mt-2">営業時間：AM9:00〜17:45</p>
             <p class="text-xs text-warm-500">休日：日曜・祭日・土曜（不定期）</p>
           </div>
@@ -137,7 +139,7 @@ import SectionHeading from '../components/SectionHeading.astro'
         `お問い合わせ内容:`,
         data.get('message'),
       ].join('\n')
-      const url = `mailto:info@taguchi-shishu.co.jp?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+      const url = `mailto:irai@ekinosoba.co.jp?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
       if (url.length > 1900) {
         alert('入力内容が長いため、メールアプリで本文が途中で切れる可能性があります。お手数ですがご要望欄を短くするか、お電話でご連絡ください。')
         return
