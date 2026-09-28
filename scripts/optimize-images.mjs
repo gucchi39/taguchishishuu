@@ -9,9 +9,11 @@
  * - 再圧縮した結果が元ファイルより大きくなる場合は書き換えない。
  * - 同名の .webp（quality 78）を隣に生成する。
  * - 一度最適化したファイルは manifest（scripts/.optimize-images-manifest.json）に
- *   ハッシュを記録し、次回実行時は内容が変わっていなければ再エンコードしない
- *   （JPEG の再圧縮は世代劣化で毎回わずかにサイズが変わり得るため、これがないと
- *   実行するたびにファイルが変化してしまい冪等にならない）。
+ *   ハッシュと設定値を記録し、次回実行時は「内容」と「設定」の両方が変わって
+ *   いなければ再エンコードしない（JPEG の再圧縮は世代劣化で毎回わずかにサイズが
+ *   変わり得るため、これがないと実行するたびにファイルが変化してしまい冪等に
+ *   ならない）。長辺上限・品質などの設定を変更した場合は、設定が変わったこと
+ *   を manifest が検知して再処理する。
  *
  * 使い方: npm run optimize-images
  */
@@ -32,6 +34,21 @@ const MAX_EDGE_OVERRIDES = {
 
 const JPEG_QUALITY = 80
 const WEBP_QUALITY = 78
+
+// スクリプト自体の処理内容（EXIF 回転の適用など）を変えた場合は上げる。
+// 上げると、設定値だけでなくスクリプトの処理内容が変わったとみなされ再処理される。
+const SCRIPT_VERSION = 2
+
+// manifest でキャッシュ判定に使う設定一式。ここに含めた値を変更すると、
+// 内容（ハッシュ）が同じ既存画像でも設定が変わったとみなして再処理される。
+const SETTINGS = {
+  scriptVersion: SCRIPT_VERSION,
+  defaultMaxEdge: DEFAULT_MAX_EDGE,
+  maxEdgeOverrides: MAX_EDGE_OVERRIDES,
+  jpegQuality: JPEG_QUALITY,
+  webpQuality: WEBP_QUALITY,
+}
+const SETTINGS_JSON = JSON.stringify(SETTINGS)
 
 // 最適化の対象ディレクトリ（ogp.jpg や works 用の外部ダミー画像は含まない）
 const TARGET_DIRS = ['facility', 'events']
@@ -87,14 +104,25 @@ async function optimizeOne(filePath, manifest) {
   const originalHash = sha256(originalBuffer)
 
   // すでにこのスクリプトで最適化済み（内容が manifest 記録時から変わっていない）なら
-  // 再エンコードせずスキップする（冪等性の担保）。
+  // 再エンコードせずスキップする（冪等性の担保）。設定値も一致している場合のみ有効。
   const cached = manifest[relPath]
   if (cached && cached.jpegHash === originalHash) {
-    const existingWebp = await readIfExists(webpPath)
-    const webpHash = existingWebp ? sha256(existingWebp) : null
-    if (existingWebp && webpHash === cached.webpHash) {
-      console.log(`${relPath} / ${formatSize(originalSize)} → ${formatSize(originalSize)} [skip（最適化済み）]`)
+    // 移行措置: 旧 manifest（settings 未記録）のエントリは「現在の設定で処理済み」
+    // とみなし、settings を書き足すだけにする。ここで再エンコードすると、
+    // 既に最適化済みの JPEG を再圧縮することになり画質が劣化してしまうため行わない。
+    if (cached.settings === undefined) {
+      manifest[relPath] = { ...cached, settings: SETTINGS_JSON }
+      console.log(`${relPath} / ${formatSize(originalSize)} → ${formatSize(originalSize)} [skip（設定情報を追記）]`)
       return
+    }
+
+    if (cached.settings === SETTINGS_JSON) {
+      const existingWebp = await readIfExists(webpPath)
+      const webpHash = existingWebp ? sha256(existingWebp) : null
+      if (existingWebp && webpHash === cached.webpHash) {
+        console.log(`${relPath} / ${formatSize(originalSize)} → ${formatSize(originalSize)} [skip（最適化済み）]`)
+        return
+      }
     }
   }
 
@@ -103,7 +131,9 @@ async function optimizeOne(filePath, manifest) {
   const longEdge = Math.max(metadata.width ?? 0, metadata.height ?? 0)
 
   // --- JPEG 再圧縮（必要であれば縮小も） ---
-  let pipeline = sharp(originalBuffer, { failOn: 'none' })
+  // .rotate() は引数なしで EXIF の Orientation に従って自動回転する。
+  // resize より前に適用することで、回転後の向きを基準にリサイズされるようにする。
+  let pipeline = sharp(originalBuffer, { failOn: 'none' }).rotate()
   if (longEdge > maxEdge) {
     pipeline = pipeline.resize({
       width: maxEdge,
@@ -125,12 +155,15 @@ async function optimizeOne(filePath, manifest) {
   }
 
   // --- WebP 生成 ---
-  const webpBuffer = await sharp(finalBuffer).webp({ quality: WEBP_QUALITY }).toBuffer()
+  // finalBuffer が「再圧縮せずそのまま採用した元 JPEG」の場合でも向きが正しくなるよう、
+  // ここでも .rotate() を resize（今回は無し）より前に適用する。
+  const webpBuffer = await sharp(finalBuffer).rotate().webp({ quality: WEBP_QUALITY }).toBuffer()
   await writeFile(webpPath, webpBuffer)
 
   manifest[relPath] = {
     jpegHash: sha256(finalBuffer),
     webpHash: sha256(webpBuffer),
+    settings: SETTINGS_JSON,
   }
 
   console.log(
