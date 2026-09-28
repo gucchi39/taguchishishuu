@@ -1,19 +1,18 @@
 ---
-import Layout from '../layouts/Layout.astro'
-import SectionHeading from '../components/SectionHeading.astro'
-import { url } from '../utils/paths'
+import Layout from '../../layouts/Layout.astro'
 ---
 
 <Layout
-  title="お問い合わせ・お見積り｜タグチ刺繍ネーム｜茨城県筑西市の刺繍・プリント加工"
-  description="刺繍・プリント加工、ワッペン・ネーム製作のお見積り・ご相談はこちら。茨城県筑西市のタグチ刺繍ネームがお電話（0296-57-2644）とメールフォームで承ります。1枚からの小ロット、県外からのご依頼も歓迎です。"
+  title="採用のお問い合わせ｜タグチ刺繍ネーム｜茨城県筑西市の刺繍・プリント加工"
+  description="タグチ刺繍ネームへのご応募・工場見学・お仕事内容についてのご相談窓口です。茨城県筑西市の刺繍・プリント加工工場。採用担当が内容を確認のうえ、2営業日以内にご返信いたします。"
 >
 
   <section class="relative h-48 md:h-64 flex items-center">
     <div class="absolute inset-0 bg-navy-800"></div>
     <div class="relative z-10 mx-auto max-w-[1200px] px-4 md:px-8 w-full">
-      <p class="text-sm text-gold-300 tracking-[0.2em] uppercase mb-2">Contact</p>
-      <h1 class="heading-accent text-2xl md:text-4xl text-white">お問い合わせ</h1>
+      <p class="text-sm text-gold-300 tracking-[0.2em] uppercase mb-2">Recruit</p>
+      <h1 class="heading-accent text-2xl md:text-4xl text-white">採用のお問い合わせ</h1>
+      <p class="text-warm-100 text-sm mt-2">ご応募・工場見学・お仕事内容のご質問はこちらから</p>
     </div>
   </section>
 
@@ -24,25 +23,25 @@ import { url } from '../utils/paths'
         <!-- Form -->
         <div>
           <p class="text-warm-700 mb-8 leading-relaxed">
-            お見積り・サンプル請求・加工のご相談など、お気軽にお問い合わせください。<br />
+            ご応募、工場見学のご希望、お仕事内容についてのご質問など、お気軽にご連絡ください。<br />
             内容を確認のうえ、2営業日以内にご返信いたします。
           </p>
 
           <div id="form-success" class="hidden bg-gold-50 border border-gold-300 rounded-lg p-6 text-center">
             <svg class="w-12 h-12 text-gold-500 mx-auto mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
             <h3 class="text-lg font-bold text-navy-800 mb-2">メールアプリを起動しました</h3>
-            <p class="text-sm text-warm-700">メールアプリが開かない場合は、お電話（0296-57-2644）でご連絡ください。入力内容はそのまま残っています。</p>
+            <p class="text-sm text-warm-700">開かない場合はお電話（0296-57-2644）でご連絡ください。入力内容はそのまま残っています。</p>
           </div>
 
-          <form id="contact-form" class="space-y-6">
+          <form id="recruit-contact-form" class="space-y-6">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label for="company" class="block text-sm font-medium text-navy-800 mb-1.5">会社名 <span class="text-warm-400 text-xs">（任意）</span></label>
-                <input type="text" id="company" name="company" class="w-full px-4 py-3 border border-warm-300 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-gold-500 transition-colors" placeholder="株式会社○○" />
-              </div>
               <div>
                 <label for="name" class="block text-sm font-medium text-navy-800 mb-1.5">お名前 <span class="text-gold-600 text-xs">*必須</span></label>
                 <input type="text" id="name" name="name" required class="w-full px-4 py-3 border border-warm-300 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-gold-500 transition-colors" placeholder="田口 太郎" />
+              </div>
+              <div>
+                <label for="kana" class="block text-sm font-medium text-navy-800 mb-1.5">ふりがな <span class="text-warm-400 text-xs">（任意）</span></label>
+                <input type="text" id="kana" name="kana" class="w-full px-4 py-3 border border-warm-300 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-gold-500 transition-colors" placeholder="たぐち たろう" />
               </div>
             </div>
 
@@ -58,20 +57,24 @@ import { url } from '../utils/paths'
             </div>
 
             <div>
-              <label for="category" class="block text-sm font-medium text-navy-800 mb-1.5">お問い合わせ種別</label>
-              <select id="category" name="category" class="w-full px-4 py-3 border border-warm-300 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-gold-500 transition-colors bg-white">
+              <label for="category" class="block text-sm font-medium text-navy-800 mb-1.5">ご希望の内容 <span class="text-gold-600 text-xs">*必須</span></label>
+              <select id="category" name="category" required class="w-full px-4 py-3 border border-warm-300 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-gold-500 transition-colors bg-white">
                 <option value="">選択してください</option>
-                <option value="estimate">お見積り依頼</option>
-                <option value="sample">サンプル請求</option>
-                <option value="consultation">加工のご相談</option>
-                <option value="factory">工場見学</option>
+                <option value="apply">応募したい</option>
+                <option value="tour">工場見学をしたい</option>
+                <option value="question">仕事内容について聞きたい</option>
                 <option value="other">その他</option>
               </select>
             </div>
 
             <div>
-              <label for="message" class="block text-sm font-medium text-navy-800 mb-1.5">お問い合わせ内容 <span class="text-gold-600 text-xs">*必須</span></label>
-              <textarea id="message" name="message" rows="6" required class="w-full px-4 py-3 border border-warm-300 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-gold-500 transition-colors resize-y" placeholder="ご希望の加工内容、数量、納期などをお知らせください。"></textarea>
+              <label for="position" class="block text-sm font-medium text-navy-800 mb-1.5">希望職種 <span class="text-warm-400 text-xs">（任意）</span></label>
+              <input type="text" id="position" name="position" class="w-full px-4 py-3 border border-warm-300 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-gold-500 transition-colors" placeholder="刺繍オペレーター など" />
+            </div>
+
+            <div>
+              <label for="message" class="block text-sm font-medium text-navy-800 mb-1.5">メッセージ <span class="text-warm-400 text-xs">（任意）</span></label>
+              <textarea id="message" name="message" rows="6" class="w-full px-4 py-3 border border-warm-300 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-gold-500 transition-colors resize-y" placeholder="志望動機、ご質問、見学希望日など"></textarea>
             </div>
 
             <div>
@@ -80,6 +83,8 @@ import { url } from '../utils/paths'
                 <svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" /></svg>
               </button>
             </div>
+
+            <p class="text-xs text-warm-500">ご入力いただいた個人情報は、採用選考および連絡の目的にのみ使用します。</p>
           </form>
         </div>
 
@@ -94,9 +99,9 @@ import { url } from '../utils/paths'
             </a>
             <p class="text-xs text-warm-600">FAX：0296-57-5224</p>
             <p class="text-xs text-warm-600 mt-1">メール：<a href="mailto:irai@ekinosoba.co.jp" class="text-navy-700 underline underline-offset-2 hover:text-navy-600 break-all">irai@ekinosoba.co.jp</a></p>
-            <p class="text-xs text-warm-500 mt-2 leading-relaxed">デザインデータや画像を添付される場合は、上記メールアドレスへ直接お送りください。</p>
             <p class="text-xs text-warm-500 mt-2">営業時間：AM9:00〜17:45</p>
             <p class="text-xs text-warm-500">休日：日曜・祭日・土曜（不定期）</p>
+            <p class="text-xs text-warm-500 mt-2">採用担当までお気軽に</p>
           </div>
 
           <!-- Access -->
@@ -107,10 +112,6 @@ import { url } from '../utils/paths'
             <p class="text-xs text-warm-500">JR水戸線 新治駅 徒歩2分</p>
             <p class="text-xs text-warm-500">駐車場あり</p>
           </div>
-
-          <p class="text-xs text-warm-500">
-            採用については<a href={url('/recruit/contact')} class="text-navy-700 underline underline-offset-2 hover:text-navy-600">採用ページの専用フォーム</a>へ
-          </p>
         </aside>
 
       </div>
@@ -118,30 +119,25 @@ import { url } from '../utils/paths'
   </section>
 
   <script>
-    const form = document.getElementById('contact-form') as HTMLFormElement
+    const form = document.getElementById('recruit-contact-form') as HTMLFormElement
     const category = document.getElementById('category') as HTMLSelectElement
-
-    // ?subject=recruit など、既存の選択肢の value と一致する場合のみ種別を初期選択する
-    const preset = new URLSearchParams(window.location.search).get('subject')
-    if (preset && Array.from(category.options).some((o) => o.value !== '' && o.value === preset)) {
-      category.value = preset
-    }
 
     form.addEventListener('submit', (e) => {
       e.preventDefault()
       const data = new FormData(form)
       // 件名・本文には英字コードではなく選択肢の日本語ラベルを使う
       const categoryLabel = category.value ? category.options[category.selectedIndex].text : ''
-      const subject = `【Webお問い合わせ】${categoryLabel || 'その他'}`
+      const subject = `【採用のお問い合わせ】${categoryLabel || 'その他'}／${data.get('name')}`
       const body = [
-        `会社名: ${data.get('company') || '（未記入）'}`,
         `お名前: ${data.get('name')}`,
+        `ふりがな: ${data.get('kana') || '（未記入）'}`,
         `メール: ${data.get('email')}`,
         `電話: ${data.get('tel') || '（未記入）'}`,
-        `種別: ${categoryLabel || '（未選択）'}`,
+        `ご希望の内容: ${categoryLabel || '（未選択）'}`,
+        `希望職種: ${data.get('position') || '（未記入）'}`,
         '',
-        `お問い合わせ内容:`,
-        data.get('message'),
+        `メッセージ:`,
+        data.get('message') || '（未記入）',
       ].join('\n')
       const url = `mailto:irai@ekinosoba.co.jp?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
       if (url.length > 1900) {
