@@ -3,6 +3,10 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+  schedule:
+    # 毎月1日 5:00 JST（UTC 20:00）に自動で再ビルド。
+    # 営業カレンダーの表示月が古くならないようにするための保険。
+    - cron: '0 20 1 * *'
   workflow_dispatch:
 
 permissions:

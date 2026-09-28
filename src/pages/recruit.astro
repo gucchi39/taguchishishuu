@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro'
 import SectionHeading from '../components/SectionHeading.astro'
+import StaffVoices from '../components/StaffVoices.astro'
 
 const points = [
   {
@@ -31,11 +32,17 @@ const jobInfo = [
 import { url } from '../utils/paths'
 ---
 
-<Layout title="採用情報｜タグチ刺繍ネーム有限会社">
+<Layout
+  title="採用情報｜タグチ刺繍ネーム｜茨城県筑西市の刺繍・プリント加工"
+  description="茨城県筑西市の刺繍・プリント加工工場、タグチ刺繍ネーム有限会社の採用情報です。未経験からでも刺繍やプリントのものづくりに携われます。JR水戸線 新治駅から徒歩2分。働く魅力と募集要項をご案内します。"
+>
 
   <section class="relative h-48 md:h-64 flex items-center">
     <div class="absolute inset-0">
-      <img src={url("/images/facility/factory-work-01.jpg")} alt="" class="w-full h-full object-cover" />
+      <picture>
+        <source type="image/webp" srcset={url("/images/facility/factory-work-01.webp")} />
+        <img src={url("/images/facility/factory-work-01.jpg")} alt="" width="1600" height="900" class="w-full h-full object-cover" loading="lazy" decoding="async" />
+      </picture>
       <div class="absolute inset-0 bg-navy-800/70"></div>
     </div>
     <div class="relative z-10 mx-auto max-w-[1200px] px-4 md:px-8 w-full">
@@ -82,38 +89,8 @@ import { url } from '../utils/paths'
     </div>
   </section>
 
-  <!-- Voices (placeholder) -->
-  <section class="py-section-sm md:py-section">
-    <div class="mx-auto max-w-[1200px] px-4 md:px-8">
-      <SectionHeading en="Voice" ja="社員の声" />
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="js-fade-in bg-warm-50 rounded-lg p-6 md:p-8 border border-warm-200">
-          <div class="flex items-center gap-4 mb-4">
-            <div class="w-12 h-12 rounded-full bg-navy-100 flex items-center justify-center text-navy-600 font-bold">A</div>
-            <div>
-              <p class="font-medium text-navy-800">スタッフA</p>
-              <p class="text-xs text-warm-500">刺繍加工部門・勤続8年</p>
-            </div>
-          </div>
-          <p class="text-sm text-warm-700 leading-relaxed">
-            未経験で入社しましたが、先輩に一から教えてもらいました。自分の刺繍が入った製品を街で見かけると、やりがいを感じます。
-          </p>
-        </div>
-        <div class="js-fade-in bg-warm-50 rounded-lg p-6 md:p-8 border border-warm-200" style="transition-delay: 100ms">
-          <div class="flex items-center gap-4 mb-4">
-            <div class="w-12 h-12 rounded-full bg-navy-100 flex items-center justify-center text-navy-600 font-bold">B</div>
-            <div>
-              <p class="font-medium text-navy-800">スタッフB</p>
-              <p class="text-xs text-warm-500">プリント加工部門・勤続3年</p>
-            </div>
-          </div>
-          <p class="text-sm text-warm-700 leading-relaxed">
-            コツコツ作業するのが好きで、この仕事に向いていると思います。残業も少なく、プライベートとの両立がしやすいです。
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- Staff Voice（働く人の声 ※内容は src/data/trust.ts） -->
+  <StaffVoices />
 
   <!-- Job Info -->
   <section class="py-section-sm md:py-section bg-navy-50">
@@ -140,12 +117,16 @@ import { url } from '../utils/paths'
       <div class="js-fade-in text-center">
         <h2 class="heading-accent text-xl md:text-2xl text-navy-800 mb-3">ご応募はこちら</h2>
         <p class="text-warm-700 text-sm mb-6">
-          まずはお気軽にお電話ください。工場見学も歓迎です。
+          お電話、またはお問い合わせフォームからお気軽にご連絡ください。工場見学も歓迎です。
         </p>
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
           <a href="tel:0296-57-2644" class="inline-flex items-center gap-2 px-8 py-3.5 bg-navy-800 text-white font-medium rounded tracking-wider hover:bg-navy-700 transition-all duration-200 hover:-translate-y-px hover:shadow-md">
             <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" /></svg>
             0296-57-2644 に電話する
+          </a>
+          <a href={url('/contact?subject=recruit')} class="inline-flex items-center px-8 py-3.5 bg-gold-500 text-navy-950 font-medium rounded tracking-wider hover:bg-gold-400 transition-all duration-200 hover:-translate-y-px hover:shadow-md">
+            応募・見学のご相談はこちら
+            <svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
           </a>
         </div>
         <p class="text-xs text-warm-500 mt-4">受付時間：AM9:00〜17:45（日曜・祭日休み）</p>
@@ -153,14 +134,14 @@ import { url } from '../utils/paths'
     </div>
   </section>
 
-  <!-- General contact -->
+  <!-- Apply CTA (form) -->
   <section class="py-section-sm md:py-section bg-navy-800">
     <div class="mx-auto max-w-[800px] px-4 md:px-8 text-center">
       <div class="js-fade-in">
-        <h2 class="heading-accent text-xl md:text-2xl text-white mb-3">まずはお気軽にご相談ください</h2>
-        <p class="text-navy-200 text-sm mb-6">加工のご依頼・お見積りはこちらから。</p>
-        <a href={url("/contact")} class="inline-flex items-center px-8 py-3.5 bg-gold-500 text-navy-950 font-medium rounded tracking-wider hover:bg-gold-400 transition-all duration-200 hover:-translate-y-px hover:shadow-md">
-          お問い合わせ
+        <h2 class="heading-accent text-xl md:text-2xl text-white mb-3">一緒に働いてみませんか</h2>
+        <p class="text-navy-200 text-sm mb-6">ご応募・工場見学のご希望は、フォームからもお気軽にどうぞ。</p>
+        <a href={url('/contact?subject=recruit')} class="inline-flex items-center px-8 py-3.5 bg-gold-500 text-navy-950 font-medium rounded tracking-wider hover:bg-gold-400 transition-all duration-200 hover:-translate-y-px hover:shadow-md">
+          応募・見学のご相談はこちら
           <svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
         </a>
       </div>
