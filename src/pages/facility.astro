@@ -20,7 +20,6 @@ const highlights = [
     alt: 'ローランド製UVプリンター（VersaUV LEF-300）の操作パネル',
     width: 1477,
     height: 1109,
-    imgPosition: 'object-top', // 横長トリミング時にロゴ「VersaUV」が切れないよう上寄せ
     description: 'UV硬化インクを使用し、立体物やさまざまな素材に直接プリントできる最新機器。平面だけでなく、グッズやノベルティなど多様な製品への加工を可能にしています。',
     points: ['立体物・グッズに直接プリント', '多素材対応（金属・木・アクリル等）', 'オリジナルグッズ製作に最適', '高精細なフルカラー表現'],
   },
@@ -129,40 +128,36 @@ import { url } from '../utils/paths'
   <!-- Latest Equipment Highlights -->
   <section class="py-section-sm md:py-section bg-gold-50">
     <div class="mx-auto max-w-[1200px] px-4 md:px-8">
-      <SectionHeading en="Latest Technology" ja="他社にない最新設備" />
+      <SectionHeading en="Latest Equipment" ja="プリント・レーザーの最新設備" />
       <p class="text-center text-warm-600 text-sm -mt-8 mb-10">
-        業界でもまだ導入が少ない最新鋭の設備を自社工場に完備しています
+        フルカラープリント・グッズへの直接印刷・精密カットに対応する最新の設備を、自社工場に備えています
       </p>
 
-      <div class="space-y-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-stretch">
         {highlights.map((item, i) => (
-          <div class="js-fade-in bg-white rounded-lg border border-warm-200 overflow-hidden" style={`transition-delay: ${i * 100}ms`}>
-            <div class="grid grid-cols-1 lg:grid-cols-[400px_1fr]">
-              <div class="overflow-hidden">
-                <picture>
-                  <source type="image/webp" srcset={url(item.image.replace(/\.jpg$/, '.webp'))} />
-                  <img src={url(item.image)} alt={item.alt} width={item.width} height={item.height} class={`w-full h-full object-cover aspect-video lg:aspect-auto ${item.imgPosition ?? ''}`} loading="lazy" decoding="async" />
-                </picture>
+          <div class="js-fade-in flex flex-col bg-white rounded-lg border border-warm-200 overflow-hidden" style={`transition-delay: ${i * 100}ms`}>
+            <picture class="block">
+              <source type="image/webp" srcset={url(item.image.replace(/\.jpg$/, '.webp'))} />
+              <img src={url(item.image)} alt={item.alt} width={item.width} height={item.height} class="w-full aspect-[4/3] object-cover" loading="lazy" decoding="async" />
+            </picture>
+            <div class="flex flex-col flex-1 p-5 md:p-6">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="inline-block text-[11px] text-white font-bold bg-gold-500 px-3 py-1 rounded-full tracking-wider shrink-0">
+                  {item.badge}
+                </span>
+                <h3 class="text-lg md:text-xl font-bold text-navy-800">{item.title}</h3>
               </div>
-              <div class="p-6 md:p-8">
-                <div class="flex items-center gap-3 mb-3">
-                  <span class="inline-block text-[11px] text-white font-bold bg-gold-500 px-3 py-1 rounded-full tracking-wider">
-                    {item.badge}
-                  </span>
-                  <h3 class="text-lg md:text-xl font-bold text-navy-800">{item.title}</h3>
-                </div>
-                <p class="text-sm text-warm-700 leading-relaxed mb-4">{item.description}</p>
-                <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                  {item.points.map((p) => (
-                    <li class="flex items-start gap-2 text-sm text-warm-700">
-                      <svg class="w-4 h-4 text-gold-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                      {p}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              <p class="text-sm text-warm-700 leading-relaxed mb-5">{item.description}</p>
+              <ul class="mt-auto space-y-2 pt-4 border-t border-warm-200">
+                {item.points.map((p) => (
+                  <li class="flex items-start gap-2 text-sm text-warm-700">
+                    <svg class="w-4 h-4 text-gold-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    {p}
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         ))}
