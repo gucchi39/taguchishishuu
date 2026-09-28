@@ -20,7 +20,6 @@ const highlights = [
     alt: 'ローランド製UVプリンター（VersaUV LEF-300）の操作パネル',
     width: 1477,
     height: 1109,
-    imgPosition: 'object-top', // 横長トリミング時にロゴ「VersaUV」が切れないよう上寄せ
     description: 'UV硬化インクを使用し、立体物やさまざまな素材に直接プリントできる最新機器。平面だけでなく、グッズやノベルティなど多様な製品への加工を可能にしています。',
     points: ['立体物・グッズに直接プリント', '多素材対応（金属・木・アクリル等）', 'オリジナルグッズ製作に最適', '高精細なフルカラー表現'],
   },
@@ -139,7 +138,7 @@ import { url } from '../utils/paths'
           <div class="js-fade-in flex flex-col bg-white rounded-lg border border-warm-200 overflow-hidden" style={`transition-delay: ${i * 100}ms`}>
             <picture class="block">
               <source type="image/webp" srcset={url(item.image.replace(/\.jpg$/, '.webp'))} />
-              <img src={url(item.image)} alt={item.alt} width={item.width} height={item.height} class={`w-full aspect-[4/3] object-cover ${item.imgPosition ?? ''}`} loading="lazy" decoding="async" />
+              <img src={url(item.image)} alt={item.alt} width={item.width} height={item.height} class="w-full aspect-[4/3] object-cover" loading="lazy" decoding="async" />
             </picture>
             <div class="flex flex-col flex-1 p-5 md:p-6">
               <div class="flex items-center gap-3 mb-3">
