@@ -6,8 +6,8 @@ const highlights = [
   {
     title: 'DTFプリンター',
     badge: '最新設備',
-    image: '/images/facility/dryer.jpg',
-    alt: 'プリント加工で使うコンベア式乾燥機',
+    image: '/images/facility/dtf-printer.jpg',
+    alt: 'ミマキ製DTFプリンター（TxF150-75）',
     width: 1109,
     height: 1477,
     description: 'フルカラー・小ロットに対応するDTF（Direct to Film）転写プリンター。版が不要なため、1枚からでもフルカラーの精細なプリントが可能。従来のカットプリントやデジタルプリントに比べ、発色・耐久性・風合いが大幅に向上しています。',
@@ -16,10 +16,11 @@ const highlights = [
   {
     title: 'UVプリンター',
     badge: '最新設備',
-    image: '/images/facility/heat-press-flat.jpg',
-    alt: '平台の熱プレス機',
+    image: '/images/facility/uv-printer.jpg',
+    alt: 'ローランド製UVプリンター（VersaUV LEF-300）の操作パネル',
     width: 1477,
     height: 1109,
+    imgPosition: 'object-top', // 横長トリミング時にロゴ「VersaUV」が切れないよう上寄せ
     description: 'UV硬化インクを使用し、立体物やさまざまな素材に直接プリントできる最新機器。平面だけでなく、グッズやノベルティなど多様な製品への加工を可能にしています。',
     points: ['立体物・グッズに直接プリント', '多素材対応（金属・木・アクリル等）', 'オリジナルグッズ製作に最適', '高精細なフルカラー表現'],
   },
@@ -140,7 +141,7 @@ import { url } from '../utils/paths'
               <div class="overflow-hidden">
                 <picture>
                   <source type="image/webp" srcset={url(item.image.replace(/\.jpg$/, '.webp'))} />
-                  <img src={url(item.image)} alt={item.alt} width={item.width} height={item.height} class="w-full h-full object-cover aspect-video lg:aspect-auto" loading="lazy" decoding="async" />
+                  <img src={url(item.image)} alt={item.alt} width={item.width} height={item.height} class={`w-full h-full object-cover aspect-video lg:aspect-auto ${item.imgPosition ?? ''}`} loading="lazy" decoding="async" />
                 </picture>
               </div>
               <div class="p-6 md:p-8">

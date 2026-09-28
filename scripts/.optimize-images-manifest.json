@@ -78,5 +78,13 @@
   "facility/wappen-sample.jpg": {
     "jpegHash": "a0b5c796dafa372462657b95991eac257326c1448cc6cf8c818cfdeb9482126d",
     "webpHash": "e8bd94a3d4a5fc9950f5089f86165bea7994bb2f1949aafe59c0d6f154209e2e"
+  },
+  "facility/dtf-printer.jpg": {
+    "jpegHash": "b2604c5dff7ce0b9ccbbe77c42f8ec06916e310dee0bb05ac8c4ca0fc2373e1a",
+    "webpHash": "8dc150ec178c18db510d8e781852231f94892743913cd0835ed66a05e3a49252"
+  },
+  "facility/uv-printer.jpg": {
+    "jpegHash": "8012b7803f501ea570e6a1c93989c9a381dddf559eded6a47aaff44466b73a14",
+    "webpHash": "baec94282d76074ffb0d34b741cf399705b2044a8edf7df4992e67449f108df1"
   }
 }
