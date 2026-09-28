@@ -28,9 +28,12 @@ function normalizeDate(input: string): string | null {
   const m = input.normalize('NFKC').trim().match(/^(\d{4})\D(\d{1,2})\D(\d{1,2})$/)
   if (!m) return null
   const [, y, mo, d] = m
+  const year = Number(y)
   const month = Number(mo)
   const day = Number(d)
   if (month < 1 || month > 12 || day < 1 || day > 31) return null
+  const parsed = new Date(year, month - 1, day)
+  if (parsed.getFullYear() !== year || parsed.getMonth() !== month - 1 || parsed.getDate() !== day) return null
   return `${y}-${pad(month)}-${pad(day)}`
 }
 

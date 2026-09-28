@@ -89,7 +89,7 @@ import { url } from '../utils/paths'
     <div class="absolute inset-0">
       <picture>
         <source type="image/webp" srcset={url("/images/facility/factory-work-02.webp")} />
-        <img src={url("/images/facility/factory-work-02.jpg")} alt="" width="1920" height="1080" class="w-full h-full object-cover" loading="lazy" decoding="async" />
+        <img src={url("/images/facility/factory-work-02.jpg")} alt="" width="1920" height="1080" class="w-full h-full object-cover" loading="eager" fetchpriority="high" decoding="async" />
       </picture>
       <div class="absolute inset-0 bg-navy-800/70"></div>
     </div>
