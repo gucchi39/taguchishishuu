@@ -21,6 +21,7 @@
 ## 作業完了時の報告（必須）
 - commit & push が終わったら、**毎回必ず**公開URLを提示する: https://gucchi39.github.io/taguchishishuu/
 - 公開URLに反映されるのは main ブランチのみ（GitHub Actions が main への push で自動デプロイ）。作業ブランチで push した場合は「main に取り込むと反映される」旨と PR の URL を併記する
+- URL の書き方: URL は1行に単独で置き、直後に全角カッコや文字を続けない（リンク範囲の誤判定を防ぐ）。PR は「#番号」と書かず「PR 8」のように書き、リンクは URL の1か所だけにする
 
 ## 運用メモ
 - 問い合わせフォームの送信先メール: irai@ekinosoba.co.jp
