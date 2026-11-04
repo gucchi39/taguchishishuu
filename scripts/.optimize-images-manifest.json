@@ -60,8 +60,8 @@
     "settings": "{\"scriptVersion\":2,\"defaultMaxEdge\":1600,\"maxEdgeOverrides\":{\"facility/factory-work-02.jpg\":1920},\"jpegQuality\":80,\"webpQuality\":78}"
   },
   "facility/factory-work-02.jpg": {
-    "jpegHash": "3f28ecd53fbb09d937837edd0e6aebf8f37361a4cc51ec9e8772ad2256aa742a",
-    "webpHash": "c8a2d4de8cbf7afd986bc79b2d60f2dd7e1befe155c667c93252c7ff9e76854b",
+    "jpegHash": "dee62e14a93bd5ea7b7015ff9178fecdd36aa9cf147e4e5161b254dc141fab26",
+    "webpHash": "4ab497bbd4aaba4509970d6dde010f457fce1a609f3b3f49dadbef880e7ce20b",
     "settings": "{\"scriptVersion\":2,\"defaultMaxEdge\":1600,\"maxEdgeOverrides\":{\"facility/factory-work-02.jpg\":1920},\"jpegQuality\":80,\"webpQuality\":78}"
   },
   "facility/happy-japan.jpg": {
