@@ -60,8 +60,8 @@
     "settings": "{\"scriptVersion\":2,\"defaultMaxEdge\":1600,\"maxEdgeOverrides\":{\"facility/factory-work-02.jpg\":1920},\"jpegQuality\":80,\"webpQuality\":78}"
   },
   "facility/factory-work-02.jpg": {
-    "jpegHash": "dee62e14a93bd5ea7b7015ff9178fecdd36aa9cf147e4e5161b254dc141fab26",
-    "webpHash": "4ab497bbd4aaba4509970d6dde010f457fce1a609f3b3f49dadbef880e7ce20b",
+    "jpegHash": "6ddb5fa351d374c590d6b67dc43f02d3f6eabd3c764b0b8b7dad13edd61fd5e8",
+    "webpHash": "daed6e012f96bdc4822600a367e03d9022ebb56d82ef242e14e4877a2afce268",
     "settings": "{\"scriptVersion\":2,\"defaultMaxEdge\":1600,\"maxEdgeOverrides\":{\"facility/factory-work-02.jpg\":1920},\"jpegQuality\":80,\"webpQuality\":78}"
   },
   "facility/happy-japan.jpg": {
@@ -105,8 +105,8 @@
     "settings": "{\"scriptVersion\":2,\"defaultMaxEdge\":1600,\"maxEdgeOverrides\":{\"facility/factory-work-02.jpg\":1920},\"jpegQuality\":80,\"webpQuality\":78}"
   },
   "facility/uv-printer.jpg": {
-    "jpegHash": "8012b7803f501ea570e6a1c93989c9a381dddf559eded6a47aaff44466b73a14",
-    "webpHash": "baec94282d76074ffb0d34b741cf399705b2044a8edf7df4992e67449f108df1",
+    "jpegHash": "8cd8aeacb92a281a84d3b07e3468eaae25f698aa2a421e934bbe1c36e6735a0e",
+    "webpHash": "e928d43151d8b682de72cf888245db7f94c3230e150f8a58ccb63ad44f204a94",
     "settings": "{\"scriptVersion\":2,\"defaultMaxEdge\":1600,\"maxEdgeOverrides\":{\"facility/factory-work-02.jpg\":1920},\"jpegQuality\":80,\"webpQuality\":78}"
   }
 }
