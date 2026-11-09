@@ -141,18 +141,18 @@ const endpoint = formspreeId ? `https://formspree.io/f/${formspreeId}` : ''
       const raw = new FormData(form)
       const categoryLabel = category.value ? category.options[category.selectedIndex].text : ''
       // 通知メールの見出しが日本語になるよう、項目名を日本語にして送る（空欄の項目は送らない）
+      // メールアドレスだけは、Formspree が返信先として使う名前「email」のまま送る
       const data = new FormData()
       const fields: [string, string][] = [
         ['お名前', String(raw.get('name') ?? '')],
         ['ふりがな', String(raw.get('kana') ?? '')],
-        ['メールアドレス', String(raw.get('email') ?? '')],
+        ['email', String(raw.get('email') ?? '')],
         ['電話番号', String(raw.get('tel') ?? '')],
         ['ご希望の内容', categoryLabel],
         ['希望職種', String(raw.get('position') ?? '')],
         ['メッセージ', String(raw.get('message') ?? '')],
       ]
       for (const [label, value] of fields) if (value.trim()) data.set(label, value)
-      data.set('_replyto', String(raw.get('email') ?? ''))
       data.set('_gotcha', String(raw.get('_gotcha') ?? ''))
       data.set('_subject', `【採用のお問い合わせ】${categoryLabel || 'その他'}／${raw.get('name')}`)
       const originalHtml = submitButton.innerHTML
