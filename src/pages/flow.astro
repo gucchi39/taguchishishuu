@@ -41,31 +41,40 @@ const steps = [
   },
 ].map((step, i) => ({ ...step, num: String(i + 1).padStart(2, '0') }))
 
-const examples = [
+// ご注文事例を数量（ロット）ごとに3段で見せる。事例を追加するときは該当する段の items に足す。
+// ※金額・納期の日数は掲載しない
+const lots = [
   {
-    title: '子どもの体操着にお名前を入れたい',
-    detail: '個人名刺繍 1枚（1.2cm角）',
-    tag: 'お名前入れ',
+    en: 'Small Lot',
+    label: '小ロット',
+    range: '1枚〜',
+    items: [
+      { title: '子どもの体操着にお名前を入れたい', detail: '個人名刺繍 1枚（1.2cm角）', tag: 'お名前入れ' },
+      { title: '草野球チーム15枚にチーム名刺繍', detail: '文字1段 縦2cm×横10cm 15枚', tag: 'チーム・団体' },
+    ],
   },
   {
-    title: '草野球チーム15枚にチーム名刺繍',
-    detail: '文字1段 縦2cm×横10cm 15枚',
-    tag: 'チーム・団体',
+    en: 'Medium Lot',
+    label: '中ロット',
+    range: '数十枚',
+    items: [
+      { title: 'ユニフォーム30枚にロゴ入れ', detail: '左胸ロゴ 縦5cm×横10cm 30枚', tag: 'ロゴ刺繍' },
+      { title: '作業着50枚に会社名刺繍', detail: '会社名5文字 1.2cm角 50枚', tag: 'ユニフォーム' },
+      { title: 'イベントスタッフTシャツ50枚', detail: 'シルクスクリーン 30×100mm 50枚', tag: 'プリント' },
+    ],
   },
   {
-    title: '作業着50枚に会社名刺繍',
-    detail: '会社名5文字 1.2cm角 50枚',
-    tag: 'ユニフォーム',
-  },
-  {
-    title: 'ユニフォーム30枚にロゴ入れ',
-    detail: '左胸ロゴ 縦5cm×横10cm 30枚',
-    tag: 'ロゴ刺繍',
-  },
-  {
-    title: 'イベントスタッフTシャツ50枚',
-    detail: 'シルクスクリーン 30×100mm 50枚',
-    tag: 'プリント',
+    en: 'Large Lot',
+    label: '大ロット',
+    range: '数百〜数千枚',
+    items: [
+      {
+        title: 'イベント用Tシャツ 2,000枚',
+        detail: 'シルクスクリーン印刷 2,000枚',
+        tag: 'プリント',
+        note: 'シルクスクリーンの手動機と自動機を併用し、大量のご注文にも対応しました。',
+      },
+    ],
   },
 ]
 
@@ -154,26 +163,61 @@ import { url } from '../utils/paths'
     </div>
   </section>
 
-  <!-- Order examples -->
-  <section class="py-section-sm md:py-section">
+  <!-- Order examples（小・中・大ロット） -->
+  <section id="examples" class="py-section-sm md:py-section">
     <div class="mx-auto max-w-[1000px] px-4 md:px-8">
       <SectionHeading en="Examples" ja="こんなご注文を承っています" />
-      <p class="text-center text-warm-600 text-sm -mt-8 mb-10">
-        1枚からでもお気軽にお問い合わせください。
+      <p class="text-center text-warm-600 text-sm -mt-8 mb-8 leading-relaxed">
+        1枚のお名前入れから、2,000枚規模の大量のご注文まで。<br class="hidden md:block" />数量に合わせて対応しています。
       </p>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {examples.map((ex, i) => (
-          <div class="js-fade-in bg-white rounded-lg border border-warm-200 p-5 hover:shadow-md hover:border-gold-300 transition-all duration-200" style={`transition-delay: ${i * 60}ms`}>
-            <div class="flex items-center gap-2 mb-3">
-              <span class="inline-block text-[11px] text-gold-700 font-medium bg-gold-50 px-2 py-0.5 rounded-full">{ex.tag}</span>
+      <!-- ロットのスケール（ひと目で分かる帯） -->
+      <ol class="js-fade-in grid grid-cols-3 gap-1.5 md:gap-2 mb-10 md:mb-12" aria-label="対応できる数量の目安">
+        {lots.map((lot, i) => (
+          <li class:list={[
+            'rounded-lg px-2 py-3 md:py-4 text-center',
+            i === 0 && 'bg-gold-50 border border-gold-200',
+            i === 1 && 'bg-gold-100 border border-gold-300',
+            i === 2 && 'bg-navy-800 border border-navy-800',
+          ]}>
+            <p class:list={['text-xs md:text-sm font-medium', i === 2 ? 'text-gold-300' : 'text-gold-700']}>{lot.label}</p>
+            <p class:list={['font-bold text-sm md:text-lg mt-0.5', i === 2 ? 'text-white' : 'text-navy-800']}>{lot.range}</p>
+          </li>
+        ))}
+      </ol>
+
+      <div class="space-y-10 md:space-y-12">
+        {lots.map((lot) => (
+          <div>
+            <div class="js-fade-in flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-4 pb-2 border-b-2 border-gold-300">
+              <span class="text-xs text-warm-500 font-light tracking-[0.2em] uppercase">{lot.en}</span>
+              <h3 class="heading-accent text-lg md:text-xl text-navy-800">{lot.label}</h3>
+              <span class="text-sm md:text-base font-bold text-gold-700">{lot.range}</span>
             </div>
-            <h3 class="text-sm font-bold text-navy-800 mb-3 leading-snug">{ex.title}</h3>
-            <div class="space-y-1.5 text-xs text-warm-600">
-              <div class="flex justify-between">
-                <span>内容</span>
-                <span class="font-medium text-warm-800">{ex.detail}</span>
-              </div>
+            <!-- 件数に合わせて列数を変え、行の右側に空きが出ないようにする -->
+            <div class:list={[
+              'grid grid-cols-1 gap-4',
+              lot.items.length === 2 && 'md:grid-cols-2',
+              lot.items.length >= 3 && 'md:grid-cols-3',
+            ]}>
+              {lot.items.map((ex, i) => (
+                <div
+                  class="js-fade-in bg-white rounded-lg border border-warm-200 p-5 hover:shadow-md hover:border-gold-300 transition-all duration-200"
+                  style={`transition-delay: ${i * 60}ms`}
+                >
+                  <div class="flex items-center gap-2 mb-3">
+                    <span class="inline-block text-[11px] text-gold-700 font-medium bg-gold-50 px-2 py-0.5 rounded-full">{ex.tag}</span>
+                  </div>
+                  <h4 class="text-sm md:text-base font-bold text-navy-800 mb-3 leading-snug">{ex.title}</h4>
+                  <div class="flex justify-between gap-4 text-xs text-warm-600">
+                    <span class="shrink-0">内容</span>
+                    <span class="font-medium text-warm-800 text-right">{ex.detail}</span>
+                  </div>
+                  {ex.note && (
+                    <p class="mt-3 pt-3 border-t border-warm-100 text-sm text-warm-700 leading-relaxed">{ex.note}</p>
+                  )}
+                </div>
+              ))}
             </div>
           </div>
         ))}
@@ -182,7 +226,7 @@ import { url } from '../utils/paths'
   </section>
 
   <!-- For individuals -->
-  <section class="py-section-sm md:py-section bg-gold-50">
+  <section id="first-time" class="py-section-sm md:py-section bg-gold-50">
     <div class="mx-auto max-w-[800px] px-4 md:px-8">
       <div class="js-fade-in grid grid-cols-1 md:grid-cols-[1fr_auto] gap-8 items-center">
         <div>
@@ -193,8 +237,12 @@ import { url } from '../utils/paths'
               もちろん承ります。1枚からお気軽にどうぞ。
             </p>
             <p>
-              <strong class="text-navy-800">データがなくても大丈夫です。</strong>手書きのラフスケッチや、
-              スマホで撮った写真からでもデザインデータを作成できます。
+              <strong class="text-navy-800">まだ内容が固まっていない段階からでも、ご相談を承ります。</strong>
+              「こんなことをしたい」というイメージを、お気軽にお聞かせください。
+            </p>
+            <p>
+              <strong class="text-navy-800">工場へのご来店でのご相談も可能です。</strong>
+              営業時間内にお越しください。事前にお電話いただくとスムーズです。
             </p>
             <p>
               <strong class="text-navy-800">来店でのお渡しも可能です。</strong>JR新治駅から徒歩2分。
