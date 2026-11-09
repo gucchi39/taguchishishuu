@@ -2,14 +2,21 @@
 import Layout from '../layouts/Layout.astro'
 import SectionHeading from '../components/SectionHeading.astro'
 
-const comparison = [
-  { item: '質感', embroidery: '立体的・高級感', print: 'フラット・鮮やか' },
-  { item: '耐久性', embroidery: '非常に高い（洗濯に強い）', print: '高い（加工方法による）' },
-  { item: '色数', embroidery: '最大15色程度', print: 'フルカラー対応可' },
-  { item: 'コスト（少量）', embroidery: 'やや高め', print: 'DTFなら低コスト' },
-  { item: 'コスト（大量）', embroidery: '数量が多いほど割安', print: 'シルクスクリーンが割安' },
-  { item: '最小ロット', embroidery: '1枚〜', print: '1枚〜（DTF）/ 30枚〜（シルク）' },
-  { item: '向いている用途', embroidery: 'ユニフォーム・作業着・キャップ', print: 'Tシャツ・タオル・グッズ' },
+// 刺繍とプリントは対立するものではなく、1着の中で組み合わせることもあるため、
+// 優劣の比較ではなく「それぞれの魅力」として紹介する（内容はサイト内の既存の記載から）
+const features = [
+  {
+    en: 'Embroidery',
+    title: '刺繍の魅力',
+    lead: '糸で布地に縫い込む刺繍は、ユニフォーム・作業着・キャップへのロゴやお名前入れを得意としています。',
+    points: ['立体感と高級感のある仕上がり', '糸そのものが素材に定着し、洗濯を繰り返しても色落ちしにくい', '多色対応（最大15色）', '小ロット1枚〜大量生産まで'],
+  },
+  {
+    en: 'Print',
+    title: 'プリントの魅力',
+    lead: 'DTF・シルクスクリーン・UVプリンターを保有。用途・数量・素材に応じて最適なプリント方法をご提案します。',
+    points: ['DTFプリント：版が不要で、1枚からフルカラーに対応', 'シルクスクリーン：量産・高耐久', 'UVプリント：立体物・グッズにも直接プリント', '転写プリントにも対応'],
+  },
 ]
 
 const useCases = [
@@ -50,8 +57,10 @@ const services = [
     en: 'Patch',
     image: '/images/facility/wappen-sample.jpg',
     alt: 'プリントワッペンのサンプル見本',
-    width: 1600,
-    height: 900,
+    width: 900,
+    height: 1600,
+    // 縦長写真のため、16:9 ではなく縦長の枠で見本台紙が収まるように表示する
+    imageClass: 'aspect-[4/5] object-[center_65%] max-w-md mx-auto',
     description: 'レーザーカッターによるヒートカットワッペン、ロック仕上げワッペンなど、多様な仕様に対応します。',
     features: ['ヒートカット（レーザー加工）', 'ロック仕上げ', 'アイロン接着加工', 'オリジナルデザイン対応'],
   },
@@ -66,15 +75,6 @@ const services = [
     description: 'ユニフォームや作業着への個人名などのネーム刺繍を、単頭式刺繍機で1枚ずつ丁寧に仕上げます。織りネーム・プリントネーム・下げ札など、ブランドの顔となるネームタグの製作も承ります。',
     features: ['個人名・役職名のネーム刺繍', '織りネーム・プリントネーム', '下げ札・タグ', 'サイズ表示・品質表示'],
   },
-]
-
-const positions = [
-  { name: '左胸', desc: 'ロゴ・社名（最も人気）', size: '~8cm' },
-  { name: '右胸', desc: '個人名・役職名', size: '~8cm' },
-  { name: '背中（上部）', desc: '社名・チーム名', size: '~12cm' },
-  { name: '背中（大）', desc: '大型ロゴ・デザイン', size: '~25cm' },
-  { name: '袖', desc: 'ワッペン・ロゴ', size: '~8cm' },
-  { name: 'キャップ正面', desc: 'ロゴ・チーム名', size: '~6cm' },
 ]
 
 import { url } from '../utils/paths'
@@ -108,9 +108,6 @@ import { url } from '../utils/paths'
           {svc.title}
         </a>
       ))}
-      <a href="#position" class="shrink-0 px-4 py-2 text-sm text-warm-700 hover:text-navy-800 hover:bg-white rounded transition-colors">
-        加工位置
-      </a>
     </div>
   </nav>
 
@@ -122,7 +119,7 @@ import { url } from '../utils/paths'
           <div class={i % 2 === 1 ? 'lg:order-2' : ''}>
             <picture>
               <source type="image/webp" srcset={url(svc.image.replace(/\.jpg$/, '.webp'))} />
-              <img src={url(svc.image)} alt={svc.alt} width={svc.width} height={svc.height} class="w-full aspect-video object-cover rounded-lg" loading="lazy" decoding="async" />
+              <img src={url(svc.image)} alt={svc.alt} width={svc.width} height={svc.height} class={`w-full object-cover rounded-lg ${svc.imageClass ?? 'aspect-video'}`} loading="lazy" decoding="async" />
             </picture>
           </div>
           <div class={i % 2 === 1 ? 'lg:order-1' : ''}>
@@ -152,95 +149,42 @@ import { url } from '../utils/paths'
     </section>
   ))}
 
-  <!-- ============================================
-       POSITION GUIDE (加工位置ガイド)
-       ============================================ -->
-  <section id="position" class="py-section-sm md:py-section">
+  <!-- Features: 刺繍とプリント、それぞれの魅力 -->
+  <section id="features" class="py-section-sm md:py-section">
     <div class="mx-auto max-w-[1000px] px-4 md:px-8">
-      <SectionHeading en="Position Guide" ja="よくある加工位置" />
-      <p class="text-center text-warm-600 text-sm -mt-8 mb-10">
-        ユニフォーム・作業着への刺繍・プリントでよくご依頼いただく加工位置です。
+      <SectionHeading en="Features" ja="刺繍とプリント、それぞれの魅力" />
+      <p class="text-center text-warm-600 text-sm -mt-8 mb-10 leading-relaxed">
+        刺繍とプリントは、どちらか一方を選ぶものではありません。<br class="hidden md:block" />1着の中で組み合わせて使うこともできます。
       </p>
-
-      <div class="js-fade-in grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-8 items-start">
-        <!-- Uniform silhouette (SVG) -->
-        <div class="mx-auto lg:mx-0">
-          <svg viewBox="0 0 200 280" class="w-56 h-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- Body -->
-            <path d="M60 50 L40 60 L20 55 L15 90 L35 95 L35 250 L80 250 L80 160 L120 160 L120 250 L165 250 L165 95 L185 90 L180 55 L160 60 L140 50" fill="#E0EDF9" stroke="#1B365D" stroke-width="2"/>
-            <!-- Collar -->
-            <path d="M60 50 Q80 35 100 42 Q120 35 140 50 Q130 55 100 48 Q70 55 60 50" fill="#BDDBF2" stroke="#1B365D" stroke-width="1.5"/>
-            <!-- Left chest marker -->
-            <circle cx="75" cy="85" r="12" fill="#C9963A" fill-opacity="0.3" stroke="#C9963A" stroke-width="1.5" stroke-dasharray="4 2"/>
-            <text x="75" y="89" text-anchor="middle" fill="#1B365D" font-size="8" font-weight="600">左胸</text>
-            <!-- Right chest marker -->
-            <circle cx="125" cy="85" r="12" fill="#C9963A" fill-opacity="0.15" stroke="#C9963A" stroke-width="1" stroke-dasharray="4 2"/>
-            <text x="125" y="89" text-anchor="middle" fill="#8A7D72" font-size="7">右胸</text>
-            <!-- Sleeve markers -->
-            <circle cx="30" cy="80" r="10" fill="#C9963A" fill-opacity="0.15" stroke="#C9963A" stroke-width="1" stroke-dasharray="4 2"/>
-            <text x="30" y="83" text-anchor="middle" fill="#8A7D72" font-size="6">袖</text>
-            <!-- Back upper -->
-            <rect x="70" y="110" width="60" height="15" rx="3" fill="#5A8FCC" fill-opacity="0.2" stroke="#5A8FCC" stroke-width="1" stroke-dasharray="4 2"/>
-            <text x="100" y="121" text-anchor="middle" fill="#234578" font-size="7">背中上</text>
-            <!-- Back large -->
-            <rect x="60" y="135" width="80" height="40" rx="4" fill="#5A8FCC" fill-opacity="0.15" stroke="#5A8FCC" stroke-width="1" stroke-dasharray="4 2"/>
-            <text x="100" y="159" text-anchor="middle" fill="#234578" font-size="8">背中 大</text>
-          </svg>
-        </div>
-
-        <!-- Position details -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          {positions.map((pos) => (
-            <div class="bg-warm-50 rounded-lg p-4 border border-warm-200">
-              <div class="flex items-center gap-2 mb-1">
-                <span class="w-2 h-2 rounded-full bg-gold-500"></span>
-                <h4 class="font-bold text-navy-800 text-sm">{pos.name}</h4>
-                <span class="text-xs text-warm-500 ml-auto">{pos.size}</span>
-              </div>
-              <p class="text-xs text-warm-600">{pos.desc}</p>
-            </div>
-          ))}
-        </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+        {features.map((item, i) => (
+          <div class="js-fade-in flex flex-col bg-white rounded-lg border border-warm-200 p-6 md:p-8" style={`transition-delay: ${i * 100}ms`}>
+            <span class="text-xs text-warm-500 font-light tracking-[0.2em] uppercase">{item.en}</span>
+            <h3 class="heading-accent text-lg md:text-xl text-navy-800 mt-1 mb-3">
+              <span class="gold-underline">{item.title}</span>
+            </h3>
+            <p class="text-sm text-warm-700 leading-relaxed mb-5">{item.lead}</p>
+            <ul class="space-y-2 pt-4 border-t border-warm-200">
+              {item.points.map((p) => (
+                <li class="flex items-start gap-2 text-sm text-warm-700">
+                  <svg class="w-5 h-5 text-gold-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  {p}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
       </div>
-
-      <p class="text-center text-xs text-warm-500 mt-6">
-        上記以外の位置にも対応可能です。ご希望をお問い合わせ時にお伝えください。
-      </p>
-    </div>
-  </section>
-
-  <!-- Comparison: Embroidery vs Print -->
-  <section class="py-section-sm md:py-section bg-warm-50">
-    <div class="mx-auto max-w-[900px] px-4 md:px-8">
-      <SectionHeading en="Comparison" ja="刺繍 vs プリント 比較表" />
-      <div class="js-fade-in bg-white rounded-lg border border-warm-200 overflow-x-auto">
-        <table class="w-full text-sm min-w-[500px]">
-          <thead>
-            <tr class="bg-navy-800 text-white">
-              <th class="px-4 py-3 text-left font-medium w-28"></th>
-              <th class="px-4 py-3 text-left font-medium">刺繍</th>
-              <th class="px-4 py-3 text-left font-medium">プリント</th>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-warm-100">
-            {comparison.map((row) => (
-              <tr class="hover:bg-warm-50 transition-colors">
-                <td class="px-4 py-3 font-medium text-navy-800">{row.item}</td>
-                <td class="px-4 py-3 text-warm-700">{row.embroidery}</td>
-                <td class="px-4 py-3 text-warm-700">{row.print}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-      <p class="text-center text-sm text-warm-600 mt-4">
-        どちらが最適かわからない場合も、お気軽にご相談ください。最適な加工方法をご提案します。
+      <p class="text-center text-sm text-warm-600 mt-6">
+        どの加工が合うかわからない場合も、お気軽にご相談ください。用途に合わせて最適な加工方法をご提案します。
       </p>
     </div>
   </section>
 
   <!-- Use Cases -->
-  <section class="py-section-sm md:py-section">
+  <section class="py-section-sm md:py-section bg-warm-50">
     <div class="mx-auto max-w-[1200px] px-4 md:px-8">
       <SectionHeading en="Use Cases" ja="こんな用途に使えます" />
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
