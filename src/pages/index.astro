@@ -2,8 +2,6 @@
 import Layout from '../layouts/Layout.astro'
 import SectionHeading from '../components/SectionHeading.astro'
 import Philosophy from '../components/Philosophy.astro'
-import Testimonials from '../components/Testimonials.astro'
-import Clients from '../components/Clients.astro'
 
 const strengths = [
   {
@@ -29,28 +27,28 @@ const strengths = [
   },
 ]
 
+// 加工サービスは「刺繍」と「プリント」の2本柱。
+// ネーム（名前入れ）・帽子への刺繍・ワッペン製作などは刺繍加工の中の種類として tags に並べる。
 const services = [
   {
     title: '刺繍加工',
-    description: 'ユニフォーム・作業着へのロゴ刺繍、チーム名入れなど。立体感と高級感のある仕上がりが特長です。',
+    en: 'Embroidery',
+    href: '/service#embroidery',
+    description: 'ユニフォーム・作業着へのロゴ刺繍から、お名前のネーム入れ、帽子への刺繍、ワッペン製作まで。立体感と高級感のある仕上がりが特長です。',
+    tags: ['ロゴ刺繍', 'ネーム（名前入れ）', '帽子への刺繍', 'ワッペン製作', '織りネーム・タグ'],
     image: '/images/facility/embroidery-line.jpg',
     alt: 'バルダン多頭式刺繍機が並ぶ刺繍加工ライン',
     width: 1109,
     height: 1477,
   },
   {
-    title: 'ネーム加工',
-    description: 'ユニフォームへの個人名のネーム刺繍から、織りネーム・プリントネーム・下げ札の製作まで丁寧にお作りします。',
-    image: '/images/facility/happy-japan.jpg',
-    alt: 'ネーム刺繍に使う単頭式刺繍機（Happy Japan）',
-    width: 1109,
-    height: 1477,
-  },
-  {
     title: 'プリント加工',
-    description: 'シルクスクリーン・転写プリント・昇華プリントに対応。小ロットから大量生産まで柔軟に対応します。',
-    image: '/images/facility/dryer.jpg',
-    alt: 'プリント加工で使うコンベア式乾燥機',
+    en: 'Print',
+    href: '/service#print',
+    description: 'DTF・シルクスクリーン・UVプリンターを保有。用途・数量・素材に応じて最適なプリント方法をご提案します。',
+    tags: ['DTFプリント', 'シルクスクリーン', 'UVプリント', '転写プリント'],
+    image: '/images/facility/dtf-printer.jpg',
+    alt: 'ミマキ製DTFプリンター（TxF150-75）',
     width: 1109,
     height: 1477,
   },
@@ -188,11 +186,11 @@ import { url } from '../utils/paths'
     <div class="mx-auto max-w-[1200px] px-4 md:px-8">
       <SectionHeading en="Service" ja="加工サービス" />
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 items-stretch">
         {services.map((item, i) => (
           <a
-            href={url("/service")}
-            class="js-fade-in group block bg-white rounded-lg border border-warm-200 overflow-hidden hover:shadow-md hover:-translate-y-0.5 hover:border-gold-300 transition-all duration-200"
+            href={url(item.href)}
+            class="js-fade-in group flex flex-col bg-white rounded-lg border border-warm-200 overflow-hidden hover:shadow-md hover:-translate-y-0.5 hover:border-gold-300 transition-all duration-200"
             style={`transition-delay: ${i * 100}ms`}
           >
             <div class="aspect-video overflow-hidden">
@@ -209,13 +207,24 @@ import { url } from '../utils/paths'
                 />
               </picture>
             </div>
-            <div class="p-6">
-              <h3 class="text-lg font-bold text-navy-800 mb-2 group-hover:text-navy-600 transition-colors">
+            <div class="flex flex-col flex-1 p-6 md:p-8">
+              <span class="text-xs text-warm-500 font-light tracking-[0.2em] uppercase">{item.en}</span>
+              <h3 class="text-xl md:text-2xl font-bold text-navy-800 mt-1 mb-3 group-hover:text-navy-600 transition-colors">
                 {item.title}
               </h3>
               <p class="text-sm text-warm-600 leading-relaxed">{item.description}</p>
-              <span class="inline-flex items-center text-sm text-gold-600 font-medium mt-4 group-hover:text-gold-500 transition-colors">
-                詳細を見る
+              <div class="mt-5 pt-5 border-t border-warm-200">
+                <p class="text-xs font-medium text-gold-700 mb-3">こんな加工ができます</p>
+                <ul class="flex flex-wrap gap-2">
+                  {item.tags.map((tag) => (
+                    <li class="inline-block text-xs md:text-sm text-navy-800 bg-navy-50 border border-navy-100 px-3 py-1 rounded-full">
+                      {tag}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <span class="mt-auto pt-6 inline-flex items-center text-sm text-gold-600 font-medium group-hover:text-gold-500 transition-colors">
+                {item.title}の詳細を見る
                 <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
                 </svg>
@@ -327,16 +336,6 @@ import { url } from '../utils/paths'
       </div>
     </div>
   </section>
-
-  <!-- ============================================
-       TESTIMONIALS (お客様の声) ※内容は src/data/trust.ts
-       ============================================ -->
-  <Testimonials />
-
-  <!-- ============================================
-       CLIENTS (主な取引先・実績) ※内容は src/data/trust.ts
-       ============================================ -->
-  <Clients class="bg-warm-50" />
 
   <!-- ============================================
        EVENT (お知らせ・イベント)
