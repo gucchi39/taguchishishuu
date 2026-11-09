@@ -25,6 +25,7 @@
 
 ## 運用メモ
 - 問い合わせフォームの送信先メール: irai@ekinosoba.co.jp
+- フォームの送信方式は src/data/form.ts の formspreeId で切り替え（空ならメールアプリ方式、Formspree の ID を入れるとその場で送信）
 - かんたん見積もり（src/pages/_estimate.astro）と作品集（src/pages/_works.astro）は準備が整うまで一時非公開。公開時はファイル名の先頭の `_` を外し、Header/Footer のリンクを戻す
 - 休業日は src/data/calendar.ts、お客様の声・取引先・働く人の声は src/data/trust.ts を編集するだけで反映される
 - 写真を追加したら `npm run optimize-images` を実行する
