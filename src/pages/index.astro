@@ -3,27 +3,23 @@ import Layout from '../layouts/Layout.astro'
 import SectionHeading from '../components/SectionHeading.astro'
 import Philosophy from '../components/Philosophy.astro'
 
-const strengths = [
+const pillar = {
+  title: '刺繍もプリントも、まとめてお任せください',
+  description: '刺繍とプリントの両方を自社工場で行っています。1着に刺繍とプリントを組み合わせるご注文も、まとめて承ります。',
+}
+
+const supports = [
   {
-    number: '26',
-    unit: '台',
-    label: '加工設備',
-    description: '多頭機3台・単頭機11台の刺繍機、DTF・シルク・UVプリンター、熱プレス機・レーザー加工機を完備。',
-    icon: 'M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z M15 12a3 3 0 11-6 0 3 3 0 016 0z',
+    label: '設備',
+    description: '刺繍機（多頭機3台・単頭機8台）、プリント機（DTF・シルクスクリーン・UV）、熱プレス機、レーザー加工機をそろえています。',
   },
   {
-    number: '5',
-    unit: '種対応',
-    label: '加工方法',
-    description: '刺繍・プリント・ワッペン・ネーム・転写。ご要望に最適な加工をご提案。',
-    icon: 'M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42',
+    label: '人と技術',
+    description: '刺繍もプリントも、自社のスタッフが加工しています。',
   },
   {
-    number: '65',
-    unit: '年',
-    label: '創業からの歴史',
-    description: '1960年の創業以来、品質と信頼を積み重ねてきた確かな実績。',
-    icon: 'M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z',
+    label: '信頼',
+    description: '1960年の創業から65年、筑西市で加工を続けてきました。',
   },
 ]
 
@@ -32,9 +28,8 @@ const strengths = [
 const services = [
   {
     title: '刺繍加工',
-    en: 'Embroidery',
     href: '/service#embroidery',
-    description: 'ユニフォーム・作業着へのロゴ刺繍から、お名前のネーム入れ、帽子への刺繍、ワッペン製作まで。立体感と高級感のある仕上がりが特長です。',
+    description: 'ユニフォーム・作業着へのロゴ刺繍から、お名前のネーム入れ、帽子への刺繍、ワッペン製作まで。',
     tags: ['ロゴ刺繍', 'ネーム（名前入れ）', '帽子への刺繍', 'ワッペン製作', '織りネーム・タグ'],
     image: '/images/facility/embroidery-line.jpg',
     alt: 'バルダン多頭式刺繍機が並ぶ刺繍加工ライン',
@@ -43,10 +38,9 @@ const services = [
   },
   {
     title: 'プリント加工',
-    en: 'Print',
     href: '/service#print',
     description: 'DTF・シルクスクリーン・UVプリンターを保有。用途・数量・素材に応じて最適なプリント方法をご提案します。',
-    tags: ['DTFプリント', 'シルクスクリーン', 'UVプリント', '転写プリント'],
+    tags: ['DTFプリント', 'シルクスクリーン', 'UVプリント'],
     image: '/images/facility/dtf-printer.jpg',
     alt: 'ミマキ製DTFプリンター（TxF150-75）',
     width: 1109,
@@ -55,8 +49,8 @@ const services = [
 ]
 
 const stats = [
-  { number: '14', unit: '台', label: '刺繍機' },
-  { number: '3', unit: '台', label: 'プリンター' },
+  { number: '11', unit: '台', label: '刺繍機' },
+  { number: '4', unit: '台', label: 'プリント機' },
   { number: '7', unit: '台', label: '熱プレス機' },
   { number: '2', unit: '台', label: 'レーザー加工機' },
 ]
@@ -103,12 +97,12 @@ import { url } from '../utils/paths'
     <div class="relative z-10 mx-auto max-w-[1200px] px-4 md:px-8 py-20 md:py-28">
       <div class="max-w-2xl lg:max-w-3xl">
         <h1 class="heading-accent text-[1.5rem] sm:text-4xl md:text-[3.25rem] lg:text-6xl text-white leading-snug md:leading-tight mb-5 md:mb-6">
-          糸の一本、色の一刷りに、<br /><span class="whitespace-nowrap">65年</span>の技術と誇り
+          刺繍とプリント、<br /><span class="whitespace-nowrap">65年</span>の技術と誇り
         </h1>
         <div class="w-12 h-0.5 bg-gold-400 mb-5 md:mb-6"></div>
         <p class="text-base sm:text-lg md:text-xl text-white leading-relaxed mb-8 max-w-2xl">
           <span class="inline-block">刺繍・ネーム・プリント加工のことなら、</span><span class="inline-block font-bold text-gold-300">タグチ刺繍ネームへ</span><br />
-          <span class="inline-block text-navy-100">ユニフォームの名入れから</span><span class="inline-block text-navy-100">オリジナル製作まで、</span><span class="inline-block text-navy-100">茨城県筑西市の自社工場で1枚から承ります。</span>
+          <span class="inline-block text-navy-100">ユニフォームの名入れから、</span><span class="inline-block text-navy-100">企業ロゴのプリント、</span><span class="inline-block text-navy-100">ワッペンまで。</span><span class="inline-block text-navy-100">茨城県筑西市の自社工場で承ります。</span>
         </p>
         <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
           <a
@@ -140,7 +134,6 @@ import { url } from '../utils/paths'
   <section class="py-section-sm md:py-section">
     <div class="mx-auto max-w-[800px] px-4 md:px-8">
       <div class="js-fade-in text-center">
-        <span class="block text-sm text-warm-500 font-light tracking-[0.2em] uppercase mb-1">Philosophy</span>
         <h2 class="heading-accent text-2xl md:text-[2rem] text-navy-800 leading-snug mb-10">
           <span class="gold-underline">経営理念</span>
         </h2>
@@ -154,24 +147,20 @@ import { url } from '../utils/paths'
        ============================================ -->
   <section class="py-section-sm md:py-section bg-warm-50">
     <div class="mx-auto max-w-[1200px] px-4 md:px-8">
-      <SectionHeading en="Strength" ja="タグチの強み" />
+      <SectionHeading ja="タグチの強み" />
+
+      <div class="js-fade-in bg-white rounded-lg border border-warm-200 border-t-4 border-t-gold-400 p-8 md:p-10 text-center mb-6 md:mb-8 hover:shadow-md transition-shadow duration-200">
+        <h3 class="heading-accent text-xl md:text-2xl text-navy-800 leading-snug mb-4 ">{pillar.title.split('、').map((t, i, arr) => <span class="inline-block">{i < arr.length - 1 ? `${t}、` : t}</span>)}</h3>
+        <p class="text-sm md:text-base text-warm-600 leading-relaxed max-w-2xl mx-auto">{pillar.description}</p>
+      </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-        {strengths.map((item, i) => (
+        {supports.map((item, i) => (
           <div
-            class="js-fade-in bg-white rounded-lg border border-warm-200 p-8 text-center hover:shadow-md hover:-translate-y-0.5 hover:border-gold-300 transition-all duration-200"
+            class="js-fade-in bg-white rounded-lg border border-warm-200 p-8 hover:shadow-md hover:-translate-y-0.5 hover:border-gold-300 transition-all duration-200"
             style={`transition-delay: ${i * 100}ms`}
           >
-            <div class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-navy-50 text-navy-600 mb-5">
-              <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                <path stroke-linecap="round" stroke-linejoin="round" d={item.icon} />
-              </svg>
-            </div>
-            <div class="mb-3">
-              <span class="heading-accent text-4xl text-navy-800">{item.number}</span>
-              <span class="text-gold-500 text-xl ml-1 font-medium">{item.unit}</span>
-            </div>
-            <p class="text-sm font-medium text-navy-800 mb-2">{item.label}</p>
+            <p class="text-lg font-bold text-navy-800 mb-3">{item.label}</p>
             <p class="text-sm text-warm-600 leading-relaxed">{item.description}</p>
           </div>
         ))}
@@ -184,7 +173,7 @@ import { url } from '../utils/paths'
        ============================================ -->
   <section class="py-section-sm md:py-section">
     <div class="mx-auto max-w-[1200px] px-4 md:px-8">
-      <SectionHeading en="Service" ja="加工サービス" />
+      <SectionHeading ja="加工サービス" />
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 items-stretch">
         {services.map((item, i) => (
@@ -208,7 +197,6 @@ import { url } from '../utils/paths'
               </picture>
             </div>
             <div class="flex flex-col flex-1 p-6 md:p-8">
-              <span class="text-xs text-warm-500 font-light tracking-[0.2em] uppercase">{item.en}</span>
               <h3 class="text-xl md:text-2xl font-bold text-navy-800 mt-1 mb-3 group-hover:text-navy-600 transition-colors">
                 {item.title}
               </h3>
@@ -241,7 +229,7 @@ import { url } from '../utils/paths'
        ============================================ -->
   <section class="py-section-sm md:py-section bg-navy-50">
     <div class="mx-auto max-w-[1200px] px-4 md:px-8">
-      <SectionHeading en="Equipment" ja="設備一覧" />
+      <SectionHeading ja="設備一覧" />
 
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-10 md:mb-14">
         {stats.map((item, i) => (
@@ -283,7 +271,7 @@ import { url } from '../utils/paths'
                 単頭機
                 <p class="text-xs text-warm-500 font-normal mt-0.5 md:hidden">多品種小ロット対応</p>
               </td>
-              <td class="px-4 md:px-6 py-3 text-center font-bold text-navy-800">11台</td>
+              <td class="px-4 md:px-6 py-3 text-center font-bold text-navy-800">8台</td>
               <td class="px-4 md:px-6 py-3 text-warm-600 hidden md:table-cell">多品種小ロット対応</td>
             </tr>
             <tr class="hover:bg-warm-50 transition-colors">
@@ -298,20 +286,32 @@ import { url } from '../utils/paths'
             <tr class="hover:bg-warm-50 transition-colors">
               <td class="px-4 md:px-6 py-3 text-warm-700">プリント</td>
               <td class="px-4 md:px-6 py-3 font-medium text-navy-800">
-                シルクプリンター
+                シルクスクリーン（自動機・手動機）
                 <p class="text-xs text-warm-500 font-normal mt-0.5 md:hidden">量産対応</p>
               </td>
-              <td class="px-4 md:px-6 py-3 text-center font-bold text-navy-800">1台</td>
+              <td class="px-4 md:px-6 py-3 text-center font-bold text-navy-800">2台</td>
               <td class="px-4 md:px-6 py-3 text-warm-600 hidden md:table-cell">量産対応</td>
             </tr>
             <tr class="hover:bg-warm-50 transition-colors">
               <td class="px-4 md:px-6 py-3 text-warm-700">プリント</td>
               <td class="px-4 md:px-6 py-3 font-medium text-navy-800">
                 UVプリンター
-                <p class="text-xs text-warm-500 font-normal mt-0.5 md:hidden">グッズ製造</p>
+                <p class="text-xs text-warm-500 font-normal mt-0.5 md:hidden">アクリルスタンド・名札</p>
               </td>
               <td class="px-4 md:px-6 py-3 text-center font-bold text-navy-800">1台</td>
-              <td class="px-4 md:px-6 py-3 text-warm-600 hidden md:table-cell">グッズ製造</td>
+              <td class="px-4 md:px-6 py-3 text-warm-600 hidden md:table-cell">アクリルスタンド・名札</td>
+            </tr>
+            <tr class="hover:bg-warm-50 transition-colors">
+              <td class="px-4 md:px-6 py-3 text-warm-700">縫製</td>
+              <td class="px-4 md:px-6 py-3 font-medium text-navy-800">本縫いミシン</td>
+              <td class="px-4 md:px-6 py-3 text-center font-bold text-navy-800">2台</td>
+              <td class="px-4 md:px-6 py-3 text-warm-600 hidden md:table-cell"></td>
+            </tr>
+            <tr class="hover:bg-warm-50 transition-colors">
+              <td class="px-4 md:px-6 py-3 text-warm-700">縫製</td>
+              <td class="px-4 md:px-6 py-3 font-medium text-navy-800">特殊ミシン</td>
+              <td class="px-4 md:px-6 py-3 text-center font-bold text-navy-800">1台</td>
+              <td class="px-4 md:px-6 py-3 text-warm-600 hidden md:table-cell"></td>
             </tr>
             <tr class="hover:bg-warm-50 transition-colors">
               <td class="px-4 md:px-6 py-3 text-warm-700">仕上げ</td>
@@ -342,7 +342,7 @@ import { url } from '../utils/paths'
        ============================================ -->
   <section class="py-section-sm md:py-section">
     <div class="mx-auto max-w-[1200px] px-4 md:px-8">
-      <SectionHeading en="Events" ja="イベント" />
+      <SectionHeading ja="イベント" />
 
       <a
         href={url("/events/hosei-visit")}
@@ -398,7 +398,6 @@ import { url } from '../utils/paths'
   <section class="py-section-sm md:py-section bg-navy-800">
     <div class="mx-auto max-w-[1200px] px-4 md:px-8 text-center">
       <div class="js-fade-in">
-        <p class="text-sm text-gold-300 tracking-[0.2em] uppercase mb-3">Contact</p>
         <h2 class="heading-accent text-2xl md:text-3xl text-white mb-4">
           まずはお気軽にご相談ください
         </h2>
