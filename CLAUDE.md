@@ -69,6 +69,7 @@
 - フォームの送信方式は src/data/form.ts の formspreeId で切り替え（空ならメールアプリ方式、Formspree の ID を入れるとその場で送信）
 - かんたん見積もり（src/pages/_estimate.astro）と作品集（src/pages/_works.astro）は準備が整うまで一時非公開。公開時はファイル名の先頭の `_` を外し、Header/Footer のリンクを戻す
 - 休業日は src/data/calendar.ts、お客様の声・取引先・働く人の声は src/data/trust.ts を編集するだけで反映される
+- 営業カレンダーは、休業日を登録した最後の月（src/data/calendar.ts の confirmedUntil、今は '2027-03'）までしか表示しない。来年度の休業日を追記したら confirmedUntil も書き換える
 - 写真を追加したら `npm run optimize-images` を実行する
 - robots.txt は `/taguchishishuu/robots.txt` に出力されるが、GitHub Pages のプロジェクトサイトではクローラーに読まれない（オリジン直下でないため）。sitemap は Search Console に直接登録する。独自ドメインへ移行すればそのまま有効になる
 - 営業カレンダー（/calendar）は休業日データ投入後に Footer の企業情報へリンクを追加する

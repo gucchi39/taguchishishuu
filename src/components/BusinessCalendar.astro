@@ -7,6 +7,8 @@ import {
   openDates,
   calendarNote,
   pendingHolidayNote,
+  confirmedUntil,
+  afterConfirmedNote,
 } from '../data/calendar'
 
 interface Props {
@@ -63,7 +65,18 @@ const today = new Date()
 const baseYear = today.getFullYear()
 const baseMonth = today.getMonth() // 0-11
 
-const monthData = Array.from({ length: months }, (_, i) => {
+// 休業日が登録済みの月（confirmedUntil）までに表示を絞る
+const confirmedMatch = confirmedUntil.normalize('NFKC').trim().match(/^(\d{4})\D(\d{1,2})$/)
+if (confirmedUntil && !confirmedMatch) {
+  console.warn(`[営業カレンダー] confirmedUntil の「${confirmedUntil}」は年月として読み取れないため無視しました（例: 2027-03）`)
+}
+const confirmedYear = confirmedMatch ? Number(confirmedMatch[1]) : null
+const confirmedMonth = confirmedMatch ? Number(confirmedMatch[2]) : null
+const monthCount = confirmedYear !== null && confirmedMonth !== null
+  ? Math.max(0, Math.min(months, (confirmedYear * 12 + confirmedMonth - 1) - (baseYear * 12 + baseMonth) + 1))
+  : months
+
+const monthData = Array.from({ length: monthCount }, (_, i) => {
   const year = baseYear + Math.floor((baseMonth + i) / 12)
   const month = (baseMonth + i) % 12 // 0-11
 
@@ -126,7 +139,15 @@ const googleSrc = googleCalendarId
     </div>
   )}
 
-  {!useGoogle && (
+  {!useGoogle && monthData.length === 0 && (
+    <div class="p-8 text-center">
+      <p class="text-sm text-warm-600 leading-relaxed">
+        営業カレンダーを準備しています。お手数ですが、営業日はお電話（0296-57-2644）にてご確認ください。
+      </p>
+    </div>
+  )}
+
+  {!useGoogle && monthData.length > 0 && (
     <div>
       <!-- 月切り替えヘッダー -->
       <div class="flex items-center justify-between px-4 md:px-6 py-4 border-b border-warm-200 bg-navy-50">
@@ -240,6 +261,14 @@ const googleSrc = googleCalendarId
               <code class="bg-white/70 px-1 py-0.5 rounded">closedDates</code> に日付を追加すると、この案内は消えます。
             </p>
           )}
+        </div>
+      )}
+
+      {confirmedYear !== null && afterConfirmedNote && (
+        <div class="mx-4 md:mx-6 mb-5 px-4 py-3 rounded bg-warm-50 border border-warm-200">
+          <p class="text-xs text-warm-700 leading-relaxed">
+            {confirmedYear}年{confirmedMonth}月までの営業日を掲載しています。{afterConfirmedNote}
+          </p>
         </div>
       )}
 
