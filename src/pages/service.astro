@@ -9,13 +9,13 @@ const features = [
     en: 'Embroidery',
     title: '刺繍の魅力',
     lead: '糸で布地に縫い込む刺繍は、ユニフォーム・作業着・キャップへのロゴやお名前入れを得意としています。',
-    points: ['立体感と高級感のある仕上がり', '糸そのものが素材に定着し、洗濯を繰り返しても色落ちしにくい', '多色対応（最大15色）', '小ロット1枚〜大量生産まで'],
+    points: ['多色対応', '小ロット1枚〜大量生産まで'],
   },
   {
     en: 'Print',
     title: 'プリントの魅力',
     lead: 'DTF・シルクスクリーン・UVプリンターを保有。用途・数量・素材に応じて最適なプリント方法をご提案します。',
-    points: ['DTFプリント：版が不要で、1枚からフルカラーに対応', 'シルクスクリーン：量産・高耐久', 'UVプリント：立体物・グッズにも直接プリント', '転写プリントにも対応'],
+    points: ['DTFプリント：版が不要で、1枚からフルカラーに対応', 'シルクスクリーン：量産向き', 'UVプリント：アクリルスタンド・名札', '転写プリントにも対応'],
   },
 ]
 
@@ -38,7 +38,7 @@ const services = [
     width: 1109,
     height: 1477,
     description: '多頭式・単頭式の刺繍機を合計14台保有。ユニフォーム、作業着、キャップなどへのロゴ・ネーム刺繍を得意としています。',
-    features: ['立体感と高級感のある仕上がり', '多色対応（最大15色）', '小ロット1枚〜大量生産まで', 'オリジナルデザインのデータ作成可'],
+    features: ['多色対応', '小ロット1枚〜大量生産まで', 'オリジナルデザインのデータ作成可'],
   },
   {
     id: 'print',
@@ -49,18 +49,13 @@ const services = [
     width: 1109,
     height: 1477,
     description: 'DTF・シルクスクリーン・UVプリンターを保有。用途・数量・素材に応じて最適なプリント方法をご提案します。',
-    features: ['DTFプリント：小ロット・フルカラー対応', 'シルクスクリーン：量産・高耐久', 'UVプリント：立体物・グッズ製作', '転写プリントにも対応'],
+    features: ['DTFプリント：小ロット向け・フルカラー', 'シルクスクリーン：量産向き', 'UVプリント：アクリルスタンド・名札', '転写プリントにも対応'],
   },
   {
     id: 'wappen',
     title: 'ワッペン製作',
     en: 'Patch',
-    image: '/images/facility/wappen-sample.jpg',
-    alt: 'プリントワッペンのサンプル見本',
-    width: 1011,
-    height: 1600,
-    // 縦長写真のため、16:9 ではなく縦長の枠で見本台紙が収まるように表示する
-    imageClass: 'aspect-[4/5] object-[center_65%] max-w-md mx-auto',
+    // 見本台紙にお客様の社名・人名が写っているため写真は外している（自社のワッペン写真を撮ったら image / alt / width / height を入れ直す）
     description: 'レーザーカッターによるヒートカットワッペン、ロック仕上げワッペンなど、多様な仕様に対応します。',
     features: ['ヒートカット（レーザー加工）', 'ロック仕上げ', 'アイロン接着加工', 'オリジナルデザイン対応'],
   },
@@ -68,11 +63,11 @@ const services = [
     id: 'name',
     title: 'ネーム加工',
     en: 'Name Label',
-    image: '/images/facility/happy-japan.jpg',
-    alt: 'ネーム刺繍に使う単頭式刺繍機（Happy Japan）',
-    width: 1109,
-    height: 1477,
-    description: 'ユニフォームや作業着への個人名などのネーム刺繍を、単頭式刺繍機で1枚ずつ丁寧に仕上げます。織りネーム・プリントネーム・下げ札など、ブランドの顔となるネームタグの製作も承ります。',
+    image: '/images/facility/barudan-name.jpg',
+    alt: 'バルダン製の刺繍機',
+    width: 1100,
+    height: 619,
+    description: 'ユニフォームや作業着への個人名などのネーム刺繍を、バルダンの刺繍機で1枚ずつ丁寧に仕上げます。織りネーム・プリントネーム・下げ札など、ブランドの顔となるネームタグの製作も承ります。',
     features: ['個人名・役職名のネーム刺繍', '織りネーム・プリントネーム', '下げ札・タグ', 'サイズ表示・品質表示'],
   },
 ]
@@ -113,22 +108,24 @@ import { url } from '../utils/paths'
 
   <!-- Service sections -->
   {services.map((svc, i) => (
-    <section id={svc.id} class={`py-section-sm md:py-section ${i % 2 === 0 ? '' : 'bg-warm-50'}`}>
+    <section id={svc.id} class={`scroll-mt-32 md:scroll-mt-36 py-section-sm md:py-section ${i % 2 === 0 ? '' : 'bg-warm-50'}`}>
       <div class="mx-auto max-w-[1200px] px-4 md:px-8">
-        <div class="js-fade-in grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-          <div class={i % 2 === 1 ? 'lg:order-2' : ''}>
-            <picture>
-              <source type="image/webp" srcset={url(svc.image.replace(/\.jpg$/, '.webp'))} />
-              <img src={url(svc.image)} alt={svc.alt} width={svc.width} height={svc.height} class={`w-full object-cover rounded-lg ${svc.imageClass ?? 'aspect-video'}`} loading="lazy" decoding="async" />
-            </picture>
-          </div>
-          <div class={i % 2 === 1 ? 'lg:order-1' : ''}>
+        <div class={`js-fade-in grid grid-cols-1 gap-8 lg:gap-12 items-center ${svc.image ? 'lg:grid-cols-2' : ''}`}>
+          {svc.image && (
+            <div class={i % 2 === 1 ? 'lg:order-2' : ''}>
+              <picture>
+                <source type="image/webp" srcset={url(svc.image.replace(/\.jpg$/, '.webp'))} />
+                <img src={url(svc.image)} alt={svc.alt} width={svc.width} height={svc.height} class={`w-full object-cover rounded-lg ${svc.imageClass ?? 'aspect-video'}`} loading="lazy" decoding="async" />
+              </picture>
+            </div>
+          )}
+          <div class={svc.image && i % 2 === 1 ? 'lg:order-1' : ''}>
             <span class="text-sm text-warm-500 font-light tracking-[0.2em] uppercase">{svc.en}</span>
             <h2 class="heading-accent text-xl md:text-2xl text-navy-800 mt-1 mb-4">
               <span class="gold-underline">{svc.title}</span>
             </h2>
             <p class="text-warm-700 leading-relaxed mb-6">{svc.description}</p>
-            <ul class="space-y-2">
+            <ul class={`space-y-2 ${svc.image ? '' : 'md:grid md:grid-cols-2 md:gap-x-8 md:space-y-0 md:gap-y-2'}`}>
               {svc.features.map((f) => (
                 <li class="flex items-start gap-2 text-sm text-warm-700">
                   <svg class="w-5 h-5 text-gold-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -150,7 +147,7 @@ import { url } from '../utils/paths'
   ))}
 
   <!-- Features: 刺繍とプリント、それぞれの魅力 -->
-  <section id="features" class="py-section-sm md:py-section">
+  <section id="features" class="scroll-mt-32 md:scroll-mt-36 py-section-sm md:py-section">
     <div class="mx-auto max-w-[1000px] px-4 md:px-8">
       <SectionHeading en="Features" ja="刺繍とプリント、それぞれの魅力" />
       <p class="text-center text-warm-600 text-sm -mt-8 mb-10 leading-relaxed">

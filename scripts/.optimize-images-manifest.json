@@ -108,5 +108,10 @@
     "jpegHash": "8cd8aeacb92a281a84d3b07e3468eaae25f698aa2a421e934bbe1c36e6735a0e",
     "webpHash": "e928d43151d8b682de72cf888245db7f94c3230e150f8a58ccb63ad44f204a94",
     "settings": "{\"scriptVersion\":2,\"defaultMaxEdge\":1600,\"maxEdgeOverrides\":{\"facility/factory-work-02.jpg\":1920},\"jpegQuality\":80,\"webpQuality\":78}"
+  },
+  "facility/barudan-name.jpg": {
+    "jpegHash": "131b58f11b43847496bd261f45d5136a1529eb5792c004697c4927cb2246b01a",
+    "webpHash": "a7802f01346476adde82deaa964ab8ecdd08de2272bc06c7dd9a3a511340d643",
+    "settings": "{\"scriptVersion\":2,\"defaultMaxEdge\":1600,\"maxEdgeOverrides\":{\"facility/factory-work-02.jpg\":1920},\"jpegQuality\":80,\"webpQuality\":78}"
   }
 }
