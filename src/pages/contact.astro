@@ -30,6 +30,13 @@ const endpoint = formspreeId ? `https://formspree.io/f/${formspreeId}` : ''
             内容を確認のうえ、2営業日以内にご返信いたします。
           </p>
 
+          <div class="mb-8 rounded-lg border border-gold-300 bg-gold-50 px-5 py-4">
+            <p class="text-sm font-bold text-navy-800 mb-1">ロゴや画像などのデータは、メールでお送りください</p>
+            <p class="text-sm text-warm-700 leading-relaxed">
+              このフォームではファイルを送れません。データは <a href={`mailto:${contactEmail}`} class="text-navy-700 underline underline-offset-2 hover:text-navy-600 whitespace-nowrap">{contactEmail}</a> へ、メールに添付してお送りください。先にフォームでご連絡いただき、当社からの返信メールに添付していただいても構いません。
+            </p>
+          </div>
+
           <div id="form-success" role="status" aria-live="polite" tabindex="-1" class="hidden bg-gold-50 border border-gold-300 rounded-lg p-6 text-center">
             <svg class="w-12 h-12 text-gold-500 mx-auto mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
             <h3 id="form-success-title" class="text-lg font-bold text-navy-800 mb-2">メールアプリを起動しました</h3>
@@ -40,7 +47,7 @@ const endpoint = formspreeId ? `https://formspree.io/f/${formspreeId}` : ''
             送信できませんでした。お手数ですが、お電話（0296-57-2644）またはメール（<a href={`mailto:${contactEmail}`} class="underline underline-offset-2 break-all select-all">{contactEmail}</a>）でご連絡ください。
           </div>
 
-          <form id="contact-form" class="space-y-6" data-endpoint={endpoint}>
+          <form id="contact-form" class="space-y-6" data-endpoint={endpoint} data-email={contactEmail}>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label for="company" class="block text-sm font-medium text-navy-800 mb-1.5">会社名 <span class="text-warm-400 text-xs">（任意）</span></label>
@@ -169,7 +176,7 @@ const endpoint = formspreeId ? `https://formspree.io/f/${formspreeId}` : ''
         if (!res.ok) throw new Error(String(res.status))
         form.reset()
         document.getElementById('form-success-title')!.textContent = '送信しました'
-        document.getElementById('form-success-text')!.textContent = '内容を確認のうえ、2営業日以内にご返信いたします。'
+        document.getElementById('form-success-text')!.textContent = `内容を確認のうえ、2営業日以内にご返信いたします。ロゴや画像などのデータは、当社からの返信メールに添付するか、${form.dataset.email} へお送りください。`
         successBox.classList.remove('hidden')
         successBox.focus()
       } catch {
