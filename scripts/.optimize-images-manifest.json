@@ -95,8 +95,8 @@
     "settings": "{\"scriptVersion\":2,\"defaultMaxEdge\":1600,\"maxEdgeOverrides\":{\"facility/factory-work-02.jpg\":1920},\"jpegQuality\":80,\"webpQuality\":78}"
   },
   "facility/wappen-sample.jpg": {
-    "jpegHash": "17f26cb026ff772e6c8c9b102354861fb84e43b0bafca4fe94d90f39f006f5a4",
-    "webpHash": "b2cd0d9c1c022a07cea7540b40dc152d0e7c8be0e3e5012ce33b95c95fe63b8e",
+    "jpegHash": "4a3d09d90798aa1b2d472733e1fb9d0c9c6ba1cfc0bfde879759e87aeb7aa6b4",
+    "webpHash": "4f23d1f2f7f4124837e324fc0bf1536d0f150b81625ac387b90080a1b890fd20",
     "settings": "{\"scriptVersion\":2,\"defaultMaxEdge\":1600,\"maxEdgeOverrides\":{\"facility/factory-work-02.jpg\":1920},\"jpegQuality\":80,\"webpQuality\":78}"
   },
   "facility/dtf-printer.jpg": {
