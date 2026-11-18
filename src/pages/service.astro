@@ -37,40 +37,26 @@ const services = [
     alt: 'バルダン多頭式刺繍機が並ぶ刺繍加工ライン',
     width: 1109,
     height: 1477,
-    description: '縫う部分（頭）がいくつも並んだ刺繍機が3台、頭が1つの刺繍機が8台あります。すべて自社の工場で縫っています。',
+    description: 'ユニフォーム・作業着・キャップなどに、ロゴやお名前を刺繍します。すべて自社の工場で縫っています。',
     features: ['多色対応', '小ロット1枚〜大量生産まで', 'オリジナルデザインのデータ作成可'],
-    // 詳しい説明（一般的な仕組みの説明。当社でデータを作るか等は確認が取れてから書き足す）
-    details: [
-      {
-        title: '刺繍は、糸で縫って柄を出す加工です',
-        body: [
-          '刺繍は、糸を生地に縫い込んで、文字やマークを形にします。糸の厚みがあるので、少し盛り上がった仕上がりになります。',
-          'お名前や社名などの文字を入れる刺繍を「ネーム刺繍」、会社やチームのマークを入れる刺繍を「ロゴ刺繍」と呼ぶことが多いです。はっきりした線引きはないので、「文字か、マークか」くらいの目安でお考えください。',
-        ],
-      },
-      {
-        title: '刺繍は、データで縫い方を決めます',
-        body: [
-          'ロゴや文字は、そのままでは機械で縫えません。「どこを、どの順番で、どんな縫い方で縫うか」を決めた刺繍用のデータが必要です。',
-          '文字やふちどりは糸を細かく並べ、広い面は面を埋めるように縫うなど、部分ごとに縫い方を変えます。',
-        ],
-      },
-      {
-        title: '糸で表しやすい柄、表しにくい柄',
-        body: [
-          '刺繍は、形がはっきりした文字やマークに向いています。',
-          'とても小さい文字や細い線は、糸ではつぶれて見えることがあります。糸1本1本で表すので、細かい濃淡の表現にも限りがあります。',
-          '糸の色が生地の色に近いと、目立ちにくくなります。気になる柄は、お気軽にご相談ください。',
-        ],
-      },
-      {
-        title: '生地によって仕上がりが変わります',
-        body: [
-          '薄くてやわらかい生地は、糸に引かれて生地が寄ることがあります。伸びる生地は、縫ったあとに文字の間がつまって見えることがあります。',
-          '生地に不安があるときは、品物を教えてください。',
-        ],
-      },
-    ],
+    // 会社のお客様が知りたい「設備と量」を表で見せる（多頭機の内訳 10頭・6頭・4頭 は確認待ちのため書かない）
+    table: {
+      caption: '刺繍の設備',
+      head: ['刺繍機', '台数', '特徴'],
+      rows: [
+        { name: '多頭機', sub: '縫う部分（頭）がいくつも並んだ機械', cells: ['3台', '同じ柄を同時に何枚も縫えます'] },
+        { name: '単頭機', sub: '頭が1つの機械', cells: ['8台', '1枚ずつ縫います'] },
+      ],
+    },
+    note: {
+      title: '仕上がりについて',
+      points: [
+        'とても小さい文字や細い線は、糸ではつぶれて見えることがあります',
+        '糸の色が生地の色に近いと、目立ちにくくなります',
+        '薄い生地・伸びる生地は、生地が寄ったり、文字の間がつまって見えたりすることがあります',
+      ],
+      footer: '気になる柄や生地は、品物を教えてください。',
+    },
   },
   {
     id: 'print',
@@ -80,45 +66,25 @@ const services = [
     alt: 'プリント加工で使うコンベア式乾燥機',
     width: 1109,
     height: 1477,
-    description: '主なプリントの方法は3つです。',
+    description: 'DTF・シルクスクリーン・UVプリントの3つの方法で、枚数や品物に合わせてお作りします。ほかに、ワッペン用のプリントもあります。',
     // 「転写プリント」は DTF と別のものか確認待ちのため外している
-    features: [
-      'フィルムに印刷して生地に写す方法（DTF）：機械1台。少ない枚数のご注文向けです。',
-      '版を作ってインクを刷る方法（シルクスクリーン）：自動の機械と手動の機械が1台ずつ。まとまった枚数向きで、2,000枚をお作りしたことがあります。',
-      '紫外線で固まるインクで印刷する方法（UVプリント）：機械1台。アクリルスタンドや名札をお作りしてきました。',
-      'ほかに、ワッペン用のプリントもあります。',
-    ],
-    details: [
-      {
-        title: 'フィルムに印刷して生地に写す方法（DTF）',
-        body: [
-          '柄を専用のフィルムに印刷し、接着用の粉をのせて固めます。それを熱と圧力で生地に写し、フィルムをはがします。',
-          '版を作らないので、少ない枚数でも作りやすい方法です。柄はインクと接着の層として生地の表面にのるので、その部分に少し手ざわりが出ます。',
-        ],
-      },
-      {
-        title: '版を作ってインクを刷る方法（シルクスクリーン）',
-        body: [
-          '細かい網を枠に張り、柄の部分だけインクが通るようにしたものを「版」といいます。この版の上からインクを押し出して、生地に刷ります。',
-          '版は色ごとに1枚ずつ作るのが基本で、色の数が増えると版と作業が増えます。',
-          '最初に版を作る手間がかかるので、同じ柄をまとまった枚数で作るときに向いています。',
-        ],
-      },
-      {
-        title: '紫外線で固まるインクで印刷する方法（UVプリント）',
-        body: [
-          '紫外線を当てるとすぐに固まるインクで印刷します。インクがしみ込んで乾くのではなく、表面で固まる仕組みです。',
-          '当社では、この方法でアクリルスタンドや名札をお作りしてきました。',
-        ],
-      },
-      {
-        title: '枚数と色の数で、方法を選びます',
-        body: [
-          'プリントは、枚数と色の数で方法を選ぶのが一般的です。少ない枚数ならフィルムで写す方法、同じ柄をまとまった枚数で作るなら版で刷る方法、が目安です。',
-          '何枚から切り替えるかに決まった線はありません。柄と枚数を教えていただければ、合う方法をお伝えします。',
-        ],
-      },
-    ],
+    table: {
+      caption: 'プリントの方法',
+      head: ['方法', '機械', '版', '向いている注文'],
+      rows: [
+        { name: 'DTF', sub: 'フィルムに印刷して生地に写す', cells: ['1台', 'なし', '少ない枚数'] },
+        { name: 'シルクスクリーン', sub: '版でインクを刷る', cells: ['2台\n自動・手動', '色ごとに作る', 'まとまった枚数\n2,000枚の実績あり'] },
+        { name: 'UVプリント', sub: '紫外線で固まるインクで印刷', cells: ['1台', 'なし', 'アクリルスタンド・名札'] },
+      ],
+    },
+    note: {
+      title: '方法の選び方',
+      points: [
+        '少ない枚数ならDTF、同じ柄をまとまった枚数で作るならシルクスクリーンが目安です',
+        '何枚から切り替えるかに決まった線はありません',
+      ],
+      footer: '柄と枚数を教えていただければ、合う方法をお伝えします。',
+    },
   },
   {
     id: 'wappen',
@@ -210,6 +176,7 @@ import { url } from '../utils/paths'
               <span class="gold-underline">{svc.title}</span>
             </h2>
             <p class="text-warm-700 leading-relaxed mb-6">{svc.description}</p>
+            {svc.features && (
             <ul class={`space-y-2 ${svc.image ? '' : 'md:grid md:grid-cols-2 md:gap-x-8 md:space-y-0 md:gap-y-2'}`}>
               {svc.features.map((f) => (
                 <li class="flex items-start gap-2 text-sm text-warm-700">
@@ -220,6 +187,7 @@ import { url } from '../utils/paths'
                 </li>
               ))}
             </ul>
+            )}
             {i === 0 && (
               <a href={url("/facility")} class="mt-6 inline-flex items-center text-sm font-medium text-navy-800 underline underline-offset-4 decoration-gold-400 hover:text-gold-700 transition-colors">
                 設備の詳細を見る<svg class="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
@@ -227,6 +195,46 @@ import { url } from '../utils/paths'
             )}
           </div>
         </div>
+        {svc.table && (
+          <div class="js-fade-in mt-10 md:mt-12 grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6 items-start">
+            <div class="lg:col-span-2 bg-white rounded-lg border border-warm-200 overflow-hidden">
+              <table class="w-full text-sm text-left">
+                <caption class="text-left font-bold text-navy-800 px-4 md:px-6 pt-5 pb-3">{svc.table.caption}</caption>
+                <thead class="bg-navy-800 text-white">
+                  <tr>
+                    {svc.table.head.map((h) => (
+                      <th scope="col" class="px-3 md:px-6 py-2.5 font-medium whitespace-nowrap">{h}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {svc.table.rows.map((row) => (
+                    <tr class="border-t border-warm-200 align-top">
+                      <th scope="row" class="px-3 md:px-6 py-3 font-bold text-navy-800">
+                        {row.name}
+                        {row.sub && <span class="block text-xs font-normal text-warm-500 mt-0.5">{row.sub}</span>}
+                      </th>
+                      {row.cells.map((c, ci) => (
+                        <td class={`px-3 md:px-6 py-3 text-warm-700 ${ci < row.cells.length - 1 ? 'md:whitespace-nowrap' : ''}`}>
+                          {c.split('\n').map((line, li) => li === 0 ? line : <span class="block text-xs text-warm-500 mt-0.5">{line}</span>)}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            {svc.note && (
+              <div class="bg-white rounded-lg border border-warm-200 p-5 md:p-6">
+                <h3 class="font-bold text-navy-800 mb-3">{svc.note.title}</h3>
+                <ul class="space-y-2 text-sm text-warm-700 leading-relaxed list-disc pl-5">
+                  {svc.note.points.map((p) => <li>{p}</li>)}
+                </ul>
+                {svc.note.footer && <p class="text-sm text-warm-700 leading-relaxed mt-3">{svc.note.footer}</p>}
+              </div>
+            )}
+          </div>
+        )}
         {svc.details && (
           <div class="js-fade-in mt-10 md:mt-12 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
             {svc.details.map((d) => (
