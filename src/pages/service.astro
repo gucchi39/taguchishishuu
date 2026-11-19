@@ -2,23 +2,6 @@
 import Layout from '../layouts/Layout.astro'
 import SectionHeading from '../components/SectionHeading.astro'
 
-// 刺繍とプリントは対立するものではなく、1着の中で組み合わせることもあるため、
-// 優劣の比較ではなく「それぞれの魅力」として紹介する（内容はサイト内の既存の記載から）
-const features = [
-  {
-    en: 'Embroidery',
-    title: '刺繍の魅力',
-    lead: 'ユニフォーム・作業着・キャップなどに、会社名やロゴ、お名前を刺繍で入れます。',
-    points: ['多色対応', '小ロットから量産まで'],
-  },
-  {
-    en: 'Print',
-    title: 'プリントの魅力',
-    lead: 'DTF・シルクスクリーン・UVプリンターがあります。枚数や品物をうかがって、合うプリント方法をお伝えします。',
-    points: ['DTFプリント（転写プリント）：版が不要で、フルカラーに対応', 'シルクスクリーン：量産向き', 'UVプリント：アクリルスタンド・名札'],
-  },
-]
-
 const useCases = [
   { title: 'ユニフォーム・作業着', description: '会社名・ロゴの刺繍入れ。おそろいのユニフォームで、チームの一体感が出ます。' },
   { title: 'スポーツチーム', description: 'チーム名・背番号・ワッペンなど。各種スポーツユニフォームに対応。' },
@@ -154,37 +137,11 @@ import { url } from '../utils/paths'
     </section>
   ))}
 
-  <!-- Features: 刺繍とプリント、それぞれの魅力 -->
-  <section id="features" class="scroll-mt-32 md:scroll-mt-36 py-section-sm md:py-section">
-    <div class="mx-auto max-w-[1000px] px-4 md:px-8">
-      <SectionHeading en="Features" ja="刺繍とプリント、それぞれの魅力" />
-      <p class="text-center text-warm-600 text-sm -mt-8 mb-10 leading-relaxed">
-        刺繍とプリントは、どちらか一方を選ぶものではありません。<br class="hidden md:block" />1着の中で組み合わせて使うこともできます。
-      </p>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
-        {features.map((item, i) => (
-          <div class="js-fade-in flex flex-col bg-white rounded-lg border border-warm-200 p-6 md:p-8" style={`transition-delay: ${i * 100}ms`}>
-            <span class="text-xs text-warm-500 font-light tracking-[0.2em] uppercase">{item.en}</span>
-            <h3 class="heading-accent text-lg md:text-xl text-navy-800 mt-1 mb-3">
-              <span class="gold-underline">{item.title}</span>
-            </h3>
-            <p class="text-sm text-warm-700 leading-relaxed mb-5">{item.lead}</p>
-            <ul class="space-y-2 pt-4 border-t border-warm-200">
-              {item.points.map((p) => (
-                <li class="flex items-start gap-2 text-sm text-warm-700">
-                  <svg class="w-5 h-5 text-gold-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  {p}
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </div>
-      <p class="text-center text-sm text-warm-600 mt-6">
-        どの加工が合うかわからない場合も、お気軽にご相談ください。用途をうかがって、合う加工方法をお伝えします。
-      </p>
+  <!-- 刺繍とプリントの組み合わせ（各加工の説明と重なる「それぞれの魅力」欄は削除し、一文だけ残す） -->
+  <section class="py-10 md:py-12">
+    <div class="js-fade-in mx-auto max-w-[800px] px-4 md:px-8 text-center">
+      <p class="text-base md:text-lg font-bold text-navy-800">刺繍とプリントは、<br class="sm:hidden" />1着の中で組み合わせることもできます。</p>
+      <p class="text-sm text-warm-600 mt-2 leading-relaxed">どの加工が合うかわからない場合も、お気軽にご相談ください。</p>
     </div>
   </section>
 
