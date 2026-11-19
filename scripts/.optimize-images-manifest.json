@@ -113,5 +113,15 @@
     "jpegHash": "131b58f11b43847496bd261f45d5136a1529eb5792c004697c4927cb2246b01a",
     "webpHash": "a7802f01346476adde82deaa964ab8ecdd08de2272bc06c7dd9a3a511340d643",
     "settings": "{\"scriptVersion\":2,\"defaultMaxEdge\":1600,\"maxEdgeOverrides\":{\"facility/factory-work-02.jpg\":1920},\"jpegQuality\":80,\"webpQuality\":78}"
+  },
+  "facility/dtf-printer-body.jpg": {
+    "jpegHash": "947c1abe693a34229eb890a2aedbf134ceefe203caf981c776a22c2e35f48c3a",
+    "webpHash": "24c0308f23a54c7433d562435cac0bb026ea64b866c2b6ce50398bb776643d32",
+    "settings": "{\"scriptVersion\":2,\"defaultMaxEdge\":1600,\"maxEdgeOverrides\":{\"facility/factory-work-02.jpg\":1920},\"jpegQuality\":80,\"webpQuality\":78}"
+  },
+  "facility/laser-cutter-body.jpg": {
+    "jpegHash": "636c1bd867b1b84c392e18ce6ca925a34bcfeb81f5f99139e63d871f6b345f51",
+    "webpHash": "f2fb4e64a3a6165597e90ac1ef4624ed6ef5a1fca3163f9c76c9da0becb58c99",
+    "settings": "{\"scriptVersion\":2,\"defaultMaxEdge\":1600,\"maxEdgeOverrides\":{\"facility/factory-work-02.jpg\":1920},\"jpegQuality\":80,\"webpQuality\":78}"
   }
 }

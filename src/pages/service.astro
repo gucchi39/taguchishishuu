@@ -8,7 +8,6 @@ const useCases = [
   { title: '記念品・ノベルティ', description: 'イベントやマラソン大会の記念品、卒業記念など。名前入れもできます。' },
   { title: 'アパレルブランド', description: '刺繍・プリント・ワッペンの製作に、小ロットから対応します。' },
   { title: '学校・幼稚園', description: '制服・体操着・帽子へのお名前刺繍。' },
-  { title: '飲食店・サービス業', description: 'エプロン・コックコート・キャップへの店名・ロゴ入れ。' },
 ]
 
 const services = [
@@ -29,10 +28,12 @@ const services = [
     id: 'print',
     title: 'プリント加工',
     en: 'Print',
-    image: '/images/facility/dryer.jpg',
-    alt: 'プリント加工で使うコンベア式乾燥機',
+    // 元の写真（dtf-printer.jpg）は上部にお客様の品物が写っているため、本体だけを切り抜いた写真を使う
+    image: '/images/facility/dtf-printer-body.jpg',
+    alt: 'DTFプリンター',
     width: 1109,
-    height: 1477,
+    height: 977,
+    imageClass: 'aspect-video object-top',
     // DTF は転写プリントの一種（社長確認済み）。「転写プリント」を別の項目としては立てない
     description: 'DTF・シルクスクリーン・UVプリントで、枚数や品物に合わせてプリントします。シルクスクリーンは自動機・手動機の2台で量産向き、2,000枚の実績があります。',
     features: ['DTF：版が不要、フルカラーに対応', 'DTF：少ない枚数から多い枚数まで', 'UVプリント：アクリルスタンド・名札', '刺繍とプリントの組み合わせにも対応'],
@@ -41,7 +42,12 @@ const services = [
     id: 'wappen',
     title: 'ワッペン製作',
     en: 'Patch',
-    // 見本台紙にお客様の社名・人名が写っているため写真は外している（自社のワッペン写真を撮ったら image / alt / width / height を入れ直す）
+    // 仮の写真：ヒートカットに使うレーザー加工機（見本台紙の写真はお客様の社名・人名が写るため使わない）。
+    // 自社のワッペン写真を撮ったら image / alt / width / height を入れ直す
+    image: '/images/facility/laser-cutter-body.jpg',
+    alt: 'ワッペンのヒートカットに使うレーザー加工機',
+    width: 1109,
+    height: 770,
     // 当社のワッペンの種類（反射ワッペンなど）は確認待ちのため書かない
     description: '刺繍で作る「刺繍ワッペン」と、プリントで作る「プリントワッペン」があります。会社名やロゴ、チーム名、イラストなどの柄でお作りします。',
     features: ['ふちの仕上げ：ヒートカット（熱で焼いて切る）', 'ふちの仕上げ：ロック（糸でかがる）', 'ヒートカットにはレーザー加工機を使用', 'アイロン接着加工'],
@@ -149,9 +155,10 @@ import { url } from '../utils/paths'
   <section class="py-section-sm md:py-section bg-warm-50">
     <div class="mx-auto max-w-[1200px] px-4 md:px-8">
       <SectionHeading en="Use Cases" ja="こんな用途に使えます" />
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+      <!-- 項目数が列数で割り切れなくても、最後の行が中央にそろうよう flex で並べる -->
+      <div class="flex flex-wrap justify-center gap-4 md:gap-6">
         {useCases.map((item, i) => (
-          <div class="js-fade-in bg-white rounded-lg border border-warm-200 p-6 hover:shadow-md hover:border-gold-300 transition-all duration-200" style={`transition-delay: ${i * 60}ms`}>
+          <div class="js-fade-in w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] bg-white rounded-lg border border-warm-200 p-6 hover:shadow-md hover:border-gold-300 transition-all duration-200" style={`transition-delay: ${i * 60}ms`}>
             <h3 class="text-base font-bold text-navy-800 mb-2">{item.title}</h3>
             <p class="text-sm text-warm-600 leading-relaxed">{item.description}</p>
           </div>
