@@ -132,11 +132,6 @@ import { url } from '../utils/paths'
               ))}
             </ul>
             )}
-            {i === 0 && (
-              <a href={url("/facility")} class="mt-6 inline-flex items-center text-sm font-medium text-navy-800 underline underline-offset-4 decoration-gold-400 hover:text-gold-700 transition-colors">
-                設備の詳細を見る<svg class="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
-              </a>
-            )}
           </div>
         </div>
       </div>
@@ -148,6 +143,9 @@ import { url } from '../utils/paths'
     <div class="js-fade-in mx-auto max-w-[800px] px-4 md:px-8 text-center">
       <p class="text-base md:text-lg font-bold text-navy-800">刺繍とプリントは、<br class="sm:hidden" />1着の中で組み合わせることもできます。</p>
       <p class="text-sm text-warm-600 mt-2 leading-relaxed">どの加工が合うかわからない場合も、お気軽にご相談ください。</p>
+      <a href={url("/facility")} class="mt-5 inline-flex items-center text-sm font-medium text-navy-800 underline underline-offset-4 decoration-gold-400 hover:text-gold-700 transition-colors">
+        刺繍機・プリンターなどの設備を見る<svg class="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+      </a>
     </div>
   </section>
 
