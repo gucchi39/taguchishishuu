@@ -73,6 +73,16 @@
 /* ========================================
    Base Styles
    ======================================== */
+/* PC（幅1024px以上）では、小さい文字（text-xs / text-sm / text-base）を一段だけ大きくする。
+   スマホでは今の大きさのまま。見出しなど大きい文字は変えない */
+@media (min-width: 1024px) {
+  :root {
+    --text-xs: 0.8125rem;   /* 12px → 13px */
+    --text-sm: 1rem;        /* 14px → 16px */
+    --text-base: 1.0625rem; /* 16px → 17px */
+  }
+}
+
 html {
   font-feature-settings: "palt";
   -webkit-font-smoothing: antialiased;

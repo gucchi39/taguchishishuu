@@ -23,6 +23,7 @@
 - push 後は PR を作り、運営者の「取り込んで」を受けてから main にマージする
 - Codex レビュー：取り込む前に、運営者が作業用 PR に `@codex review` とコメントする。レビューが付いたら中身を確認し、直すものは同じ PR で直してから取り込む
 - 画面が変わる変更は、スクリーンショットで確認してから見せる
+- 文字の大きさ：PC（幅1024px以上）では text-xs/sm/base を一段大きくしている（src/styles/global.css）。スマホは標準のまま
 - 運営者は非エンジニア。選択肢を出すときは結論と理由を短く。一覧は多すぎると読み切れないので、要点を絞る
 
 ## モデルの分担（トークンを抑えつつ、最終品質は Fable で担保する）
@@ -78,4 +79,4 @@
 - 営業カレンダーは、休業日を登録した最後の月（src/data/calendar.ts の confirmedUntil、今は '2027-03'）までしか表示しない。来年度の休業日を追記したら confirmedUntil も書き換える
 - 写真を追加したら `npm run optimize-images` を実行する
 - robots.txt は `/taguchishishuu/robots.txt` に出力されるが、GitHub Pages のプロジェクトサイトではクローラーに読まれない（オリジン直下でないため）。sitemap は Search Console に直接登録する。独自ドメインへ移行すればそのまま有効になる
-- 営業カレンダー（/calendar）は休業日データ投入後に Footer の企業情報へリンクを追加する
+- 営業カレンダーは、会社案内（/about#calendar）と単独ページ（/calendar、Footer からリンク）の両方に表示している
