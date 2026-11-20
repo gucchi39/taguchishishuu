@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro'
 import SectionHeading from '../components/SectionHeading.astro'
 import Philosophy from '../components/Philosophy.astro'
 import Clients from '../components/Clients.astro'
+import BusinessCalendar from '../components/BusinessCalendar.astro'
 
 const companyInfo = [
   { label: '社名', value: 'タグチ刺繍ネーム有限会社' },
@@ -98,6 +99,16 @@ import { url } from '../utils/paths'
         ></iframe>
       </div>
       <p class="mt-3 text-sm text-warm-600">茨城県筑西市新治、JR水戸線 新治駅より徒歩2分（下館駅から1駅）。お車でお越しの場合は駐車場がございます。</p>
+    </div>
+  </section>
+
+  <!-- 営業カレンダー（内容は src/data/calendar.ts） -->
+  <section id="calendar" class="scroll-mt-24 py-section-sm md:py-section bg-warm-50">
+    <div class="mx-auto max-w-[800px] px-4 md:px-8">
+      <SectionHeading en="Calendar" ja="営業カレンダー" />
+      <div class="js-fade-in">
+        <BusinessCalendar />
+      </div>
     </div>
   </section>
 
