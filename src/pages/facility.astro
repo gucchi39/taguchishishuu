@@ -44,27 +44,6 @@ const highlights = [
 // 先頭（刺繍機）は横長写真のため横長の大きなカードで、残りは3列で並べる
 const [featured, ...otherHighlights] = highlights
 
-const craftsmanship = [
-  {
-    title: '刺繍',
-    image: '/images/facility/embroidery-line.jpg',
-    alt: 'バルダン多頭式刺繍機が並ぶ刺繍ライン',
-    width: 1109,
-    height: 1477,
-    description: '多頭機3台・単頭機8台、合計11台の刺繍機があります。同じ柄をまとまった枚数で縫うご注文は多頭機、1枚ごとに違う名前入れや少ない枚数のご注文は単頭機と、当社ではご注文に合わせて使い分けています。',
-    points: ['多頭機3台で量産に対応', '単頭機8台で多品種・小ロットに対応'],
-  },
-  {
-    title: 'プリント',
-    image: '/images/facility/dtf-printer-body.jpg',
-    alt: 'ミマキ製DTFプリンター（TxF150-75）',
-    width: 1109,
-    height: 977,
-    description: 'DTF・シルクスクリーン・UVの3つのプリント方法があります。枚数や品物をうかがって、合う方法をお伝えします。刺繍もプリントも、一社でまとめてお任せいただけます。',
-    points: ['DTF：フルカラー・小ロットにも対応', 'シルクスクリーン：量産向き（自動機・手動機の2台）', 'UV：アクリルスタンド・名札'],
-  },
-]
-
 const equipment = [
   { category: '刺繍機', name: '多頭機', count: '3台', use: '量産対応' },
   { category: '刺繍機', name: '単頭機', count: '8台', use: '多品種小ロット対応' },
@@ -193,40 +172,6 @@ import { url } from '../utils/paths'
           </div>
         ))}
       </div>
-    </div>
-  </section>
-
-  <!-- 設備を活かす技術 -->
-  <section class="py-section-sm md:py-section">
-    <div class="mx-auto max-w-[1200px] px-4 md:px-8">
-      <SectionHeading en="Technology" ja="設備を活かす技術" />
-
-      {craftsmanship.map((item, i) => (
-        <div class={`js-fade-in grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center ${i > 0 ? 'mt-12 md:mt-16' : ''}`} style={`transition-delay: ${i * 100}ms`}>
-          <div class={i % 2 === 1 ? 'lg:order-2' : ''}>
-            <picture>
-              <source type="image/webp" srcset={url(item.image.replace(/\.jpg$/, '.webp'))} />
-              <img src={url(item.image)} alt={item.alt} width={item.width} height={item.height} class="w-full aspect-video object-cover rounded-lg" loading="lazy" decoding="async" />
-            </picture>
-          </div>
-          <div class={i % 2 === 1 ? 'lg:order-1' : ''}>
-            <h3 class="heading-accent text-lg md:text-xl text-navy-800 mb-4">
-              <span class="gold-underline">{item.title}</span>
-            </h3>
-            <p class="text-sm text-warm-700 leading-relaxed mb-5">{item.description}</p>
-            <ul class="space-y-2">
-              {item.points.map((p) => (
-                <li class="flex items-start gap-2 text-sm text-warm-700">
-                  <svg class="w-5 h-5 text-gold-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  {p}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      ))}
     </div>
   </section>
 
