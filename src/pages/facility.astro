@@ -9,7 +9,7 @@ const highlights = [
     alt: '6頭式バルダン刺繍機',
     width: 1660,
     height: 1080,
-    description: '6つの刺繍ヘッドで同じデザインを一度に6枚縫える多頭式刺繍機。量産のご注文も効率よく仕上げます。',
+    description: '6つの刺繍ヘッドで同じデザインを一度に6枚縫える多頭式刺繍機。量産のご注文に使っています。',
     points: ['同じデザインを一度に6枚', '量産・大口のご注文に対応', '多色の刺繍に対応'],
   },
   {
@@ -18,7 +18,7 @@ const highlights = [
     alt: 'ミマキ製DTFプリンター（TxF150-75）',
     width: 1109,
     height: 977,
-    description: 'フィルムに印刷した柄を生地に写す、新しい方式の転写プリンター（DTF）です。版が不要で、フルカラーのプリントができます。小ロットにも対応します。',
+    description: 'フィルムに印刷した柄を生地に写す、DTFプリンターです。版が不要で、フルカラーのプリントができます。小ロットにも対応します。',
     points: ['版不要でフルカラー対応', '小ロットにも対応'],
   },
   {
@@ -28,7 +28,7 @@ const highlights = [
     width: 1600,
     height: 1200,
     description: 'UV硬化インクを使用するプリンターです。アクリルスタンドや名札の製作に使っています。',
-    points: ['アクリルスタンド・名札の製作', '高精細なフルカラー表現'],
+    points: ['アクリルスタンド・名札の製作'],
   },
   {
     title: 'レーザー加工機',
@@ -91,7 +91,6 @@ import { url } from '../utils/paths'
       <div class="absolute inset-0 bg-navy-800/70"></div>
     </div>
     <div class="relative z-10 mx-auto max-w-[1200px] px-4 md:px-8 w-full">
-      <p class="text-sm text-gold-300 tracking-[0.2em] uppercase mb-2">Facility & Technology</p>
       <h1 class="heading-accent text-2xl md:text-4xl text-white">刺繍機・プリンターなどの<br class="sm:hidden" />設備紹介</h1>
       <p class="text-navy-200 text-sm mt-2">筑西市の自社工場にある、刺繍・プリントの設備をご紹介します</p>
     </div>
@@ -100,7 +99,7 @@ import { url } from '../utils/paths'
   <!-- Stats -->
   <section class="py-section-sm md:py-section">
     <div class="mx-auto max-w-[1200px] px-4 md:px-8">
-      <SectionHeading en="Equipment" ja="数字で見る設備力" />
+      <SectionHeading ja="設備の台数" />
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
         {stats.map((item, i) => (
           <div class="js-fade-in bg-white rounded-lg border border-warm-200 p-6 md:p-8 text-center" style={`transition-delay: ${i * 80}ms`}>
@@ -116,7 +115,7 @@ import { url } from '../utils/paths'
   <!-- 主な設備 -->
   <section id="latest" class="py-section-sm md:py-section bg-gold-50">
     <div class="mx-auto max-w-[1200px] px-4 md:px-8">
-      <SectionHeading en="Main Equipment" ja="主な設備" />
+      <SectionHeading ja="主な設備" />
       <p class="text-center text-warm-600 text-sm -mt-8 mb-10">
         多頭式刺繍機による量産から、フルカラープリント、アクリルスタンドや名札の印刷、レーザー加工まで。自社工場の主な設備をご紹介します
       </p>
@@ -178,7 +177,7 @@ import { url } from '../utils/paths'
   <!-- Equipment Table -->
   <section class="py-section-sm md:py-section bg-warm-50">
     <div class="mx-auto max-w-[1000px] px-4 md:px-8">
-      <SectionHeading en="Equipment List" ja="設備一覧" />
+      <SectionHeading ja="設備一覧" />
       <div class="js-fade-in bg-white rounded-lg border border-warm-200 overflow-hidden">
         <table class="w-full text-sm">
           <thead>
@@ -209,9 +208,9 @@ import { url } from '../utils/paths'
   <!-- Photo Gallery -->
   <section id="gallery" class="py-section-sm md:py-section">
     <div class="mx-auto max-w-[1200px] px-4 md:px-8">
-      <SectionHeading en="Gallery" ja="設備フォトギャラリー" />
+      <SectionHeading ja="設備フォトギャラリー" />
       <p class="text-center text-warm-600 text-sm -mt-8 mb-10 leading-relaxed">
-        掲載している写真は一部です。<br class="sm:hidden" />このほかにも、加工内容に合わせたさまざまな設備を備えています。
+        工場の設備の一部をご紹介します。
       </p>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
         {photos.map((photo, i) => (

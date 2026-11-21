@@ -11,7 +11,7 @@ const dataGuide = [
   },
   {
     title: '推奨ファイル形式',
-    description: 'AI（Illustrator）・PDF が最適です。PNG・JPEG でも承ります。スマホで撮影した画像でもまずはご相談ください。',
+    description: 'Illustrator（AI形式）・PDF だと確実です。PNG・JPEG でも承ります。スマホで撮影した画像でもまずはご相談ください。',
     icon: 'M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z',
   },
   {
@@ -46,7 +46,6 @@ import { url } from '../utils/paths'
   <section class="relative h-48 md:h-64 flex items-center">
     <div class="absolute inset-0 bg-navy-800"></div>
     <div class="relative z-10 mx-auto max-w-[1200px] px-4 md:px-8 w-full">
-      <p class="text-sm text-gold-300 tracking-[0.2em] uppercase mb-2">Guide</p>
       <h1 class="heading-accent text-2xl md:text-4xl text-white">刺繍加工ガイド</h1>
       <p class="text-navy-200 text-sm mt-2">初めてのお客様へ。刺繍加工の基本をわかりやすくご案内します。</p>
     </div>
@@ -55,13 +54,13 @@ import { url } from '../utils/paths'
   <!-- What is embroidery -->
   <section class="py-section-sm md:py-section">
     <div class="mx-auto max-w-[800px] px-4 md:px-8">
-      <SectionHeading en="What is Embroidery?" ja="刺繍加工とは" />
+      <SectionHeading ja="刺繍加工とは" />
       <div class="js-fade-in text-warm-800 leading-relaxed space-y-4">
         <p>
           刺繍加工とは、専用のミシン（刺繍機）を使って、布地に糸で模様や文字を縫い込む加工技術です。
         </p>
         <p>
-          当社では、コンピュータ制御の刺繍機を、多頭機3台・単頭機8台保有しており、1枚からの少量注文から大量生産まで柔軟に対応しています。
+          当社では、コンピュータ制御の刺繍機を、多頭機3台・単頭機8台保有しており、小ロットから量産まで対応しています。
         </p>
       </div>
     </div>
@@ -72,7 +71,6 @@ import { url } from '../utils/paths'
     <div class="mx-auto max-w-[800px] px-4 md:px-8">
       <a href={url("/service")} class="js-fade-in group flex flex-col sm:flex-row sm:items-center gap-4 bg-white rounded-lg border border-warm-200 p-6 hover:shadow-md hover:border-gold-300 transition-all duration-200">
         <div class="flex-1">
-          <p class="text-xs text-gold-600 tracking-[0.2em] uppercase mb-1">Service</p>
           <h3 class="font-bold text-navy-800 mb-1">刺繍とプリントの特徴・用途例</h3>
           <p class="text-sm text-warm-700 leading-relaxed">刺繍とプリントそれぞれの特徴や、ユニフォーム・記念品などの用途例は加工サービスページでご案内しています。</p>
         </div>
@@ -84,7 +82,7 @@ import { url } from '../utils/paths'
   <!-- Data guide -->
   <section class="py-section-sm md:py-section bg-warm-50">
     <div class="mx-auto max-w-[1200px] px-4 md:px-8">
-      <SectionHeading en="Data Guide" ja="データ入稿ガイド" />
+      <SectionHeading ja="データ入稿ガイド" />
       <p class="text-center text-warm-600 text-sm -mt-8 mb-10">
         ロゴや文字のデータをお送りいただく際の参考情報です。<br class="hidden md:block" />お客様が形式を気にする必要はありません。分からない場合は、お手持ちのものをそのままお送りください。
       </p>
@@ -107,10 +105,10 @@ import { url } from '../utils/paths'
   <!-- For individuals -->
   <section class="py-section-sm md:py-section bg-navy-50">
     <div class="mx-auto max-w-[800px] px-4 md:px-8">
-      <SectionHeading en="For Individuals" ja="個人のお客様へ" />
+      <SectionHeading ja="個人のお客様へ" />
       <div class="js-fade-in bg-white rounded-lg border border-warm-200 p-6">
         <p class="text-sm text-warm-700 leading-relaxed">
-          「1枚だけでも注文できますか？」──はい、もちろん承ります。お子様のお名前入れ、チームのユニフォーム、記念品など、個人のお客様も大歓迎です。
+          「少ない枚数でも注文できますか？」──はい、小ロットのご注文にも対応しています。チームのユニフォームや記念品など、まずはお気軽にご相談ください。
         </p>
       </div>
     </div>
