@@ -45,7 +45,6 @@ const steps = [
 // ※金額・納期の日数は掲載しない
 const lots = [
   {
-    en: 'Small Lot',
     label: '小ロット',
     range: '1枚〜',
     items: [
@@ -54,7 +53,6 @@ const lots = [
     ],
   },
   {
-    en: 'Medium Lot',
     label: '中ロット',
     range: '数十枚',
     items: [
@@ -64,7 +62,6 @@ const lots = [
     ],
   },
   {
-    en: 'Large Lot',
     label: '大ロット',
     range: '数百〜数千枚',
     items: [
@@ -89,7 +86,6 @@ import { url } from '../utils/paths'
   <section class="relative h-48 md:h-64 flex items-center">
     <div class="absolute inset-0 bg-navy-800"></div>
     <div class="relative z-10 mx-auto max-w-[1200px] px-4 md:px-8 w-full">
-      <p class="text-sm text-gold-300 tracking-[0.2em] uppercase mb-2">Flow</p>
       <h1 class="heading-accent text-2xl md:text-4xl text-white">ご注文の流れ</h1>
       <p class="text-navy-200 text-sm mt-2">初めての方もご安心ください。{steps.length}つのステップでご案内します。</p>
     </div>
@@ -98,7 +94,7 @@ import { url } from '../utils/paths'
   <!-- Steps -->
   <section class="py-section-sm md:py-section">
     <div class="mx-auto max-w-[800px] px-4 md:px-8">
-      <SectionHeading en="Order Flow" ja="ご注文の流れ" />
+      <SectionHeading ja="ご注文の流れ" />
 
       <div class="space-y-0">
         {steps.map((step, i) => (
@@ -156,7 +152,7 @@ import { url } from '../utils/paths'
   <!-- Delivery -->
   <section class="py-section-sm md:py-section bg-warm-50">
     <div class="mx-auto max-w-[800px] px-4 md:px-8">
-      <SectionHeading en="Delivery" ja="納期について" />
+      <SectionHeading ja="納期について" />
       <p class="js-fade-in text-center text-sm text-warm-700 leading-relaxed">
         小ロット・短納期のご相談にも柔軟に対応します。<br class="hidden md:block" />納期は加工内容・数量により異なりますので、お気軽にお問い合わせください。
       </p>
@@ -166,7 +162,7 @@ import { url } from '../utils/paths'
   <!-- Order examples（小・中・大ロット） -->
   <section id="examples" class="py-section-sm md:py-section">
     <div class="mx-auto max-w-[1000px] px-4 md:px-8">
-      <SectionHeading en="Examples" ja="こんなご注文を承っています" />
+      <SectionHeading ja="こんなご注文を承っています" />
       <p class="text-center text-warm-600 text-sm -mt-8 mb-8 leading-relaxed">
         1枚のお名前入れから、2,000枚規模の大量のご注文まで。<br class="hidden md:block" />数量に合わせて対応しています。
       </p>
@@ -190,7 +186,6 @@ import { url } from '../utils/paths'
         {lots.map((lot) => (
           <div>
             <div class="js-fade-in flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-4 pb-2 border-b-2 border-gold-300">
-              <span class="text-xs text-warm-500 font-light tracking-[0.2em] uppercase">{lot.en}</span>
               <h3 class="heading-accent text-lg md:text-xl text-navy-800">{lot.label}</h3>
               <span class="text-sm md:text-base font-bold text-gold-700">{lot.range}</span>
             </div>
